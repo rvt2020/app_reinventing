@@ -1,0 +1,24 @@
+# docker-compose_dev.yml
+version: "2"
+services:
+  app_pro:
+    image: reinventing:5.0
+    #    build:
+    #      context: .
+    #      dockerfile: Dockerfile
+    restart: always
+    expose:
+      - "80"
+    # volumes:
+    # - /Users/kbs/git/peladonerd/varios/1/www:/usr/share/nginx/html:ro
+    # - //d/storeDocker/html:/usr/share/nginx/html:ro
+    environment:
+      - VIRTUAL_HOST=reinventing.com.pe,www.reinventing.com.pe
+      - LETSENCRYPT_HOST=reinventing.com.pe,www.reinventing.com.pe
+      - LETSENCRYPT_EMAIL=miguekos1233@gmail.com
+networks:
+  default:
+    external:
+      name: nginx-proxy_nginx-proxy
+
+
