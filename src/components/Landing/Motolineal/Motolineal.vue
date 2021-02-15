@@ -127,8 +127,9 @@ export default {
       await this.call_listar_landin({
         fe_regdes: this.fec_des,
         fe_reghas: this.fec_has,
-        co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
         ti_landin: "2",
+        co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
+        
       });
       this.$q.loading.hide();
     },
@@ -138,8 +139,9 @@ export default {
     await this.call_listar_landin({
       fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
       fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
-      co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
       ti_landin: "2",
+      co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
+      
     });
     this.$q.loading.hide();
   },
