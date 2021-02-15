@@ -379,7 +379,7 @@
                 <q-expansion-item
                   class="q-ma-sm navigation-item"
                   expand-separator
-                  icon=""
+                  icon="electric_rickshaw"
                   label="Moto Taxi"
                   :content-inset-level="0.5"
                 >
@@ -392,7 +392,7 @@
                     @click="URL('/landing/chapatumototaxi')"
                   >
                     <q-item-section avatar>
-                      <q-icon name="electric_rickshaw" />
+                      <q-icon name="1." />
                     </q-item-section>
 
                     <q-item-section>
