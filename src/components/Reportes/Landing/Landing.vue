@@ -41,7 +41,7 @@
                 filled
                 dense
                 v-model="fecha_fin"
-                label="Fecha Inicio"
+                label="Fecha Fin"
               >
                 <template v-slot:append>
                   <q-icon name="event" class="cursor-pointer">
