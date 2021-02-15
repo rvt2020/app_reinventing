@@ -379,7 +379,7 @@
                 <q-expansion-item
                   class="q-ma-sm navigation-item"
                   expand-separator
-                  icon="electric_rickshaw"
+                  icon=""
                   label="Moto Taxi"
                   :content-inset-level="0.5"
                 >
