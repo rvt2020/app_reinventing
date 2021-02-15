@@ -128,7 +128,7 @@ export default {
         fe_regdes: this.fec_des,
         fe_reghas: this.fec_has,
         ti_landin: "1",
-        co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
+        co_person : 2, /*this.$q.localStorage.getAll().UserDetalle.co_person,*/
       });
       this.$q.loading.hide();
     },
@@ -139,7 +139,7 @@ export default {
       fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
       fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
       ti_landin: "1",
-      co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
+      co_person : 2, /*this.$q.localStorage.getAll().UserDetalle.co_person,*/
     });
     this.$q.loading.hide();
   },
