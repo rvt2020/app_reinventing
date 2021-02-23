@@ -135,6 +135,7 @@ const MixinDefault = {
         fe_entreg: "Fecha de Entrega",
         km_priing: "Kilometraje",
         no_tipser: "Tipo Servicio",
+        ca_sinter: "C. Sin Term.",
         fec_1k: "1000 KM",
         fec_5k: "5000 KM",
         fec_10k: "10000 KM",
@@ -154,7 +155,11 @@ const MixinDefault = {
         fec_80k: "80000 KM",
         fec_85k: "85000 KM",
         fec_90k: "90000 KM",
-        fec_100k: "100000 KM"
+        fec_100k: "100000 KM",
+        fe_actchi: "Activacion de Chip",
+        no_correo: "Correo",
+        no_nivedu: "Nivel de Educación",
+        no_perfil: "Perfil"
       }
     };
   },

@@ -383,6 +383,7 @@
                   label="Moto Taxi"
                   :content-inset-level="0.5"
                 >
+                  <!-- GESTION INICIAL -->
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -392,13 +393,51 @@
                     @click="URL('/landing/chapatumototaxi')"
                   >
                     <q-item-section avatar>
-                      <q-icon name="1." />
+                      <q-icon name="contact_phone" />
                     </q-item-section>
 
                     <q-item-section>
                       <q-item-label>Gestión Inicial</q-item-label>
                     </q-item-section>
                   </q-item>
+
+                  <!-- GESTIONES PRECALIFICADAS -->
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/chapatumototaxiprecal')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="spellcheck" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Precalificadas</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+                  <!-- GESTIONES RECHAZADAS -->
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/chapatumototaxirechaz')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="subtitles_off" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Rechazadas</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+
                 </q-expansion-item>
             
                 <q-item
@@ -520,6 +559,8 @@
         </q-card>
       </q-dialog>
     </q-dialog>
+
+
     <q-dialog
       v-model="dialogIngresoVehicular"
       persistent
@@ -531,6 +572,8 @@
     >
       <DialogIngresoVehicular />
     </q-dialog>
+
+
     <q-dialog
       v-model="UploadBasic"
       persistent
@@ -557,65 +600,55 @@
         </q-card-section>
       </q-card>
     </q-dialog>
+
+
   </q-layout>
 </template>
 
 <script>
-import { storagelocal } from "../mixins/mixin";
-import EssentialLink from "components/EssentialLink.vue";
-import { mapActions, mapGetters, mapState } from "vuex";
-import { date } from "quasar";
-let timeStamp = Date.now();
-let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
-const linksData = [
+  import { storagelocal } from "../mixins/mixin";
+  import EssentialLink from "components/EssentialLink.vue";
+  import { mapActions, mapGetters, mapState } from "vuex";
+  import { date } from "quasar";
+  let timeStamp = Date.now();
+  let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
+  const linksData = [
   // {
   //   title: "Usuarios",
   //   caption: "quasar.dev",
   //   icon: "group",
   //   link: "/usuarios"
   // },
-  {
-    title: "Vehiculos",
-    caption: "github.com/quasarframework",
-    icon: "directions_car",
-    link: "/vehiculos",
-  },
+    {
+      title: "Vehiculos",
+      caption: "github.com/quasarframework",
+      icon: "directions_car",
+      link: "/vehiculos",
+    },
   // {
   //   title: "Personas",
   //   caption: "github.com/quasarframework",
   //   icon: "face",
   //   link: "/personas"
   // },
-  {
-    title: "Citas",
-    caption: "github.com/quasarframework",
-    icon: "event",
-    link: "/citas",
-  },
-  // {
-  //   title: "Materiales",
-  //   caption: "github.com/quasarframework",
-  //   icon: "list_alt",
-  //   link: "/materiales"
-  // },
-  {
-    title: "Operaciones",
-    caption: "github.com/quasarframework",
-    icon: "rule",
-    link: "/operaciones",
-  },
-  // {
-  //   title: "Logistica",
-  //   caption: "github.com/quasarframework",
-  //   icon: "assignment_turned_in",
-  //   link: "/logisticas"
-  // },
-  // {
-  //   title: "Reportes",
-  //   caption: "github.com/quasarframework",
-  //   icon: "receipt_long",
-  //   link: "/reportes"
-  // }
+    {
+      title: "Citas",
+      caption: "github.com/quasarframework",
+      icon: "event",
+      link: "/citas",
+    },
+    {
+      title: "Operaciones",
+      caption: "github.com/quasarframework",
+      icon: "rule",
+      link: "/operaciones",
+    },
+    {
+      title: "Llamadas",
+      caption: "github.com/quasarframework",
+      icon: "perm_phone_msg",
+      link: "/llamadas"
+  }
 ];
 
 export default {

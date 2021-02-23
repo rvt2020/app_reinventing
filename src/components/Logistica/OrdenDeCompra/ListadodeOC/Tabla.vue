@@ -45,6 +45,7 @@
           />
         </q-td>
       </template>
+      
       <template v-slot:body-cell-ca_arcadj="props">
         <q-td :props="props">
           <q-btn
@@ -55,6 +56,7 @@
           />
         </q-td>
       </template>
+      
       <template v-slot:body-cell-accion="props">
         <q-td :props="props">
           <div class="row q-gutter-xs">
@@ -79,6 +81,7 @@
           </div>
         </q-td>
       </template>
+
     </q-table>
     <div>
       <DialogCrear :tipo="tipo" :info="dataEdit" />

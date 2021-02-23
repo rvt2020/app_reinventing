@@ -76,8 +76,8 @@
     <div>
       <div class="row">
         <div class="col">
-          <!--          {{ get_listar_landin.resultado[0] }}-->
-          <Tabla :info="get_listar_landin.resultado" />
+                    {{ get_listar_llamad.resultado[0] }}
+          <Tabla />
         </div>
       </div>
     </div>
@@ -91,10 +91,11 @@ import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   name: "Kardex",
   computed: {
-    ...mapGetters("landing", ["get_listar_landin"]),
+    ...mapGetters("llamadas", ["get_listar_llamad"]),
   },
   data() {
     return {
+      no_client: "all",
       cod_ope: "",
       pla_veh: "",
       fec_des: date.formatDate(timeStamp, "YYYY-MM-DD"),
@@ -120,26 +121,20 @@ export default {
     Tabla: () => import("./Tabla"),
   },
   methods: {
-    ...mapActions("landing", ["call_listar_landin"]),
+    ...mapActions("llamadas", ["call_listar_llamad"]),
     async buscarOperaciones() {
       console.log("buscarOperaciones");
       this.$q.loading.show();
-      await this.call_listar_landin({
-        fe_regdes: this.fec_des,
-        fe_reghas: this.fec_has,
-        co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
-        ti_landin: "1",
+      await this.call_listar_llamad({
+        no_client: this.no_client,
       });
       this.$q.loading.hide();
     },
   },
   async created() {
     this.$q.loading.show();
-    await this.call_listar_landin({
-      fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
-      fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
-      co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
-      ti_landin: "1",
+    await this.call_listar_llamad({
+      no_client: this.no_client,
     });
     this.$q.loading.hide();
   },

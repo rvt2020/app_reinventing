@@ -7,7 +7,7 @@
       card-class="bg-amber-1 text-brown"
       table-class="text-grey-8"
       table-header-class="text-brown"
-      title="Chapa tu moto taxi"
+      title="Gestión de LLamadas"
       :data="dataTable"
       dense
       :filter="filter"
@@ -75,36 +75,6 @@
         </q-card-section> -->
         <!-- {{get_tcvalcvr.resultado}} -->
         <q-card-section>
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcestlla"
-                :options="get_tcestlla.resultado"
-                option-label="no_estlla"
-                option-value="co_estlla"
-                emit-value
-                map-options
-                label="Estado de la llamada"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcresges"
-                :options="get_tcresges.resultado"
-                option-label="no_resges"
-                option-value="co_resges"
-                map-options
-                emit-value
-                label="Resultado de la llamada"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-          </div>
           <!-- <div class="row">
             <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
@@ -186,36 +156,7 @@
               />
             </div>
           </div> -->
-          <div class="row">
-            <!-- <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcrescvr"
-                :options="get_tcrescvr.resultado"
-                option-value="co_rescvr"
-                option-label="no_rescvr"
-                emit-value
-                map-options
-                label="Resultado converus"
-                outlined
-                stack-label
-                dense
-              />
-            </div> -->
-            <div class="col-xs-12 col-sm-12 q-pa-xs">
-              <q-select
-                v-model="tcresult"
-                :options="get_tcresult.resultado"
-                option-value="co_result"
-                option-label="no_result"
-                emit-value
-                map-options
-                label="Resultado de la gestion"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-          </div>
+          
         </q-card-section>
         <q-card-actions align="right">
           <q-btn outline label="Cancelar" color="red" @click="cerrar" />
@@ -297,23 +238,15 @@ export default {
   mixins: [MixinDefault],
   name: "Tabla",
   computed: {
-    ...mapState("reportes", ["dialogCrear", "dialogDetalleOrden"]),
-    ...mapGetters("landing", [
-      "get_tctiplan",
-      "get_tcestlla",
-      "get_tcestdoc",
-      "get_tcexpsis",
-      "get_tcvalcvr",
-      "get_tcrescvr",
-      "get_tcresges",
-      "get_tcresult",
-      "get_listar_bitaco",
+    //...mapState("reportes", ["dialogCrear", "dialogDetalleOrden"]),
+    ...mapGetters("llamadas", [
+      "get_listar_llamad",
     ]),
     dataTable() {
       let data = [];
-      console.log("this.info.length", this.info.length);
-      for (let index = 0; index < this.info.length; index++) {
-        const element = this.info[index];
+      console.log("this.get_listar_llamad.length", this.get_listar_llamad.length);
+      for (let index = 0; index < this.get_listar_llamad.length; index++) {
+        const element = this.get_listar_llamad[index];
         data.push({
           ...this.ObjKeyRename(element, this.labels),
           accion: "",
@@ -322,28 +255,7 @@ export default {
       // console.log("asdasdasd", data);
       return data;
     },
-    dataTableBitacora() {
-      let data = [];
-      try {
-        console.log(
-          "this.info.length",
-          this.get_listar_bitaco.resultado.length
-        );
-        for (
-          let index = 0;
-          index < this.get_listar_bitaco.resultado.length;
-          index++
-        ) {
-          const element = this.get_listar_bitaco.resultado[index];
-          data.push(this.ObjKeyRename(element, this.labels));
-        }
-        // console.log("asdasdasd", data);
-        return data;
-      } catch (error) {
-        console.log(error);
-        return data;
-      }
-    },
+    
   },
   data() {
     return {
@@ -381,18 +293,8 @@ export default {
     };
   },
   methods: {
-    ...mapActions("landing", [
-      "call_insert_bitges",
-      "call_tctiplan",
-      "call_tcestlla",
-      "call_tcestdoc",
-      "call_tcexpsis",
-      "call_tcvalcvr",
-      "call_tcrescvr",
-      "call_tcresges",
-      "call_tcresult",
-      "call_listar_landin",
-      "call_listar_bitaco",
+    ...mapActions("llamadas", [
+      "call_listar_llamad",
     ]),
     titulos(string) {
       return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -421,6 +323,7 @@ export default {
         this.$q.loading.hide();
       }
     },
+    /*
     async onSubmit() {
       try {
         const resp = await this.call_insert_bitges({
@@ -470,19 +373,10 @@ export default {
         console.log(error);
         this.$q.loading.hide();
       }
-    },
+    },*/
     cerrar() {
       // this.clietneSelect = {};
-      this.tcestlla = "";
-      this.tcresges = "";
-      this.no_coment = "";
-      this.tcestdoc = "";
-      this.tcexpsis = "";
-      this.co_expedi = "";
-      this.tcvalcvr = "";
-      this.fechacita = "";
-      this.tcrescvr = "";
-      this.tcresult = "";
+      //this.tcresult = "";
       this.confirm = false;
     },
   },
