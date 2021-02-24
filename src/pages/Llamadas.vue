@@ -1,12 +1,12 @@
 <template>
-  <q-page padding>
-    <div>
-        Llamadas
-    </div>
-    
-    <q-separator color="green" />
-    <!-- content -->
-  </q-page>
+  <div>
+    <q-page padding>
+      <div>Llamadas</div>
+
+      <q-separator color="green" />
+      <Llamadas />
+    </q-page>
+  </div>
 </template>
 
 <script>
@@ -14,9 +14,10 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "PageLLamadas",
+
   data() {
     return {
-      no_client : "all",
+      no_client: "all",
       dataEdit: {},
       dialogCrear: false,
       activarCrear: false,
@@ -27,68 +28,68 @@ export default {
           align: "left",
           label: "ID",
           field: "co_vehicu",
-          sortable: true
+          sortable: true,
         },
         {
           name: "co_plaveh",
           align: "left",
           label: "Placa",
           field: "co_plaveh",
-          sortable: true
+          sortable: true,
         },
         {
           name: "no_marveh",
           align: "left",
           label: "Marca",
           field: "no_marveh",
-          sortable: true
+          sortable: true,
         },
         {
           name: "no_modveh",
           align: "left",
           label: "Modelo",
           field: "no_modveh",
-          sortable: true
+          sortable: true,
         },
         {
           name: "nu_anofab",
           align: "left",
           label: "Año",
           field: "nu_anofab",
-          sortable: true
+          sortable: true,
         },
         {
           name: "no_colveh",
           align: "left",
           label: "Color",
           field: "no_colveh",
-          sortable: true
+          sortable: true,
         },
         {
           name: "action",
           align: "right",
           label: "Acciones",
           field: "action",
-          sortable: true
-        }
-      ]
+          sortable: true,
+        },
+      ],
     };
   },
   computed: {
-    ...mapGetters("llamadas", ["get_listar_llamad"])
+    ...mapGetters("llamadas", ["get_listar_llamad"]),
   },
   components: {
     Filtros: () => import("../components/Filtros"),
-    Titulos: () => import("../components/Titulos")
+    Titulos: () => import("../components/Titulos"),
+    Llamadas: () => import("components/Llamadas/Llamadas"),
   },
   methods: {
     ...mapActions("llamadas", ["call_listar_llamad"]),
     exportarData() {
       this.$q.notify({
-        message: "Por definir :)"
+        message: "Por definir :)",
       });
     },
-    
   },
   async created() {
     this.$q.loading.show();
@@ -98,6 +99,6 @@ export default {
     });
     this.filtrosNuevos;
     this.$q.loading.hide();
-  }
+  },
 };
 </script>

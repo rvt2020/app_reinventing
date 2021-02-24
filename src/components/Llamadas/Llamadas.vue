@@ -76,7 +76,7 @@
     <div>
       <div class="row">
         <div class="col">
-                    {{ get_listar_llamad.resultado[0] }}
+          {{ get_listar_llamad.resultado }}
           <Tabla />
         </div>
       </div>

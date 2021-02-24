@@ -225,7 +225,7 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { MixinDefault } from "../../../mixins/mixin";
+import { MixinDefault } from "../../mixins/mixin";
 import { date } from "quasar";
 let timeStamp = Date.now();
 export default {
