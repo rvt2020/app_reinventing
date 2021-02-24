@@ -412,6 +412,23 @@
                     <q-item-label>Efectivo al toque</q-item-label>
                   </q-item-section>
                 </q-item>
+
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/landing/conversiones')"
+                >
+                  <q-item-section avatar>
+                    <q-icon name="local_atm" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Conversiones</q-item-label>
+                  </q-item-section>
+                </q-item>
               </q-expansion-item>
 
               <q-item

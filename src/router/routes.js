@@ -73,6 +73,10 @@ const routes = [
           import("components/Landing/Chapatumototaxi/Chapatumototaxi")
       },
       {
+        path: "landing/conversiones",
+        component: () => import("components/Landing/Conversiones/Conversiones")
+      },
+      {
         path: "landing/motolineal",
         component: () => import("components/Landing/Motolineal/Motolineal")
       },
