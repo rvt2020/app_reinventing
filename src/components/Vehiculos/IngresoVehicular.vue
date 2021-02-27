@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--    {{ dataIngresoVehicular }}-->
+    <!-- INGRESO VEHICULAR -->
     <q-card v-if="tieneCodigo === 1" class="full-height" square>
       <q-form @submit="onSubmit" @reset.prevent.stop="onReset">
         <q-bar class="bg-primary text-white">
@@ -10,6 +10,7 @@
             <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
           </q-btn>
         </q-bar>
+
         <q-card-section>
           <!--        <TablaA />-->
           <div class="row">
@@ -85,7 +86,7 @@
                 <q-markup-table dense>
                   <thead>
                     <tr>
-                      <td class="text-left text-h6">Datos del Cliente</td>
+                      <td class="text-left text-h6">Datos del Chofer</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -104,7 +105,7 @@
                           hide-selected
                           fill-input
                           input-debounce="0"
-                          label="Cliente o Propietario"
+                          label="Buscar a"
                           :options="options"
                           option-label="no_person"
                           emit-value
@@ -291,8 +292,9 @@
             </div>
           </div>
         </q-card-section>
+        <!-- FIN DE PARAMETROS PARA EL INGRESO DEL VEHICULO -->
 
-        <!--      <q-separator />-->
+        
 
         <!--      <q-card-section>-->
         <!--        {{ get_buscar_operacion.result[0] }}-->
@@ -304,8 +306,11 @@
           <!--        <q-btn flat label="Decline" color="primary" v-close-popup />-->
           <q-btn label="Registrar" type="submit" color="primary" />
         </q-card-actions>
+
       </q-form>
+
     </q-card>
+    
     <q-card v-if="tieneCodigo === 2" class="full-height" square>
       <q-form @submit="onSubmitCita" @reset.prevent.stop="onReset">
         <q-bar class="bg-primary text-white">
@@ -613,6 +618,7 @@
         </q-card-actions>
       </q-form>
     </q-card>
+    
     <q-card v-if="tieneCodigo === 3" class="full-height" square>
       <q-form @submit="onSubmitNew" @reset.prevent.stop="onReset">
         <q-bar class="bg-primary text-white">

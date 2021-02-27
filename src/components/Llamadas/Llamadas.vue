@@ -5,67 +5,17 @@
       <div class="col-8 q-pb-md">
         <q-form @submit="buscarOperaciones">
           <div class="row">
-            <div class="col-xs-12 col-sm-5 q-pa-xs">
+            <div class="col-9">
               <q-input
-                clearable
-                filled
+                autofocus
                 dense
-                v-model="fec_des"
-                label="Fecha Inicio"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      ref="qDateProxy"
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="fec_des" mask="YYYY-MM-DD">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
-            </div>
-            <div class="col-xs-12 col-sm-5 q-pa-xs">
-              <q-input
-                clearable
                 filled
-                dense
-                v-model="fec_has"
-                label="Fecha Fin"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      ref="qDateProxy"
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="fec_has" mask="YYYY-MM-DD">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
+                v-model="no_client"
+                label="Cliente" 
+              />
             </div>
-            <div class="col-xs-12 col-sm-2 q-pa-xs">
+
+            <div class="col-3">
               <q-btn size="md" color="red" type="submit" icon-right="search" />
             </div>
           </div>
@@ -76,8 +26,8 @@
     <div>
       <div class="row">
         <div class="col">
-          {{ get_listar_llamad.resultado }}
-          <Tabla />
+          <!--          {{ get_listar_landin.resultado[0] }}-->
+          <Tabla :info="get_listar_llamad.resultado" />
         </div>
       </div>
     </div>
@@ -95,7 +45,7 @@ export default {
   },
   data() {
     return {
-      no_client: "all",
+      no_client: "",
       cod_ope: "",
       pla_veh: "",
       fec_des: date.formatDate(timeStamp, "YYYY-MM-DD"),
@@ -121,7 +71,7 @@ export default {
     Tabla: () => import("./Tabla"),
   },
   methods: {
-    ...mapActions("llamadas", ["call_listar_llamad"]),
+    ...mapActions("Llamadas", ["call_listar_llamad"]),
     async buscarOperaciones() {
       console.log("buscarOperaciones");
       this.$q.loading.show();

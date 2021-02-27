@@ -47,13 +47,6 @@
           <div class="q-pr-xs q-gutter-sm">
             <q-btn
               size="xs"
-              color="green"
-              label="Ver"
-              @click="ver(props.row)"
-            />
-
-            <q-btn
-              size="xs"
               color="primary"
               label="Gestionar"
               @click="gestionar(props.row)"
@@ -62,19 +55,21 @@
         </q-td>
       </template>
     </q-table>
+
+    <!--
     <q-dialog
       v-model="confirm"
       style="width: 100%; max-width: 250px"
       persistent
       position="top"
-    >
-      <q-card style="width: 600px">
+    >-->
+      <!--<q-card style="width: 600px"> -->
         <!-- <q-card-section class="q-pa-none q-pt-sm q-pl-lg">
           Gestionando: {{ clietneSelect.Nombres }} con Documento:
           {{ clietneSelect.Documento }}
         </q-card-section> -->
         <!-- {{get_tcvalcvr.resultado}} -->
-        <q-card-section>
+        <!--<q-card-section>-->
           <!-- <div class="row">
             <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
@@ -131,7 +126,7 @@
               />
             </div>
           </div> -->
-          <div class="row">
+          <!--<div class="row">
             <div class="col-xs-12 col-sm-12 q-pa-xs">
               <q-input
                 outlined
@@ -143,7 +138,7 @@
                 label="Comentario"
               />
             </div>
-          </div>
+          </div>-->
           <!-- <div class="row" style="place-content: center">
             <div class="col-xs-12 col-sm-6 q-pa-xs" style="text-align: center">
               Fecha cita
@@ -156,14 +151,16 @@
               />
             </div>
           </div> -->
-          
+          <!--
         </q-card-section>
         <q-card-actions align="right">
           <q-btn outline label="Cancelar" color="red" @click="cerrar" />
           <q-btn outline label="procesar" color="green" @click="onSubmit" />
         </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-dialog>-->
+    
+    <!--
     <q-dialog v-model="dialogver" persistent full-width>
       <q-card class="bg-primary text-white">
         <q-bar class="bg-primary">
@@ -200,12 +197,12 @@
           </q-btn>
         </q-bar>
 
-        <!-- <q-card-section>
+        <q-card-section>
           <div class="text-h6">Historico de Gestion para: Miguel Rodriguez</div>
-        </q-card-section> -->
+        </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <!-- {{ get_listar_bitaco.resultado }} -->
+           {{ get_listar_bitaco.resultado }} 
           <q-table
             dense
             flat
@@ -219,7 +216,8 @@
           />
         </q-card-section>
       </q-card>
-    </q-dialog>
+    </q-dialog> -->
+
   </div>
 </template>
 
@@ -228,6 +226,7 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import { MixinDefault } from "../../mixins/mixin";
 import { date } from "quasar";
 let timeStamp = Date.now();
+
 export default {
   props: {
     info: {
@@ -239,14 +238,14 @@ export default {
   name: "Tabla",
   computed: {
     //...mapState("reportes", ["dialogCrear", "dialogDetalleOrden"]),
-    ...mapGetters("llamadas", [
+    ...mapGetters("Llamadas", [
       "get_listar_llamad",
     ]),
     dataTable() {
       let data = [];
-      console.log("this.get_listar_llamad.length", this.get_listar_llamad.length);
-      for (let index = 0; index < this.get_listar_llamad.length; index++) {
-        const element = this.get_listar_llamad[index];
+      console.log("this.info.length", this.info.length);
+      for (let index = 0; index < this.info.length; index++) {
+        const element = this.info[index];
         data.push({
           ...this.ObjKeyRename(element, this.labels),
           accion: "",
@@ -255,28 +254,41 @@ export default {
       // console.log("asdasdasd", data);
       return data;
     },
-    
+    /*
+    dataTableBitacora() {
+      let data = [];
+      try {
+        console.log(
+          "this.info.length",
+          this.get_listar_bitaco.resultado.length
+        );
+        for (
+          let index = 0;
+          index < this.get_listar_bitaco.resultado.length;
+          index++
+        ) {
+          const element = this.get_listar_bitaco.resultado[index];
+          data.push(this.ObjKeyRename(element, this.labels));
+        }
+        // console.log("asdasdasd", data);
+        return data;
+      } catch (error) {
+        console.log(error);
+        return data;
+      }
+    },*/
   },
   data() {
     return {
       maximizedToggle: false,
       dialogver: false,
-      tcresges: "",
-      tcestlla: "",
-      tcvalcvr: "",
-      tcestdoc: "",
-      tcexpsis: "",
-      co_expedi: "",
-      no_coment: "",
-      fechacita: "",
-      tcrescvr: "",
       tcresult: "",
       clietneSelect: [],
       fechacita: "",
       model: "",
       options: ["asd", "zxc"],
       text: "asd",
-      confirm: false,
+      //confirm: false,
       filter: "",
       tipo: 1,
       orden: null,
@@ -293,12 +305,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions("llamadas", [
-      "call_listar_llamad",
-    ]),
+    ...mapActions("Llamadas", ["call_listar_llamad", ]),
     titulos(string) {
       return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     },
+    /*
     async ver(val) {
       try {
         this.$q.loading.show();
@@ -323,7 +334,6 @@ export default {
         this.$q.loading.hide();
       }
     },
-    /*
     async onSubmit() {
       try {
         const resp = await this.call_insert_bitges({
@@ -354,6 +364,7 @@ export default {
         console.log(error);
       }
     },
+
     async gestionar(val) {
       try {
         this.$q.loading.show();
@@ -373,12 +384,21 @@ export default {
         console.log(error);
         this.$q.loading.hide();
       }
-    },*/
+    },
     cerrar() {
       // this.clietneSelect = {};
-      //this.tcresult = "";
+      this.tcestlla = "";
+      this.tcresges = "";
+      this.no_coment = "";
+      this.tcestdoc = "";
+      this.tcexpsis = "";
+      this.co_expedi = "";
+      this.tcvalcvr = "";
+      this.fechacita = "";
+      this.tcrescvr = "";
+      this.tcresult = "";
       this.confirm = false;
-    },
+    },*/
   },
   async created() {
     try {
