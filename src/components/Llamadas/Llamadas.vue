@@ -71,7 +71,7 @@ export default {
     Tabla: () => import("./Tabla"),
   },
   methods: {
-    ...mapActions("Llamadas", ["call_listar_llamad"]),
+    ...mapActions("llamadas", ["call_listar_llamad"]),
     async buscarOperaciones() {
       console.log("buscarOperaciones");
       this.$q.loading.show();

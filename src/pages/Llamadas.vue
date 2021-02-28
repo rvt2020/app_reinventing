@@ -102,7 +102,7 @@ export default {
   components: {
     Filtros: () => import("../components/Filtros"),
     Titulos: () => import("../components/Titulos"),
-    Tabla: () => import("components/Llamadas/Llamadas"),
+    Llamadas: () => import("components/Llamadas/Llamadas"),
   },
   methods: {
     ...mapActions("llamadas", ["call_listar_llamad"]),
