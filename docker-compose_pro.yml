@@ -7,9 +7,13 @@ services:
     #      context: .
     #      dockerfile: Dockerfile
     restart: always
+    environment:
+      - TZ=America/Lima
     expose:
       - "80"
-    # volumes:
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     # - /Users/kbs/git/peladonerd/varios/1/www:/usr/share/nginx/html:ro
     # - //d/storeDocker/html:/usr/share/nginx/html:ro
     environment:
