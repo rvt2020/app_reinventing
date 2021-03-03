@@ -36,6 +36,7 @@
         </q-btn>
       </q-toolbar>
     </q-header>
+    
     <q-drawer
       class="left-navigation"
       v-model="leftDrawerOpen"
@@ -60,6 +61,8 @@
           <hr />
           <q-scroll-area style="height: 100%">
             <q-list padding>
+            
+            <!-- INICIO MENU CONFIGURACION -->
               <q-expansion-item
                 class="q-ma-sm navigation-item"
                 expand-separator
@@ -67,6 +70,8 @@
                 label="Configuracion"
                 :content-inset-level="0.5"
               >
+              
+              <!-- USUARIOS -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -83,7 +88,8 @@
                     <q-item-label>Usuarios</q-item-label>
                   </q-item-section>
                 </q-item>
-
+                
+              <!-- PERSONAS -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -101,6 +107,7 @@
                   </q-item-section>
                 </q-item>
 
+              <!-- MATERIALES -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -117,14 +124,17 @@
                     <q-item-label>Materiales</q-item-label>
                   </q-item-section>
                 </q-item>
+              
               </q-expansion-item>
-
+            <!-- FIN MENU CONFIGURACION -->
+              
               <EssentialLink
                 v-for="link in essentialLinks"
                 :key="link.title"
                 v-bind="link"
               />
 
+            <!-- INICIO MENU LOGISTICA -->
               <q-expansion-item
                 class="q-ma-sm navigation-item"
                 expand-separator
@@ -132,6 +142,7 @@
                 label="Logistica"
                 :content-inset-level="0.5"
               >
+                <!-- ORDENES DE COMPRA -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -149,6 +160,7 @@
                   </q-item-section>
                 </q-item>
 
+                <!-- TRAMITE DOCUMENTARIO -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -166,6 +178,7 @@
                   </q-item-section>
                 </q-item>
 
+                <!-- INGRESO DE ARTICULOS -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -182,6 +195,8 @@
                     <q-item-label>Ingresos de Articulos</q-item-label>
                   </q-item-section>
                 </q-item>
+                
+                <!-- SALIDA DE ARTICULOS -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -198,8 +213,12 @@
                     <q-item-label>Salida de Articulos</q-item-label>
                   </q-item-section>
                 </q-item>
-              </q-expansion-item>
 
+              </q-expansion-item>
+            <!-- FIN MENU LOGISTICA -->
+            
+            
+            <!-- INICIO MENU REPORTE -->
               <q-expansion-item
                 class="q-ma-sm navigation-item"
                 expand-separator
@@ -207,6 +226,7 @@
                 label="Reporte"
                 :content-inset-level="0.5"
               >
+                <!-- SUBMENU LOGISTICA -->
                 <q-expansion-item
                   class="q-ma-sm navigation-item"
                   expand-separator
@@ -214,6 +234,7 @@
                   label="Logistica"
                   :content-inset-level="0.5"
                 >
+                  <!-- KARDEX -->
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -231,6 +252,7 @@
                     </q-item-section>
                   </q-item>
 
+                  <!-- INVENTARIO VALORIZADO -->
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -249,6 +271,7 @@
                   </q-item>
                 </q-expansion-item>
 
+                <!-- SUBMENU OPERACIONES -->
                 <q-expansion-item
                   class="q-ma-sm navigation-item"
                   expand-separator
@@ -256,6 +279,7 @@
                   label="Operaciones"
                   :content-inset-level="0.5"
                 >
+                  <!-- REPORTE DIARIO -->
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -272,7 +296,8 @@
                       <q-item-label>Operaciones Reporte Diario</q-item-label>
                     </q-item-section>
                   </q-item>
-
+                
+                  <!-- PRODUCCION OPERACIONES -->
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -292,6 +317,7 @@
                     </q-item-section>
                   </q-item>
 
+                  <!-- SEGUIMIENTO MANTENIMIENTO -->
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -312,6 +338,9 @@
                   </q-item>
                 </q-expansion-item>
 
+
+                <!-- GESTIONES DE LANDING -->
+              
                 <q-expansion-item
                   class="q-ma-sm navigation-item"
                   expand-separator
@@ -337,7 +366,8 @@
                   </q-item>
                 </q-expansion-item>
               </q-expansion-item>
-
+            
+            <!-- MENU DE LANDINGS  -->
               <q-expansion-item
                 class="q-ma-sm navigation-item"
                 expand-separator
@@ -345,23 +375,71 @@
                 label="Landing"
                 :content-inset-level="0.5"
               >
-                <q-item
+                 <!-- SUBMENU LANDINGS -->
+                <q-expansion-item
                   class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
-                  @click="URL('/landing/chapatumototaxi')"
+                  expand-separator
+                  icon="electric_rickshaw"
+                  label="Moto Taxi"
+                  :content-inset-level="0.5"
                 >
-                  <q-item-section avatar>
-                    <q-icon name="electric_rickshaw" />
-                  </q-item-section>
+                  <!-- GESTION INICIAL -->
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/chapatumototaxi')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="contact_phone" />
+                    </q-item-section>
 
-                  <q-item-section>
-                    <q-item-label>Moto taxi</q-item-label>
-                  </q-item-section>
-                </q-item>
+                    <q-item-section>
+                      <q-item-label>Gestión Inicial</q-item-label>
+                    </q-item-section>
+                  </q-item>
 
+                  <!-- GESTIONES PRECALIFICADAS -->
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/chapatumototaxiprecal')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="spellcheck" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Precalificadas</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+                  <!-- GESTIONES RECHAZADAS -->
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/chapatumototaxirechaz')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="subtitles_off" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Rechazadas</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+
+                </q-expansion-item>
+            
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
@@ -452,9 +530,12 @@
         </div>
       </div>
     </q-drawer>
+    
     <q-page-container>
       <router-view />
     </q-page-container>
+    
+    
     <q-dialog v-model="dialogPerfil">
       <div style="width: 80%">
         <q-card>
@@ -495,6 +576,8 @@
         </q-card>
       </q-dialog>
     </q-dialog>
+
+
     <q-dialog
       v-model="dialogIngresoVehicular"
       persistent
@@ -506,6 +589,8 @@
     >
       <DialogIngresoVehicular />
     </q-dialog>
+
+
     <q-dialog
       v-model="UploadBasic"
       persistent
@@ -532,65 +617,55 @@
         </q-card-section>
       </q-card>
     </q-dialog>
+
+
   </q-layout>
 </template>
 
 <script>
-import { storagelocal } from "../mixins/mixin";
-import EssentialLink from "components/EssentialLink.vue";
-import { mapActions, mapGetters, mapState } from "vuex";
-import { date } from "quasar";
-let timeStamp = Date.now();
-let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
-const linksData = [
+  import { storagelocal } from "../mixins/mixin";
+  import EssentialLink from "components/EssentialLink.vue";
+  import { mapActions, mapGetters, mapState } from "vuex";
+  import { date } from "quasar";
+  let timeStamp = Date.now();
+  let formattedString = date.formatDate(timeStamp, "YYYY-MM-DD");
+  const linksData = [
   // {
   //   title: "Usuarios",
   //   caption: "quasar.dev",
   //   icon: "group",
   //   link: "/usuarios"
   // },
-  {
-    title: "Vehiculos",
-    caption: "github.com/quasarframework",
-    icon: "directions_car",
-    link: "/vehiculos",
-  },
+    {
+      title: "Vehiculos",
+      caption: "github.com/quasarframework",
+      icon: "directions_car",
+      link: "/vehiculos",
+    },
   // {
   //   title: "Personas",
   //   caption: "github.com/quasarframework",
   //   icon: "face",
   //   link: "/personas"
   // },
-  {
-    title: "Citas",
-    caption: "github.com/quasarframework",
-    icon: "event",
-    link: "/citas",
-  },
-  // {
-  //   title: "Materiales",
-  //   caption: "github.com/quasarframework",
-  //   icon: "list_alt",
-  //   link: "/materiales"
-  // },
-  {
-    title: "Operaciones",
-    caption: "github.com/quasarframework",
-    icon: "rule",
-    link: "/operaciones",
-  },
-  // {
-  //   title: "Logistica",
-  //   caption: "github.com/quasarframework",
-  //   icon: "assignment_turned_in",
-  //   link: "/logisticas"
-  // },
-  // {
-  //   title: "Reportes",
-  //   caption: "github.com/quasarframework",
-  //   icon: "receipt_long",
-  //   link: "/reportes"
-  // }
+    {
+      title: "Citas",
+      caption: "github.com/quasarframework",
+      icon: "event",
+      link: "/citas",
+    },
+    {
+      title: "Operaciones",
+      caption: "github.com/quasarframework",
+      icon: "rule",
+      link: "/operaciones",
+    },
+    {
+      title: "Llamadas",
+      caption: "github.com/quasarframework",
+      icon: "perm_phone_msg",
+      link: "/llamadas"
+  }
 ];
 
 export default {

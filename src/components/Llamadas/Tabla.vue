@@ -7,7 +7,7 @@
       card-class="bg-amber-1 text-brown"
       table-class="text-grey-8"
       table-header-class="text-brown"
-      title="Chapa tu moto taxi"
+      title="Gestión de LLamadas"
       :data="dataTable"
       dense
       :filter="filter"
@@ -47,13 +47,6 @@
           <div class="q-pr-xs q-gutter-sm">
             <q-btn
               size="xs"
-              color="green"
-              label="Ver"
-              @click="ver(props.row)"
-            />
-
-            <q-btn
-              size="xs"
               color="primary"
               label="Gestionar"
               @click="gestionar(props.row)"
@@ -62,49 +55,21 @@
         </q-td>
       </template>
     </q-table>
+
+    <!--
     <q-dialog
       v-model="confirm"
       style="width: 100%; max-width: 250px"
       persistent
       position="top"
-    >
-      <q-card style="width: 600px">
+    >-->
+      <!--<q-card style="width: 600px"> -->
         <!-- <q-card-section class="q-pa-none q-pt-sm q-pl-lg">
           Gestionando: {{ clietneSelect.Nombres }} con Documento:
           {{ clietneSelect.Documento }}
         </q-card-section> -->
         <!-- {{get_tcvalcvr.resultado}} -->
-        <q-card-section>
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcestlla"
-                :options="get_tcestlla.resultado"
-                option-label="no_estlla"
-                option-value="co_estlla"
-                emit-value
-                map-options
-                label="Estado de la llamada"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcresges"
-                :options="get_tcresges.resultado"
-                option-label="no_resges"
-                option-value="co_resges"
-                map-options
-                emit-value
-                label="Resultado de la llamada"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-          </div>
+        <!--<q-card-section>-->
           <!-- <div class="row">
             <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
@@ -161,7 +126,7 @@
               />
             </div>
           </div> -->
-          <div class="row">
+          <!--<div class="row">
             <div class="col-xs-12 col-sm-12 q-pa-xs">
               <q-input
                 outlined
@@ -173,7 +138,7 @@
                 label="Comentario"
               />
             </div>
-          </div>
+          </div>-->
           <!-- <div class="row" style="place-content: center">
             <div class="col-xs-12 col-sm-6 q-pa-xs" style="text-align: center">
               Fecha cita
@@ -186,43 +151,16 @@
               />
             </div>
           </div> -->
-          <div class="row">
-            <!-- <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcrescvr"
-                :options="get_tcrescvr.resultado"
-                option-value="co_rescvr"
-                option-label="no_rescvr"
-                emit-value
-                map-options
-                label="Resultado converus"
-                outlined
-                stack-label
-                dense
-              />
-            </div> -->
-            <div class="col-xs-12 col-sm-12 q-pa-xs">
-              <q-select
-                v-model="tcresult"
-                :options="get_tcresult.resultado"
-                option-value="co_result"
-                option-label="no_result"
-                emit-value
-                map-options
-                label="Resultado de la gestion"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-          </div>
+          <!--
         </q-card-section>
         <q-card-actions align="right">
           <q-btn outline label="Cancelar" color="red" @click="cerrar" />
           <q-btn outline label="procesar" color="green" @click="onSubmit" />
         </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-dialog>-->
+    
+    <!--
     <q-dialog v-model="dialogver" persistent full-width>
       <q-card class="bg-primary text-white">
         <q-bar class="bg-primary">
@@ -259,12 +197,12 @@
           </q-btn>
         </q-bar>
 
-        <!-- <q-card-section>
+        <q-card-section>
           <div class="text-h6">Historico de Gestion para: Miguel Rodriguez</div>
-        </q-card-section> -->
+        </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <!-- {{ get_listar_bitaco.resultado }} -->
+           {{ get_listar_bitaco.resultado }} 
           <q-table
             dense
             flat
@@ -278,15 +216,17 @@
           />
         </q-card-section>
       </q-card>
-    </q-dialog>
+    </q-dialog> -->
+
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { MixinDefault } from "../../../mixins/mixin";
+import { MixinDefault } from "../../mixins/mixin";
 import { date } from "quasar";
 let timeStamp = Date.now();
+
 export default {
   props: {
     info: {
@@ -297,17 +237,9 @@ export default {
   mixins: [MixinDefault],
   name: "Tabla",
   computed: {
-    ...mapState("reportes", ["dialogCrear", "dialogDetalleOrden"]),
-    ...mapGetters("landing", [
-      "get_tctiplan",
-      "get_tcestlla",
-      "get_tcestdoc",
-      "get_tcexpsis",
-      "get_tcvalcvr",
-      "get_tcrescvr",
-      "get_tcresges",
-      "get_tcresult",
-      "get_listar_bitaco",
+    //...mapState("reportes", ["dialogCrear", "dialogDetalleOrden"]),
+    ...mapGetters("Llamadas", [
+      "get_listar_llamad",
     ]),
     dataTable() {
       let data = [];
@@ -322,6 +254,7 @@ export default {
       // console.log("asdasdasd", data);
       return data;
     },
+    /*
     dataTableBitacora() {
       let data = [];
       try {
@@ -343,28 +276,19 @@ export default {
         console.log(error);
         return data;
       }
-    },
+    },*/
   },
   data() {
     return {
       maximizedToggle: false,
       dialogver: false,
-      tcresges: "",
-      tcestlla: "",
-      tcvalcvr: "",
-      tcestdoc: "",
-      tcexpsis: "",
-      co_expedi: "",
-      no_coment: "",
-      fechacita: "",
-      tcrescvr: "",
       tcresult: "",
       clietneSelect: [],
       fechacita: "",
       model: "",
       options: ["asd", "zxc"],
       text: "asd",
-      confirm: false,
+      //confirm: false,
       filter: "",
       tipo: 1,
       orden: null,
@@ -381,22 +305,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions("landing", [
-      "call_insert_bitges",
-      "call_tctiplan",
-      "call_tcestlla",
-      "call_tcestdoc",
-      "call_tcexpsis",
-      "call_tcvalcvr",
-      "call_tcrescvr",
-      "call_tcresges",
-      "call_tcresult",
-      "call_listar_landin",
-      "call_listar_bitaco",
-    ]),
+    ...mapActions("Llamadas", ["call_listar_llamad", ]),
     titulos(string) {
       return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     },
+    /*
     async ver(val) {
       try {
         this.$q.loading.show();
@@ -451,6 +364,7 @@ export default {
         console.log(error);
       }
     },
+
     async gestionar(val) {
       try {
         this.$q.loading.show();
@@ -484,7 +398,7 @@ export default {
       this.tcrescvr = "";
       this.tcresult = "";
       this.confirm = false;
-    },
+    },*/
   },
   async created() {
     try {

@@ -2,7 +2,7 @@ import { axiosInstance } from "boot/axios";
 
 const state = {
   get_listar_landin: [],
-  get_tctiplan: [],
+  get_tctiplan: [], 
   get_tcestlla: [],
   get_tcestdoc: [],
   get_tcexpsis: [],
@@ -10,6 +10,11 @@ const state = {
   get_tcrescvr: [],
   get_tcresges: [],
   get_tcresult: [],
+  get_listar_landin_prerec: [],
+  get_tcproduc: [],
+  get_tctippla: [],
+  get_tcdocume: [],
+  get_tcentida: [],
   dialogCrear: false,
   get_listar_bitaco: [],
   get_report_gestio: []
@@ -17,7 +22,7 @@ const state = {
 
 const mutations = {
   get_listar_landin(state, payload) {
-    state.get_listar_landin = payload;
+    state.get_listar_landin = payload; // payload : información o data  luego se va al state (arriba)
   },
   get_tctiplan(state, payload) {
     state.get_tctiplan = payload;
@@ -48,16 +53,40 @@ const mutations = {
   },
   get_report_gestio(state, payload) {
     state.get_report_gestio = payload;
+  },
+
+  get_listar_landin_prerec(state, payload) {
+    state.get_listar_landin_prerec = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tcproduc(state, payload) {
+    state.get_tcproduc = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tctippla(state, payload) {
+    state.get_tctippla = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tcdocume(state, payload) {
+    state.get_tcdocume = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tcentida(state, payload) {
+    state.get_tcentida = payload; // payload : información o data  luego se va al state (arriba)
   }
 };
 
 const actions = {
+
+  // CALLS DE LANDINS PRINCIPAL
   async call_listar_landin({ commit }, payload) {
     const response = await axiosInstance.post(`comerc/listar_landin`, payload);
     commit("get_listar_landin", response.data);
   },
-  async call_insert_bitges({ commit }, payload) {
-    const response = await axiosInstance.post(`comerc/insert_bitges`, payload);
+  async call_insert_arcadj({ commit }, payload) {
+    const response = await axiosInstance.post(`/comerc/insert_arcadj`, payload);
+    // commit("get_insert_ordcom", response.data);
+    return response.data;
+  },
+  async call_update_landin({ commit }, payload) {
+    const response = await axiosInstance.post(`/comerc/update_landin`, payload);
+    // commit("get_insert_ordcom", response.data);
     return response.data;
   },
   async call_tctiplan({ commit }) {
@@ -99,9 +128,36 @@ const actions = {
   async call_report_gestio({ commit }, payload) {
     const response = await axiosInstance.post(`comerc/report_gestio`, payload);
     commit("get_report_gestio", response.data);
+  },
+
+  // CALL DE LANDINGS PRECALIFICADAS
+  async call_listar_landin_prerec({ commit }, payload) {
+    const response = await axiosInstance.post(`comerc/listar_landin_prerec`, payload);
+    commit("get_listar_landin_prerec", response.data);
+  },
+  async call_tcproduc({ commit }) {
+    const response = await axiosInstance.get(`comerc/tcproduc`);
+    commit("get_tcproduc", response.data);
+  },
+
+  async call_tctippla({ commit }) {
+    const response = await axiosInstance.get(`comerc/tctippla`);
+    commit("get_tctippla", response.data);
+  },
+  
+  async call_tcdocume({ commit }) {
+    const response = await axiosInstance.get(`comerc/tcdocume`);
+    commit("get_tcdocume", response.data);
+  },
+  
+  async call_tcentida({ commit }) {
+    const response = await axiosInstance.get(`comerc/tcentida`);
+    commit("get_tcentida", response.data);
   }
+  
 };
 
+// UNA CONSUMIDA LA WS--- VOY AQUI Y LO PINTO
 const getters = {
   get_listar_landin(state) {
     return state.get_listar_landin;
@@ -135,6 +191,22 @@ const getters = {
   },
   get_report_gestio(state) {
     return state.get_report_gestio;
+  },
+  //PRECALIFICADOS
+  get_listar_landin_prerec(state) {
+    return state.get_listar_landin_prerec;
+  },
+  get_tcproduc(state) {
+    return state.get_tcproduc;
+  },
+  get_tctippla(state) {
+    return state.get_tctippla;
+  },
+  get_tcdocume(state) {
+    return state.get_tcdocume;
+  },
+  get_tcentida(state) {
+    return state.get_tcentida;
   }
 };
 

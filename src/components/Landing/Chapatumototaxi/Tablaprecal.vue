@@ -7,7 +7,7 @@
       card-class="bg-amber-1 text-brown"
       table-class="text-grey-8"
       table-header-class="text-brown"
-      title="Chapa tu moto taxi"
+      title="Chapa tu moto taxi Precalificados"
       :data="dataTable"
       dense
       :filter="filter"
@@ -23,6 +23,7 @@
           </q-th>
         </q-tr>
       </template>
+
       <template v-slot:top-right>
         <q-input
           class="q-pl-sm"
@@ -37,19 +38,21 @@
           </template>
         </q-input>
       </template>
+
       <template v-slot:body-cell="props">
         <q-td :props="props">
           {{ props.value }}
         </q-td>
       </template>
+
       <template v-slot:body-cell-accion="props">
         <q-td :props="props">
           <div class="q-pr-xs q-gutter-sm">
             <q-btn
               size="xs"
               color="green"
-              label="Ver"
-              @click="ver(props.row)"
+              label="Documentar"
+              @click="documentar(props.row)"
             />
 
             <q-btn
@@ -61,7 +64,10 @@
           </div>
         </q-td>
       </template>
+
     </q-table>
+    
+    <!-- INICIO DE GENERAR EL POP UP PARA LA GESTIÓN -->
     <q-dialog
       v-model="confirm"
       style="width: 100%; max-width: 250px"
@@ -76,131 +82,58 @@
         <!-- {{get_tcvalcvr.resultado}} -->
         <q-card-section>
           <div class="row">
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
+            <div class="col-xs-12 col-sm-12 q-pa-xs">
               <q-select
-                v-model="tcestlla"
-                :options="get_tcestlla.resultado"
-                option-label="no_estlla"
-                option-value="co_estlla"
+                v-model="tcproduc"
+                :options="get_tcproduc.resultado"
+                option-value="co_produc"
+                option-label="no_produc"
                 emit-value
                 map-options
-                label="Estado de la llamada"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcresges"
-                :options="get_tcresges.resultado"
-                option-label="no_resges"
-                option-value="co_resges"
-                map-options
-                emit-value
-                label="Resultado de la llamada"
-                outlined
+                label="Tipo de Producto"
+                outlined  
                 stack-label
                 dense
               />
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcvalcvr"
-                :options="get_tcvalcvr.resultado"
-                label="Converus"
-                option-label="no_valcvr"
-                option-value="ti_valcvr"
-                map-options
-                emit-value
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcestdoc"
-                :options="get_tcestdoc.resultado"
-                option-label="no_estdoc"
-                option-value="co_estdoc"
-                emit-value
-                map-options
-                label="Estado del documento"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-          </div> -->
-          <!-- <div class="row">
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-select
-                v-model="tcexpsis"
-                :options="get_tcexpsis.resultado"
-                option-label="no_expsis"
-                option-value="ti_expsis"
-                map-options
-                emit-value
-                label="Expediente del Sistema"
-                outlined
-                stack-label
-                dense
-              />
-            </div>
-            <div class="col-xs-12 col-sm-6 q-pa-xs">
-              <q-input
-                outlined
-                dense
-                v-model="co_expedi"
-                type="text"
-                stack-label
-                label="Codigo de expediente"
-              />
-            </div>
-          </div> -->
+          
           <div class="row">
             <div class="col-xs-12 col-sm-12 q-pa-xs">
-              <q-input
-                outlined
-                dense
-                autogrow
-                v-model="no_coment"
-                type="text"
+              <q-select
+                v-model="tctippla"
+                :options="get_tctippla.resultado"
+                option-value="co_tippla"
+                option-label="no_tippla"
+                emit-value
+                map-options
+                label="Tipo de Plan"
+                outlined  
                 stack-label
-                label="Comentario"
+                dense
               />
             </div>
           </div>
-          <!-- <div class="row" style="place-content: center">
-            <div class="col-xs-12 col-sm-6 q-pa-xs" style="text-align: center">
-              Fecha cita
-              <q-date
-                minimal
-                mask="YYYY-MM-DD"
-                v-model="fechacita"
-                title="Fecha"
-                subtitle="Cita"
-              />
-            </div>
-          </div> -->
+          
           <div class="row">
-            <!-- <div class="col-xs-12 col-sm-6 q-pa-xs">
+            <div class="col-xs-12 col-sm-12 q-pa-xs">
               <q-select
-                v-model="tcrescvr"
-                :options="get_tcrescvr.resultado"
-                option-value="co_rescvr"
-                option-label="no_rescvr"
+                v-model="tcentida"
+                :options="get_tcentida.resultado"
+                option-value="co_perjur"
+                option-label="no_comerc"
                 emit-value
                 map-options
-                label="Resultado converus"
-                outlined
+                label="Entidad"
+                outlined  
                 stack-label
                 dense
               />
-            </div> -->
+            </div>
+          </div>
+          
+
+          <div class="row">
             <div class="col-xs-12 col-sm-12 q-pa-xs">
               <q-select
                 v-model="tcresult"
@@ -210,75 +143,80 @@
                 emit-value
                 map-options
                 label="Resultado de la gestion"
-                outlined
+                outlined  
                 stack-label
                 dense
               />
             </div>
           </div>
         </q-card-section>
+
+
         <q-card-actions align="right">
           <q-btn outline label="Cancelar" color="red" @click="cerrar" />
           <q-btn outline label="procesar" color="green" @click="onSubmit" />
         </q-card-actions>
+
       </q-card>
     </q-dialog>
-    <q-dialog v-model="dialogver" persistent full-width>
-      <q-card class="bg-primary text-white">
-        <q-bar class="bg-primary">
-          <q-space />
+    <!-- FIN DEL POP UP PARA GESTIONAR -->
 
-          <q-btn
-            dense
-            flat
-            icon="minimize"
-            @click="maximizedToggle = false"
-            :disable="!maximizedToggle"
-          >
-            <q-tooltip
-              v-if="maximizedToggle"
-              content-class="bg-white text-primary"
-              >Minimizar</q-tooltip
-            >
-          </q-btn>
-          <q-btn
-            dense
-            flat
-            icon="crop_square"
-            @click="maximizedToggle = true"
-            :disable="maximizedToggle"
-          >
-            <q-tooltip
-              v-if="!maximizedToggle"
-              content-class="bg-white text-primary"
-              >Maximizar</q-tooltip
-            >
-          </q-btn>
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-white text-primary">Cerrar</q-tooltip>
-          </q-btn>
-        </q-bar>
-
-        <!-- <q-card-section>
-          <div class="text-h6">Historico de Gestion para: Miguel Rodriguez</div>
+    <!-- INICIO DE ADJUNTAR DOCUMENTO -->
+    <q-dialog
+      v-model="confirm2"
+      style="width: 100%; max-width: 250px"
+      persistent
+      position="top"
+    >
+      <q-card style="width: 600px">
+        <!-- <q-card-section class="q-pa-none q-pt-sm q-pl-lg">
+          Gestionando: {{ clietneSelect.Nombres }} con Documento:
+          {{ clietneSelect.Documento }}
         </q-card-section> -->
-
-        <q-card-section class="q-pt-none">
-          <!-- {{ get_listar_bitaco.resultado }} -->
-          <q-table
-            dense
-            flat
-            color="primary"
-            card-class="bg-amber-1 text-brown"
-            table-class="text-grey-8"
-            table-header-class="text-brown"
-            title="Bitácora"
-            :data="dataTableBitacora"
-            row-key="name"
-          />
+        <!-- {{get_tcvalcvr.resultado}} -->
+        <q-card-section>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 q-pa-xs">
+              <q-select
+                v-model="tcdocume"
+                :options="get_tcdocume.resultado"
+                option-value="ti_docume"
+                option-label="no_docume"
+                emit-value
+                map-options
+                label="Tipo de Documento"
+                outlined  
+                stack-label
+                dense
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <q-uploader
+              auto-upload
+              :url="urlimagen"
+              label="Adjuntar Archivo"
+              color="primary"
+              text-color="black"
+              no-thumbnails
+              class="full-width"
+              @uploaded="uploaded"
+            />
+        </div>
         </q-card-section>
+
+
+        <q-card-actions align="right">
+          <q-btn outline label="Cancelar" color="red" @click="cerrar" />
+          <q-btn outline label="Adjuntar" color="green" @click="adddocume" />
+        </q-card-actions>
+
       </q-card>
     </q-dialog>
+    <!-- FIN DE ADJUNTAR DOCUMENTOS-->
+    
+    
+    
   </div>
 </template>
 
@@ -295,7 +233,7 @@ export default {
     },
   },
   mixins: [MixinDefault],
-  name: "Tabla",
+  name: "Tablaprecal",
   computed: {
     ...mapState("reportes", ["dialogCrear", "dialogDetalleOrden"]),
     ...mapGetters("landing", [
@@ -308,6 +246,11 @@ export default {
       "get_tcresges",
       "get_tcresult",
       "get_listar_bitaco",
+      "get_tcproduc",
+      "get_tctippla",
+      "get_tcentida",
+      "get_tcdocume",
+      
     ]),
     dataTable() {
       let data = [];
@@ -322,28 +265,7 @@ export default {
       // console.log("asdasdasd", data);
       return data;
     },
-    dataTableBitacora() {
-      let data = [];
-      try {
-        console.log(
-          "this.info.length",
-          this.get_listar_bitaco.resultado.length
-        );
-        for (
-          let index = 0;
-          index < this.get_listar_bitaco.resultado.length;
-          index++
-        ) {
-          const element = this.get_listar_bitaco.resultado[index];
-          data.push(this.ObjKeyRename(element, this.labels));
-        }
-        // console.log("asdasdasd", data);
-        return data;
-      } catch (error) {
-        console.log(error);
-        return data;
-      }
-    },
+    
   },
   data() {
     return {
@@ -359,12 +281,18 @@ export default {
       fechacita: "",
       tcrescvr: "",
       tcresult: "",
+      tcproduc: "",
+      tctippla: "",
+      tcdocume: "",
+      tcentida: "",
+      
       clietneSelect: [],
       fechacita: "",
       model: "",
       options: ["asd", "zxc"],
       text: "asd",
       confirm: false,
+      confirm2: false,
       filter: "",
       tipo: 1,
       orden: null,
@@ -382,7 +310,8 @@ export default {
   },
   methods: {
     ...mapActions("landing", [
-      "call_insert_bitges",
+      "call_insert_arcadj",
+      "call_update_landin",
       "call_tctiplan",
       "call_tcestlla",
       "call_tcestdoc",
@@ -391,12 +320,18 @@ export default {
       "call_tcrescvr",
       "call_tcresges",
       "call_tcresult",
-      "call_listar_landin",
       "call_listar_bitaco",
+      "call_listar_landin",
+      "call_listar_landin_prerec",
+      "call_tcproduc",
+      "call_tctippla",
+      "call_tcdocume",
+      "call_tcentida",
     ]),
     titulos(string) {
       return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     },
+    /*
     async ver(val) {
       try {
         this.$q.loading.show();
@@ -420,37 +355,76 @@ export default {
         });
         this.$q.loading.hide();
       }
-    },
+    },*/
+    
     async onSubmit() {
       try {
-        const resp = await this.call_insert_bitges({
+        const resp = await this.call_update_landin({
           co_landin: this.clietneSelect.CodLanding,
-          ps_regist: this.$q.localStorage.getAll().UserDetalle.co_person,
-          co_estlla: this.tcestlla ? this.tcestlla : null,
-          co_resges: this.tcresges ? this.tcresges : null,
-          no_coment: this.no_coment ? this.no_coment : null,
-          co_estdoc: this.tcestdoc ? this.tcestdoc : null,
-          ti_expsis: this.tcexpsis ? this.tcexpsis : null,
-          co_expedi: this.co_expedi ? this.co_expedi : null,
-          il_conver: this.tcvalcvr ? this.tcvalcvr : null,
-          fe_citcvr: this.fechacita ? this.fechacita : null,
-          co_rescvr: this.tcrescvr ? this.tcrescvr : null,
-          co_result: this.tcresult ? this.tcresult : null,
+          co_produc: this.tcproduc ? this.tcproduc : null,
+          co_entida: this.tcentida ? this.tcentida : null,
+          co_tippla: this.tctippla ? this.tctippla : null,
+          il_exacvr: null,
+          ti_estcvr: null,
+          il_comite: null,
+          ti_estcmt: null,
+          es_carapr: null,
+          fe_activa: null,
+          fe_desemb: null,
+          co_result: this.tcresult ? this.tcresult : null
         });
+
         this.$q.notify({
           message: `${JSON.stringify(resp.message)}`,
         });
-        await this.call_listar_landin({
+        
+        await this.call_listar_landin_prerec({
           fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
           fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
           ti_landin: "1",
+          ti_estado: "1",
         });
+        
         this.cerrar();
         // this.confirm = false;
       } catch (error) {
         console.log(error);
       }
     },
+
+    async adddocume() {
+      try {
+        const resp = await this.call_insert_arcadj({
+          co_landin: this.clietneSelect.CodLanding,
+          ti_docume: this.tcdocume ? this.tcdocume : null,
+          co_arcadj: this.$store.state.example.arcadj,
+          ti_accion: "I"
+        });
+
+        this.$q.notify({
+          message: `${JSON.stringify(resp.message)}`,
+        });
+        
+        await this.call_listar_landin_prerec({
+          fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
+          fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
+          ti_landin: "1",
+          ti_estado: "1",
+        });
+        
+        this.cerrar();
+        // this.confirm = false;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async arcadj(val) {
+      this.$store.commit("example/UploadBasicData", val);
+      this.select_to_arca = val;
+      console.log("arcadj", val);
+      this.upload = true;
+    },
+    
     async gestionar(val) {
       try {
         this.$q.loading.show();
@@ -464,6 +438,10 @@ export default {
         await this.call_tcrescvr();
         await this.call_tcresges();
         await this.call_tcresult();
+        await this.call_tctippla();
+        await this.call_tcproduc();
+        //await this.call_tcdocume();
+        await this.call_tcentida();
         this.confirm = true;
         this.$q.loading.hide();
       } catch (error) {
@@ -471,6 +449,22 @@ export default {
         this.$q.loading.hide();
       }
     },
+    
+    async documentar(val) {
+      try {
+        this.$q.loading.show();
+        console.log(val);
+        this.clietneSelect = val;
+        // await this.call_tctiplan();
+        await this.call_tcdocume();
+        this.confirm2 = true;
+        this.$q.loading.hide();
+      } catch (error) {
+        console.log(error);
+        this.$q.loading.hide();
+      }
+    },
+
     cerrar() {
       // this.clietneSelect = {};
       this.tcestlla = "";
@@ -483,9 +477,14 @@ export default {
       this.fechacita = "";
       this.tcrescvr = "";
       this.tcresult = "";
+      this.tcproduc = "";
+      this.tctippla = "";
+      this.tcentida = "";
       this.confirm = false;
+      this.confirm2 = false;
     },
   },
+  
   async created() {
     try {
     } catch (e) {

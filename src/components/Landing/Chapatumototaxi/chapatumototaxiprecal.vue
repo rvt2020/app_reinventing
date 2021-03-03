@@ -2,15 +2,15 @@
   <div class="q-pa-md">
     <div class="row" align="center">
       <div class="col-2"></div>
-      <div class="col-md-10 col-xs-12 q-pb-md">
+      <div class="col-8 q-pb-md">
         <q-form @submit="buscarOperaciones">
           <div class="row">
-            <div class="col-xs-12 col-sm-3 q-pa-xs">
+            <div class="col-xs-12 col-sm-5 q-pa-xs">
               <q-input
                 clearable
                 filled
                 dense
-                v-model="fecha_ini"
+                v-model="fec_des"
                 label="Fecha Inicio"
               >
                 <template v-slot:append>
@@ -20,7 +20,7 @@
                       transition-show="scale"
                       transition-hide="scale"
                     >
-                      <q-date v-model="fecha_ini" mask="YYYY-MM-DD">
+                      <q-date v-model="fec_des" mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
                           <q-btn
                             v-close-popup
@@ -35,12 +35,12 @@
                 </template>
               </q-input>
             </div>
-            <div class="col-xs-12 col-sm-3 q-pa-xs">
+            <div class="col-xs-12 col-sm-5 q-pa-xs">
               <q-input
                 clearable
                 filled
                 dense
-                v-model="fecha_fin"
+                v-model="fec_has"
                 label="Fecha Fin"
               >
                 <template v-slot:append>
@@ -50,7 +50,7 @@
                       transition-show="scale"
                       transition-hide="scale"
                     >
-                      <q-date v-model="fecha_fin" mask="YYYY-MM-DD">
+                      <q-date v-model="fec_has" mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
                           <q-btn
                             v-close-popup
@@ -65,95 +65,83 @@
                 </template>
               </q-input>
             </div>
-            <div class="col-xs-12 col-sm-3 q-pa-xs">
-              <q-select
-                filled
-                dense
-                v-model="ti_modrep"
-                :options="options_ti_modrep"
-                option-value="value"
-                option-label="name"
-                emit-value
-                map-options
-                label="Tipo de Reporte"
-              />
-            </div>
-            <div class="col-xs-12 col-sm-1 q-pa-xs">
+            <div class="col-xs-12 col-sm-2 q-pa-xs">
               <q-btn size="md" color="red" type="submit" icon-right="search" />
             </div>
           </div>
         </q-form>
       </div>
-      <div class="col-0"></div>
+      <div class="col-2"></div>
     </div>
     <div>
-      <!-- TablaServicios -->
       <div class="row">
         <div class="col">
-          <!-- {{ get_report_gestio }} -->
-          <Tabla :info="get_report_gestio.resultado" />
+          <!--          {{ get_listar_landin.resultado[0] }}-->
+          <Tablaprecal :info="get_listar_landin_prerec.resultado" />
         </div>
       </div>
-      <!-- TablaMateriales -->
     </div>
   </div>
 </template>
 
 <script>
+import { date } from "quasar";
+let timeStamp = Date.now();
 import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   name: "Kardex",
   computed: {
-    ...mapState("reportes", ["dialogCrear", "dialogDetalleOrden"]),
-    ...mapGetters("landing", ["get_report_gestio"]),
+    ...mapGetters("landing", ["get_listar_landin_prerec"]),
   },
   data() {
     return {
+      cod_ope: "",
+      pla_veh: "",
+      fec_des: date.formatDate(timeStamp, "YYYY-MM-DD"),
+      fec_has: date.formatDate(timeStamp, "YYYY-MM-DD"),
+      tip_rep: "R",
       fecha_ini: "",
       fecha_fin: "",
       model: null,
-      ti_modrep: "",
-      cod_emp: "",
-      cod_alm: "",
-      nom_art: "",
-      options_ti_modrep: [
+      optionstip_rep: [
         {
-          name: "Tipo de Landing",
-          value: "1",
+          name: "Detallado",
+          value: "D",
         },
         {
-          name: "Landing / Zona",
-          value: "2",
-        },
-        {
-          name: "Landing / Asesor / Zona",
-          value: "3",
+          name: "Resumido",
+          value: "R",
         },
       ],
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
     };
   },
   components: {
-    Tabla: () => import("./Tabla"),
+    Tablaprecal: () => import("./Tablaprecal"),
   },
   methods: {
-    ...mapActions("landing", ["call_report_gestio"]),
+    ...mapActions("landing", ["call_listar_landin_prerec"]),
     async buscarOperaciones() {
+      console.log("buscarOperaciones");
       this.$q.loading.show();
-      await this.call_report_gestio({
-        fe_regdes: this.fecha_ini,
-        fe_reghas: this.fecha_fin,
-        ti_modrep: this.ti_modrep,
+      await this.call_listar_landin_prerec({
+        fe_regdes: this.fec_des,
+        fe_reghas: this.fec_has,
+        co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
+        ti_landin: "1",
+        ti_estado: "1",
       });
       this.$q.loading.hide();
     },
   },
   async created() {
     this.$q.loading.show();
-    await this.call_report_gestio({
-      fe_regdes: this.fecha_ini,
-      fe_reghas: this.fecha_fin,
-      ti_modrep: this.ti_modrep,
+    await this.call_listar_landin_prerec({
+      fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
+      fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
+      co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
+      ti_landin: "1",
+      ti_estado: "1",
     });
     this.$q.loading.hide();
   },

@@ -95,10 +95,18 @@
               <q-btn
                 dense
                 size="sm"
+                @click="citas(props.row)"
+                color="green"
+                icon="date_range"
+              />
+              <q-btn
+                dense
+                size="sm"
                 @click="generarOperacion(props.row)"
                 color="primary"
-                label="Nuevo ingreso"
+                label="Ingresar"
               />
+              
             </div>
           </q-td>
         </template>
