@@ -2,7 +2,7 @@
 version: "2"
 services:
   app_pro:
-    image: reinventing:5.0
+    image: reinventing:6.0
     #    build:
     #      context: .
     #      dockerfile: Dockerfile
