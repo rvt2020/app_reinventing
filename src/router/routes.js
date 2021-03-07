@@ -80,7 +80,7 @@ const routes = [
       {
         path: "landing/chapatumototaxiprecal",
         component: () =>
-          import("components/Landing/chapatumototaxi/chapatumototaxiprecal")
+          import("components/Landing/Chapatumototaxi/chapatumototaxiprecal")
       },
       /*
       // CHAPA TU MOTOTAXI RECHAZADOS
