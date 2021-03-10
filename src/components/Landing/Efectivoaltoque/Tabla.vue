@@ -84,7 +84,7 @@
                 option-value="co_estlla"
                 emit-value
                 map-options
-                label="Estado de la llamada"
+                label="Estado de llamada"
                 outlined
                 stack-label
                 dense
