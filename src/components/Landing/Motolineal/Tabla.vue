@@ -98,7 +98,7 @@
                 option-value="co_resges"
                 map-options
                 emit-value
-                label="Resultado de la gestion"
+                label="Resultado gestion"
                 outlined
                 stack-label
                 dense
