@@ -79,8 +79,8 @@ const actions = {
     const response = await axiosInstance.post(`comerc/listar_landin`, payload);
     commit("get_listar_landin", response.data);
   },
-  async call_insert_arcadj({ commit }, payload) {
-    const response = await axiosInstance.post(`/comerc/insert_arcadj`, payload);
+  async call_insert_bitges({ commit }, payload) {
+    const response = await axiosInstance.post(`/comerc/insert_bitges`, payload);
     // commit("get_insert_ordcom", response.data);
     return response.data;
   },

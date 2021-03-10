@@ -61,6 +61,29 @@
           </div>
         </q-td>
       </template>
+      <!--
+       <template v-slot:body-cell-no_respon="props">
+        <q-td :props="props">
+          <div class="q-pr-xs q-gutter-sm">
+            <q-btn
+              size="xs"
+              color="green"
+              label="Ver"
+              @click="ver(props.row)"
+            />
+
+            <q-btn
+              size="xs"
+              color="primary"
+              label="Gestionar"
+              @click="gestionar(props.row)"
+            />
+          </div>
+        </q-td>
+      </template>   
+
+
+      -->
     </q-table>
     <q-dialog
       v-model="confirm"
@@ -174,18 +197,6 @@
               />
             </div>
           </div>
-          <!-- <div class="row" style="place-content: center">
-            <div class="col-xs-12 col-sm-6 q-pa-xs" style="text-align: center">
-              Fecha cita
-              <q-date
-                minimal
-                mask="YYYY-MM-DD"
-                v-model="fechacita"
-                title="Fecha"
-                subtitle="Cita"
-              />
-            </div>
-          </div> -->
           <div class="row">
             <!-- <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
@@ -429,12 +440,6 @@ export default {
           co_estlla: this.tcestlla ? this.tcestlla : null,
           co_resges: this.tcresges ? this.tcresges : null,
           no_coment: this.no_coment ? this.no_coment : null,
-          co_estdoc: this.tcestdoc ? this.tcestdoc : null,
-          ti_expsis: this.tcexpsis ? this.tcexpsis : null,
-          co_expedi: this.co_expedi ? this.co_expedi : null,
-          il_conver: this.tcvalcvr ? this.tcvalcvr : null,
-          fe_citcvr: this.fechacita ? this.fechacita : null,
-          co_rescvr: this.tcrescvr ? this.tcrescvr : null,
           co_result: this.tcresult ? this.tcresult : null,
         });
         this.$q.notify({
@@ -443,6 +448,7 @@ export default {
         await this.call_listar_landin({
           fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
           fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
+          co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
           ti_landin: "1",
         });
         this.cerrar();
@@ -456,7 +462,7 @@ export default {
         this.$q.loading.show();
         console.log(val);
         this.clietneSelect = val;
-        // await this.call_tctiplan();
+        
         await this.call_tcestlla();
         await this.call_tcestdoc();
         await this.call_tcexpsis();

@@ -105,7 +105,7 @@
               />
             </div>
           </div>
-          <div class="row">
+          <!--<div class="row">
             <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
                 v-model="tcvalcvr"
@@ -150,6 +150,7 @@
                 dense
               />
             </div>
+            
             <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-input
                 outlined
@@ -160,7 +161,7 @@
                 label="Codigo de expediente"
               />
             </div>
-          </div>
+          </div>  -->
           <div class="row">
             <div class="col-xs-12 col-sm-12 q-pa-xs">
               <q-input
@@ -174,7 +175,7 @@
               />
             </div>
           </div>
-          <div class="row" style="place-content: center">
+          <!-- <div class="row" style="place-content: center">
             <div class="col-xs-12 col-sm-6 q-pa-xs" style="text-align: center">
               Fecha cita
               <q-date
@@ -185,8 +186,9 @@
                 subtitle="Cita"
               />
             </div>
-          </div>
+          </div> -->
           <div class="row">
+            <!--
             <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
                 v-model="tcrescvr"
@@ -200,7 +202,7 @@
                 stack-label
                 dense
               />
-            </div>
+            </div> -->
             <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
                 v-model="tcresult"
@@ -426,16 +428,10 @@ export default {
         const resp = await this.call_insert_bitges({
           co_landin: this.clietneSelect.CodLanding,
           ps_regist: this.$q.localStorage.getAll().UserDetalle.co_person,
-          co_estlla: this.tcestlla,
-          co_resges: this.tcresges,
-          no_coment: this.no_coment,
-          co_estdoc: this.tcestdoc,
-          ti_expsis: this.tcexpsis,
-          co_expedi: this.co_expedi,
-          il_conver: this.tcvalcvr,
-          fe_citcvr: this.fechacita,
-          co_rescvr: this.tcrescvr,
-          co_result: this.tcresult,
+          co_estlla: this.tcestlla ? this.tcestlla : null,
+          co_resges: this.tcresges ? this.tcresges : null,
+          no_coment: this.no_coment ? this.no_coment : null,
+          co_result: this.tcresult ? this.tcresult : null,
         });
         this.$q.notify({
           message: `${JSON.stringify(resp.message)}`,
@@ -443,6 +439,7 @@ export default {
         await this.call_listar_landin({
           fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
           fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
+          co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
           ti_landin: "2",
         });
         this.cerrar();

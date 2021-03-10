@@ -1,7 +1,7 @@
 # docker-compose_dev.yml
 version: "2"
 services:
-  webappreinventing:
+  web_dev_appreinventing:
     build:
       context: .
       dockerfile: Dockerfile
