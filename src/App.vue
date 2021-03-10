@@ -16,6 +16,7 @@ import {
 export default {
   name: "App",
   created() {
+    console.log("cambio1.0");
     this.$q.loading.setDefaults({
       spinner: QSpinnerPie,
       message: "Cargando..",
