@@ -462,7 +462,7 @@ export default {
         this.$q.loading.show();
         console.log(val);
         this.clietneSelect = val;
-        // await this.call_tctiplan();
+        
         await this.call_tcestlla();
         await this.call_tcestdoc();
         await this.call_tcexpsis();
