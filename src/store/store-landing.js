@@ -10,7 +10,7 @@ const state = {
   get_tcrescvr: [],
   get_tcresges: [],
   get_tcresult: [],
-  get_listar_landin_prerec: [],
+  //get_listar_landin_prerec: [],
   get_tcproduc: [],
   get_tctippla: [],
   get_tcdocume: [],
@@ -55,9 +55,9 @@ const mutations = {
     state.get_report_gestio = payload;
   },
 
-  get_listar_landin_prerec(state, payload) {
-    state.get_listar_landin_prerec = payload; // payload : información o data  luego se va al state (arriba)
-  },
+  //get_listar_landin_prerec(state, payload) {
+  //  state.get_listar_landin_prerec = payload; // payload : información o data  luego se va al state (arriba)
+  //},
   get_tcproduc(state, payload) {
     state.get_tcproduc = payload; // payload : información o data  luego se va al state (arriba)
   },
@@ -131,10 +131,12 @@ const actions = {
   },
 
   // CALL DE LANDINGS PRECALIFICADAS
-  async call_listar_landin_prerec({ commit }, payload) {
+  /*async call_listar_landin_prerec({ commit }, payload) {
     const response = await axiosInstance.post(`comerc/listar_landin_prerec`, payload);
     commit("get_listar_landin_prerec", response.data);
   },
+
+  */
   async call_tcproduc({ commit }) {
     const response = await axiosInstance.get(`comerc/tcproduc`);
     commit("get_tcproduc", response.data);
@@ -193,9 +195,9 @@ const getters = {
     return state.get_report_gestio;
   },
   //PRECALIFICADOS
-  get_listar_landin_prerec(state) {
-    return state.get_listar_landin_prerec;
-  },
+  //get_listar_landin_prerec(state) {
+  // return state.get_listar_landin_prerec;
+  //},
   get_tcproduc(state) {
     return state.get_tcproduc;
   },
