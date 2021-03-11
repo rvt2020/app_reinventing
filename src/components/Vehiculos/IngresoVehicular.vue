@@ -793,6 +793,10 @@
                     <tr>
                       <td class="text-left">Centro de Operaciones</td>
                       <td class="text-right">
+                        <q-input filled dense v-model="cen_ope" />
+                      </td>
+                      
+                      <!--<td class="text-right">
                         <q-select
                           filled
                           dense
@@ -803,7 +807,7 @@
                           emit-value
                           map-options
                         />
-                      </td>
+                      </td>-->
                     </tr>
                     <tr>
                       <td class="text-left">Dirección</td>
@@ -959,8 +963,8 @@ export default {
       ape_pat: "",
       ape_mat: "",
       nom_cli: "",
-      cen_ope: "",
-      direcci: "",
+      cen_ope: "Gregorio Paredes",
+      direcci: "Jirón Gregorio Paredes 418 Lima, Perú",
       det_ing: "",
       swt_sal: "",
       fec_sal: "",
@@ -975,13 +979,14 @@ export default {
           value: 2
         }
       ],
-
+      /*
       optionsCentrodeOperaciones: [
         {
           name: "Jirón Gergorio Paredes",
           value: 1
         }
-      ],
+      ],*/
+      //optionsCentrodeOperaciones: "Gregorio Paredes",
       options: [],
       Kilometraje: "",
       cod_ope: "",
@@ -1063,7 +1068,7 @@ export default {
           ape_pat: this.ape_pat,
           ape_mat: this.ape_mat,
           nom_cli: this.nom_cli,
-          cen_ope: this.cen_ope,
+          cen_ope: 1,
           direcci: this.direcci,
           det_ing: this.det_ing,
           swt_sal: this.swt_sal,
@@ -1110,7 +1115,7 @@ export default {
           ape_pat: this.ape_pat,
           ape_mat: this.ape_mat,
           nom_cli: this.nom_cli,
-          cen_ope: this.cen_ope,
+          cen_ope: 1,
           direcci: this.direcci,
           det_ing: this.det_ing,
           swt_sal: this.swt_sal,
@@ -1167,7 +1172,7 @@ export default {
           ape_pat: this.ape_pat,
           ape_mat: this.ape_mat,
           nom_cli: this.nom_cli,
-          cen_ope: this.cen_ope,
+          cen_ope: 1,
           direcci: this.direcci,
           det_ing: this.det_ing,
           swt_sal: this.swt_sal,
