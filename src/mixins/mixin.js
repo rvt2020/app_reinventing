@@ -159,6 +159,9 @@ const MixinDefault = {
         fe_actchi: "Activacion de Chip",
         no_correo: "Correo",
         no_nivedu: "Nivel de Educación",
+        no_tipdoc: "Tipo de Documento",
+        no_tipcom: "Tipo de Combustible",
+        no_tipcom2: "Convertir a",
         no_perfil: "Perfil"
       }
     };

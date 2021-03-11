@@ -76,13 +76,21 @@ const routes = [
           import("components/Landing/Chapatumototaxi/Chapatumototaxi")
       },
       
+      // CONVERSIONES
+      {
+        path: "landing/conversiones",
+        component: () =>
+          import("components/Landing/Conversiones/Conversiones")
+      },
+      
+      /*
       // CHAPA TU MOTOTAXI PRECALIFICADOS
       {
         path: "landing/chapatumototaxiprecal",
         component: () =>
           import("components/Landing/Chapatumototaxi/chapatumototaxiprecal")
       },
-      /*
+      
       // CHAPA TU MOTOTAXI RECHAZADOS
       {
         path: "landing/chapatumototaxirechazados",
@@ -90,6 +98,8 @@ const routes = [
           import("components/Landing/chapatumototaxirechazados/chapatumototaxirechazados")
       },
       */
+
+      // MOTO LINEAL
       {
         path: "landing/conversiones",
         component: () => import("components/Landing/Conversiones/Conversiones")
@@ -98,6 +108,8 @@ const routes = [
         path: "landing/motolineal",
         component: () => import("components/Landing/Motolineal/Motolineal")
       },
+
+      //TAXI PROPIO
       {
         path: "landing/taxipropio",
         component: () => import("components/Landing/Taxipropio/Taxipropio")
