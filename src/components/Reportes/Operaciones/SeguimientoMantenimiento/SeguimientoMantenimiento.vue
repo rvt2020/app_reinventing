@@ -90,6 +90,10 @@ export default {
         {
           name: "Externos",
           value: 2
+        },
+        {
+          name: "Acceso",
+          value: 3
         }
       ]
     };
