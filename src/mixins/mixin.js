@@ -162,7 +162,9 @@ const MixinDefault = {
         no_tipdoc: "Tipo de Documento",
         no_tipcom: "Tipo de Combustible",
         no_tipcom2: "Convertir",
-        no_perfil: "Perfil"
+        no_perfil: "Perfil",
+        no_respon: "Responsable",
+        fe_mangen: "Mnt. General"
       }
     };
   },
