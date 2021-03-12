@@ -197,6 +197,18 @@
               />
             </div>
           </div>
+          <!-- <div class="row" style="place-content: center">
+            <div class="col-xs-12 col-sm-6 q-pa-xs" style="text-align: center">
+              Fecha cita
+              <q-date
+                minimal
+                mask="YYYY-MM-DD"
+                v-model="fechacita"
+                title="Fecha"
+                subtitle="Cita"
+              />
+            </div>
+          </div> -->
           <div class="row">
             <!-- <div class="col-xs-12 col-sm-6 q-pa-xs">
               <q-select
@@ -462,7 +474,6 @@
         this.$q.loading.show();
         console.log(val);
         this.clietneSelect = val;
-        
         await this.call_tcestlla();
         await this.call_tcestdoc();
         await this.call_tcexpsis();

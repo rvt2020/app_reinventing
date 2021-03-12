@@ -160,7 +160,7 @@ export default {
           label: "Fecha",
           align: "left",
           field: row => row.fe_regist,
-          format: val => `${this.formatFechaCorta(val)}`,
+          format: val => `${this.formatFecha(val)}`,
           sortable: true
         },
         {

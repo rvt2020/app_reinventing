@@ -134,14 +134,19 @@ export default {
     },
   },
   async created() {
-    this.$q.loading.show();
-    await this.call_listar_landin({
-      fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
-      fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
-      co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
-      ti_landin: "5",
-    });
-    this.$q.loading.hide();
+    try {
+      this.$q.loading.show();
+      await this.call_listar_landin({
+        fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
+        fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
+        co_person: this.$q.localStorage.getAll().UserDetalle.co_person,
+        ti_landin: "5",
+      });
+      this.$q.loading.hide();
+    } catch (error) {
+      console.log(error);
+      this.$q.loading.hide();
+    }
   },
 };
 </script>

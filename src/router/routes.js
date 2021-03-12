@@ -101,6 +101,10 @@ const routes = [
 
       // MOTO LINEAL
       {
+        path: "landing/conversiones",
+        component: () => import("components/Landing/Conversiones/Conversiones")
+      },
+      {
         path: "landing/motolineal",
         component: () => import("components/Landing/Motolineal/Motolineal")
       },
