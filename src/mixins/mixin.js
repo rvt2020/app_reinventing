@@ -161,7 +161,7 @@ const MixinDefault = {
         no_nivedu: "Nivel de Educación",
         no_tipdoc: "Tipo de Documento",
         no_tipcom: "Tipo de Combustible",
-        no_tipcom2: "Convertir a",
+        no_tipcom2: "Convertir",
         no_perfil: "Perfil"
       }
     };
