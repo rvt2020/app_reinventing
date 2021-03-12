@@ -164,7 +164,8 @@ const MixinDefault = {
         no_tipcom2: "Convertir",
         no_perfil: "Perfil",
         no_respon: "Responsable",
-        fe_mangen: "Mnt. General"
+        fe_mangen: "Mnt. General",
+        ca_diaatr: "Dias Atraso"
       }
     };
   },
