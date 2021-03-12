@@ -401,7 +401,7 @@
                     </q-item-section>
                   </q-item>
 
-                  <!-- GESTIONES PRECALIFICADAS -->
+                  <!-- GESTIONES PRECALIFICADAS 
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -419,7 +419,7 @@
                     </q-item-section>
                   </q-item>
 
-                  <!-- GESTIONES RECHAZADAS -->
+                  GESTIONES RECHAZADAS
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
@@ -435,7 +435,7 @@
                     <q-item-section>
                       <q-item-label>Rechazadas</q-item-label>
                     </q-item-section>
-                  </q-item>
+                  </q-item> -->
 
 
                 </q-expansion-item>
@@ -500,7 +500,7 @@
                   @click="URL('/landing/conversiones')"
                 >
                   <q-item-section avatar>
-                    <q-icon name="local_atm" />
+                    <q-icon name="list_alt" />
                   </q-item-section>
 
                   <q-item-section>

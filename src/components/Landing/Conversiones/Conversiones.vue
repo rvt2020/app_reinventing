@@ -127,7 +127,7 @@ export default {
       await this.call_listar_landin({
         fe_regdes: this.fec_des,
         fe_reghas: this.fec_has,
-        co_person: this.$q.localStorage.getAll().UserDetalle.co_person,
+        co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
         ti_landin: "5",
       });
       this.$q.loading.hide();
