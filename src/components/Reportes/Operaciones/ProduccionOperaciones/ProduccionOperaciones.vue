@@ -10,7 +10,7 @@
                 dense
                 filled
                 v-model="cod_ope"
-                label="Numero de la Operacion"
+                label="Cliente"
               />
             </div>
             <div class="col-xs-12 col-sm-2 q-pa-xs">
