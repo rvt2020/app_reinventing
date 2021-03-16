@@ -10,7 +10,8 @@ const state = {
   get_tcrescvr: [],
   get_tcresges: [],
   get_tcresult: [],
-  //get_listar_landin_prerec: [],
+  get_listar_landin_result: [],
+  get_listar_arcadj_landin: [],
   get_tcproduc: [],
   get_tctippla: [],
   get_tcdocume: [],
@@ -54,10 +55,13 @@ const mutations = {
   get_report_gestio(state, payload) {
     state.get_report_gestio = payload;
   },
-
-  //get_listar_landin_prerec(state, payload) {
-  //  state.get_listar_landin_prerec = payload; // payload : información o data  luego se va al state (arriba)
-  //},
+  get_listar_landin_result(state, payload) {
+    state.get_listar_landin_result = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_listar_arcadj_landin(state, payload) {
+    state.get_listar_arcadj_landin = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  
   get_tcproduc(state, payload) {
     state.get_tcproduc = payload; // payload : información o data  luego se va al state (arriba)
   },
@@ -84,10 +88,13 @@ const actions = {
     // commit("get_insert_ordcom", response.data);
     return response.data;
   },
+  async call_insert_arcadj({ commit }, payload) {
+    const response = await axiosInstance.post(`/comerc/insert_arcadj`, payload);
+    return response.data;
+  },
   async call_update_landin({ commit }, payload) {
     const response = await axiosInstance.post(`/comerc/update_landin`, payload);
-    // commit("get_insert_ordcom", response.data);
-    return response.data;
+   return response.data;
   },
   async call_tctiplan({ commit }) {
     const response = await axiosInstance.get(`comerc/tctiplan`);
@@ -131,12 +138,17 @@ const actions = {
   },
 
   // CALL DE LANDINGS PRECALIFICADAS
-  /*async call_listar_landin_prerec({ commit }, payload) {
-    const response = await axiosInstance.post(`comerc/listar_landin_prerec`, payload);
-    commit("get_listar_landin_prerec", response.data);
+  async call_listar_landin_result({ commit }, payload) {
+    const response = await axiosInstance.post(`comerc/listar_landin_result`, payload);
+    commit("get_listar_landin_result", response.data);
+  },
+  async call_listar_arcadj_landin({ commit }, payload) {
+    
+    const response = await axiosInstance.post(`comerc/listar_arcadj_landin`, payload);
+    return response.data;
+    //commit("get_listar_arcadj_landin", response.data);
   },
 
-  */
   async call_tcproduc({ commit }) {
     const response = await axiosInstance.get(`comerc/tcproduc`);
     commit("get_tcproduc", response.data);
@@ -194,10 +206,12 @@ const getters = {
   get_report_gestio(state) {
     return state.get_report_gestio;
   },
-  //PRECALIFICADOS
-  //get_listar_landin_prerec(state) {
-  // return state.get_listar_landin_prerec;
-  //},
+  get_listar_landin_result(state) {
+    return state.get_listar_landin_result;
+  },
+  get_listar_arcadj_landin(state) {
+    return state.get_listar_arcadj_landin;
+  },
   get_tcproduc(state) {
     return state.get_tcproduc;
   },

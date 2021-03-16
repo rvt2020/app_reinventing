@@ -17,7 +17,7 @@
               />
             </div>
             <div class="col-3">
-              <q-btn size="md" color="red" type="submit" icon-right="search" />
+              <q-btn size="md" color="green" type="submit" icon-right="search" />
             </div>
           </div>
         </q-form>
@@ -28,7 +28,7 @@
     <div v-if="getOperacionesAbrir_operacion.res === 'ok'">
       <div class="row">
         <div class="col-xs-12 col-md-4">
-          <TablaDVC
+          <DatosOperacion
             v-if="getOperacionesAbrir_operacion.operac.length > 0"
             :info="getOperacionesAbrir_operacion.operac"
             titulo="Datos de Operación"
@@ -37,7 +37,7 @@
           />
         </div>
         <div class="col-xs-12 col-md-4">
-          <TablaV
+          <DatosVehiculo
             v-if="getOperacionesAbrir_operacion.vehicu.length > 0"
             :info="getOperacionesAbrir_operacion.vehicu"
             titulo="Vehículo"
@@ -46,29 +46,19 @@
           />
         </div>
         <div class="col-xs-12 col-md-4">
-          <TablaC
+          <DatosCliente
             v-if="getOperacionesAbrir_operacion.client.length > 0"
             :info="getOperacionesAbrir_operacion.client"
             titulo="Cliente"
             :hideheader="true"
             :hidebottom="true"
           />
-          <div class="text-center q-pa-md q-gutter-md">
-            <q-btn
-              v-if="getOperacionesAbrir_operacion.client.length > 0"
-              size="sm"
-              color="primary"
-              icon-right="add"
-              label="Agregar Servicios y Materiales"
-              @click="agregarServicios = true"
-            />
-          </div>
         </div>
       </div>
       <!-- TablaServicios -->
       <div class="row">
         <div class="col">
-          <TablaServicios
+          <ListaServicios
             v-if="getOperacionesAbrir_operacion.servic.length > 0"
             :info="getOperacionesAbrir_operacion.servic"
             titulo="Servicios"
@@ -80,7 +70,7 @@
       <!-- TablaMateriales -->
       <div class="row">
         <div class="col">
-          <TablaMateriales
+          <ListaMateriales
             v-if="getOperacionesAbrir_operacion.materi.length > 0"
             :info="getOperacionesAbrir_operacion.materi"
             titulo="Materiales"
@@ -103,32 +93,6 @@
         :( no se encontro lo que estas buscando de: {{ buscar }}
       </q-banner>
     </div>
-
-    <q-dialog
-      v-if="agregarServicios"
-      v-model="agregarServicios"
-      persistent
-      :maximized="maximizedToggle"
-      transition-show="slide-up"
-      transition-hide="slide-down"
-      full-height
-      full-width
-    >
-      <DialogAddServicios @click="cerrarDialogAddServicios" />
-    </q-dialog>
-
-    <q-dialog
-      v-if="imprimirOperacion"
-      v-model="imprimirOperacion"
-      persistent
-      :maximized="maximizedToggle"
-      transition-show="slide-up"
-      transition-hide="slide-down"
-      full-height
-      full-width
-    >
-      <DialogOpenOperac @click="cerrarDialogOpenOperac" />
-    </q-dialog>
   </div>
 </template>
 
@@ -143,9 +107,6 @@ export default {
     return {
       maximizedToggle: false,
       buscarServiciosMateriales: "",
-      agregarServicios: false,
-      imprimirOperacion: false,
-      agregarMateriales: false,
       buscar: this.$store.state.operaciones.numeroDeOperacion
         ? this.$store.state.operaciones.numeroDeOperacion
         : "",
@@ -153,15 +114,12 @@ export default {
     };
   },
   components: {
-    TablaDVC: () => import("./TablaOperacion"),
-    TablaV: () => import("./TablaVehiculo"),
-    TablaC: () => import("./TablaCliente"),
+    DatosOperacion: () => import("./DatosOperacion"),
+    DatosVehiculo: () => import("./DatosVehiculo"),
+    DatosCliente: () => import("./DatosCliente"),
     // Tabla: () => import("./TablaAbrirOperaciones"),
-    TablaServicios: () => import("./TablaServiciosAbrirOperaciones"),
-    TablaMateriales: () => import("./TablaMaterialesAbrirOperaciones"),
-    DialogAddServicios: () => import("./DialogAddServicios"),
-    DialogOpenOperac: () => import("./DialogOpenOperac"),
-    DialogAddMateriales: () => import("./DialogAddMateriales")
+    ListaServicios: () => import("./ListaServicios"),
+    ListaMateriales: () => import("./ListaMateriales")
   },
   methods: {
     ...mapActions("operaciones", ["callOperacionesAbrir_operacion"]),
@@ -186,31 +144,18 @@ export default {
         this.noencontrado = true;
       }
     },
-    async cerrarDialogAddServicios() {
-      this.agregarServicios = false;
-      await this.buscarOperaciones();
-    },
-    
-    async cerrarDialogOpenOperac() {
-      this.imprimirOperacion = false;
-      await this.buscarOperaciones();
-    },
     
   },
   async created() {
     this.$q.loading.show();
-    console.log("2. Abrir Operación");
-    console.log(this.$store.state.operaciones.numeroDeOperacion);
-    console.log(this.$route.query.op);
-    console.log("2. Abrir Operación");
     if (this.$route.query.op != undefined) {
       console.log("entro al if");
       this.buscar = this.$route.query.op;
       this.$store.commit("operaciones/numeroDeOperacion", this.$route.query.op);
       await this.callOperacionesAbrir_operacion(this.$route.query.op);
-      this.$router.replace("/operaciones?id=2");
+      this.$router.replace("/imprimiroperacion");
     } else {
-      this.$router.replace("/operaciones?id=2");
+      this.$router.replace("/imprimiroperacion");
     }
     // this.$q.notify({
     //   message: "2. Abrir Operación"

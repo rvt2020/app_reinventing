@@ -12,6 +12,11 @@ const routes = [
       { path: "test", component: () => import("pages/Test.vue") },
       { path: "materiales", component: () => import("pages/Material.vue") },
       { path: "operaciones", component: () => import("pages/Operaciones.vue") },
+      {
+        path: "imprimiroperacion",
+        component: () =>
+          import("components/Operaciones/ImprimirOperacion/VerOperacion.vue")
+      },
       { path: "logisticas", component: () => import("pages/Logistica.vue") },
       { path: "llamadas", component: () => import("pages/Llamadas.vue") },
       {
@@ -74,6 +79,13 @@ const routes = [
         path: "landing/chapatumototaxi",
         component: () =>
           import("components/Landing/Chapatumototaxi/Chapatumototaxi")
+      },
+      
+      // CHAPA TU MOTOTAXI PRECALIFICADOS
+      {
+        path: "landing/chapatumototaxiprecal",
+        component: () =>
+          import("components/Landing/Chapatumototaxi/Chapatumototaxiprecal")
       },
       
       // CONVERSIONES
