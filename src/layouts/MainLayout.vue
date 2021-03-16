@@ -134,6 +134,60 @@
                 v-bind="link"
               />
 
+            <!-- INICIO MENU OPERACIONES -->
+              <q-expansion-item
+                  class="q-ma-sm navigation-item"
+                  expand-separator
+                  icon="rule"
+                  label="Operaciones"
+                  :content-inset-level="0.5"
+                >
+                <!-- Operaciones -->
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/operaciones')"
+                >
+                  <q-item-section avatar>
+                    <q-icon name="assignment_late" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Operaciones</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <!-- Imprimir Operacion -->
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/imprimiroperacion')"
+                >
+                  <q-item-section avatar>
+                    <q-icon name="local_printshop" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Imprimir</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+              </q-expansion-item>
+            <!-- FIN MENU OPERACIONES -->
+            
+
+              <EssentialLink
+                v-for="link in essentialLinks"
+                :key="link.title"
+                v-bind="link"
+              />
+
             <!-- INICIO MENU LOGISTICA -->
               <q-expansion-item
                 class="q-ma-sm navigation-item"
@@ -401,24 +455,32 @@
                     </q-item-section>
                   </q-item>
 
-                  <!-- GESTIONES PRECALIFICADAS 
-                  <q-item
+                    <!-- GESTIONES PRECALIFICADAS -->
+                  <q-expansion-item
                     class="q-ma-sm navigation-item"
-                    clickable
-                    active-class="tab-active"
-                    v-ripple
-                    exact
-                    @click="URL('/landing/chapatumototaxiprecal')"
+                    expand-separator
+                    icon=""
+                    label="PreCalificadas"
+                    :content-inset-level="0.5"
                   >
-                    <q-item-section avatar>
-                      <q-icon name="spellcheck" />
-                    </q-item-section>
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Chapatumototaxiprecal')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
 
-                    <q-item-section>
-                      <q-item-label>Precalificadas</q-item-label>
-                    </q-item-section>
-                  </q-item>
-
+                      <q-item-section>
+                        <q-item-label>Gestión Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </q-expansion-item>
+                  <!-- 
                   GESTIONES RECHAZADAS
                   <q-item
                     class="q-ma-sm navigation-item"
@@ -653,7 +715,7 @@
       caption: "github.com/quasarframework",
       icon: "event",
       link: "/citas",
-    },
+    }/*,
     {
       title: "Operaciones",
       caption: "github.com/quasarframework",
@@ -665,7 +727,7 @@
       caption: "github.com/quasarframework",
       icon: "perm_phone_msg",
       link: "/llamadas"
-  }
+  }*/
 ];
 
 export default {

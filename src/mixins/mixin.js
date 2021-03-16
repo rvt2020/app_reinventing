@@ -109,6 +109,7 @@ const MixinDefault = {
         no_marveh: "Marca",
         no_modveh: "Modelo",
         nu_anomod: "Año",
+        nu_anoveh: "Año",
         no_colveh: "Color",
         nu_serveh: "Chasis",
         nu_motveh: "Motor",

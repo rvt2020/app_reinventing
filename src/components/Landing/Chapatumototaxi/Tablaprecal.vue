@@ -7,7 +7,7 @@
       card-class="bg-amber-1 text-brown"
       table-class="text-grey-8"
       table-header-class="text-brown"
-      title="Chapa tu moto taxi Precalificados"
+      title="Chapa tu moto taxi Precalificados - Interesados"
       :data="dataTable"
       dense
       :filter="filter"
@@ -44,7 +44,7 @@
           {{ props.value }}
         </q-td>
       </template>
-
+      
       <template v-slot:body-cell-accion="props">
         <q-td :props="props">
           <div class="q-pr-xs q-gutter-sm">
@@ -54,7 +54,13 @@
               label="Documentar"
               @click="documentar(props.row)"
             />
-
+            <q-btn
+                size="xs"
+                round
+                icon="visibility"
+                color="info"
+                @click="verarchivos(props.row)"
+              />
             <q-btn
               size="xs"
               color="primary"
@@ -132,7 +138,7 @@
             </div>
           </div>
           
-
+          <!--
           <div class="row">
             <div class="col-xs-12 col-sm-12 q-pa-xs">
               <q-select
@@ -148,7 +154,7 @@
                 dense
               />
             </div>
-          </div>
+          </div> -->
         </q-card-section>
 
 
@@ -157,6 +163,15 @@
           <q-btn outline label="procesar" color="green" @click="onSubmit" />
         </q-card-actions>
 
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="visor">
+      <q-card>
+        <div v-for="item in arcadjs">
+          <a :href="item.url" target="_blank">{{ item.url }}</a>
+        </div>
+
+        <!--        {{ arcadjs }}-->
       </q-card>
     </q-dialog>
     <!-- FIN DEL POP UP PARA GESTIONAR -->
@@ -204,7 +219,7 @@
             />
         </div>
         </q-card-section>
-
+        <!-- @uploaded="uploaded" -->
 
         <q-card-actions align="right">
           <q-btn outline label="Cancelar" color="red" @click="cerrar" />
@@ -252,6 +267,18 @@ export default {
       "get_tcdocume",
       
     ]),
+    foo: {
+      get() {
+        return this.dataEdit;
+      },
+      set(value) {
+        this.$store.commit("main/foo", value);
+      }
+    },
+    urlimagen() {
+      return `${process.env.Imagen_URL}/upload`;
+    },
+
     dataTable() {
       let data = [];
       console.log("this.info.length", this.info.length);
@@ -269,6 +296,10 @@ export default {
   },
   data() {
     return {
+      arcadjs: "",
+      visor: false,
+      data_visor: "",
+      upload: false,
       maximizedToggle: false,
       dialogver: false,
       tcresges: "",
@@ -285,7 +316,7 @@ export default {
       tctippla: "",
       tcdocume: "",
       tcentida: "",
-      
+      ca_arcadj: "",
       clietneSelect: [],
       fechacita: "",
       model: "",
@@ -304,7 +335,15 @@ export default {
         rowsPerPage: 1000,
         // rowsNumber: xx if getting data from a server
       },
-      columns: [],
+      columns: [
+        {
+          name: "accion",
+          label: "Accion",
+          field: "accion",
+          sortable: true
+        }  
+
+      ],
       data: [],
     };
   },
@@ -322,12 +361,72 @@ export default {
       "call_tcresult",
       "call_listar_bitaco",
       "call_listar_landin",
-      "call_listar_landin_prerec",
+      "call_listar_landin_result",
       "call_tcproduc",
       "call_tctippla",
       "call_tcdocume",
       "call_tcentida",
+      "call_listar_arcadj_landin"
     ]),
+    async verarchivos(val) {
+      try {
+        let URLS = [];
+        console.log(val);
+        //console.log(clietneSelect.val);
+        // co_tradoc
+        console.log(val.CodLanding);
+        const archivo = await this.call_listar_arcadj_landin({
+          co_landin: val.CodLanding
+        });
+        console.log("archivo",archivo);
+        const array = archivo.operac;
+        for (let index = 0; index < array.length; index++) {
+          const element = array[index];
+          console.log(element);
+          const conteo = `${element.co_arcadj}`;
+          const conteoNuevo = conteo.length;
+          console.log("conteo", conteo.length);
+          console.log("elemento", element);
+          if (conteoNuevo > 7) {
+            console.log(`${process.env.Imagen_URL}/files/${element.co_arcadj}`);
+            URLS.push({
+              url: `${process.env.Imagen_URL}/files/${element.co_arcadj}`
+            });
+          } else {
+            console.log(
+              `http://sistema.reinventing.com.pe/image?co_archiv=${element.co_arcadj}`
+            );
+            URLS.push({
+              url: `http://sistema.reinventing.com.pe/image?co_archiv=${element.co_arcadj}`
+            });
+          }
+        }
+        this.arcadjs = URLS;
+        this.visor = true;
+      } catch (e) {
+        console.log(e);
+        this.$q.notify({
+          message: "Intente en otro momento"
+        });
+      }
+    },
+    async arcadj(val) {
+      this.$store.commit("example/UploadBasicData", val);
+      this.select_to_arca = val;
+      console.log("arcadj", val);
+      this.upload = true;
+    },
+    
+    uploaded(files) {
+      console.log("subio");
+      console.log(files);
+      const response = JSON.parse(files.xhr.response).name;
+      this.$q.notify({
+        message: response
+      });
+      console.log(response);
+      this.$store.commit("example/arcadj", response);
+    },
     titulos(string) {
       return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     },
@@ -370,17 +469,17 @@ export default {
           ti_estcmt: null,
           es_carapr: null,
           fe_activa: null,
-          fe_desemb: null,
-          co_result: this.tcresult ? this.tcresult : null
+          fe_desemb: null
         });
 
         this.$q.notify({
           message: `${JSON.stringify(resp.message)}`,
         });
         
-        await this.call_listar_landin_prerec({
+        await this.call_listar_landin_result({
           fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
           fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
+          co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
           ti_landin: "1",
           ti_estado: "1",
         });
@@ -405,9 +504,10 @@ export default {
           message: `${JSON.stringify(resp.message)}`,
         });
         
-        await this.call_listar_landin_prerec({
+        await this.call_listar_landin_result({
           fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
           fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
+          co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
           ti_landin: "1",
           ti_estado: "1",
         });

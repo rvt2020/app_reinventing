@@ -77,7 +77,7 @@
       <div class="row">
         <div class="col">
           <!--          {{ get_listar_landin.resultado[0] }}-->
-          <Tablaprecal :info="get_listar_landin_prerec.resultado" />
+          <Tablaprecal :info="get_listar_landin_result.resultado" />
         </div>
       </div>
     </div>
@@ -91,7 +91,7 @@ import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   name: "Kardex",
   computed: {
-    ...mapGetters("landing", ["get_listar_landin_prerec"]),
+    ...mapGetters("landing", ["get_listar_landin_result"]),
   },
   data() {
     return {
@@ -120,11 +120,11 @@ export default {
     Tablaprecal: () => import("./Tablaprecal"),
   },
   methods: {
-    ...mapActions("landing", ["call_listar_landin_prerec"]),
+    ...mapActions("landing", ["call_listar_landin_result"]),
     async buscarOperaciones() {
       console.log("buscarOperaciones");
       this.$q.loading.show();
-      await this.call_listar_landin_prerec({
+      await this.call_listar_landin_result({
         fe_regdes: this.fec_des,
         fe_reghas: this.fec_has,
         co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
@@ -136,7 +136,7 @@ export default {
   },
   async created() {
     this.$q.loading.show();
-    await this.call_listar_landin_prerec({
+    await this.call_listar_landin_result({
       fe_regdes: date.formatDate(timeStamp, "YYYY-MM-DD"),
       fe_reghas: date.formatDate(timeStamp, "YYYY-MM-DD"),
       co_person : this.$q.localStorage.getAll().UserDetalle.co_person,
