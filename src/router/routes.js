@@ -95,21 +95,7 @@ const routes = [
           import("components/Landing/Conversiones/Conversiones")
       },
       
-      /*
-      // CHAPA TU MOTOTAXI PRECALIFICADOS
-      {
-        path: "landing/chapatumototaxiprecal",
-        component: () =>
-          import("components/Landing/Chapatumototaxi/chapatumototaxiprecal")
-      },
       
-      // CHAPA TU MOTOTAXI RECHAZADOS
-      {
-        path: "landing/chapatumototaxirechazados",
-        component: () =>
-          import("components/Landing/chapatumototaxirechazados/chapatumototaxirechazados")
-      },
-      */
 
       // MOTO LINEAL
       {
