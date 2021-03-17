@@ -13,6 +13,36 @@
       :pagination="pagination"
       :hide-header="hideheader"
     >
+      <template v-slot:body-cell-ca_uniori="props">
+        <q-td :props="props">
+          <q-input
+            class="inputnuevo"
+            style="height: 10px"
+            dense
+            filled
+            mask="#.##"
+            fill-mask="0"
+            reverse-fill-mask
+            v-model="props.row.ca_uniori"
+          />
+        </q-td>
+      </template>
+      <template v-slot:body-cell-im_preori="props">
+        <q-td :props="props">
+          <!--          <input style="width: 44px" type="text">-->
+          <q-input
+            class="inputnuevo"
+            style="height: 10px"
+            dense
+            filled
+            mask="#.##"
+            fill-mask="0"
+            reverse-fill-mask
+            v-model="props.row.im_preori" 
+          />
+        </q-td>
+      </template>
+      
       <template v-slot:top-right>
         <q-btn
           size="sm"
@@ -189,11 +219,25 @@ export default {
       "call_servic_opera",
       "call_delete_servic_opera",
       "call_delete_materi_opera",
+      "call_materi_opera",
       "call_serv_mater_mostrar_buscar"
     ]),
-    actualizarMateriales() {
-      console.log("Se preciono agregarServiciosMateriales");
-      this.$emit("click");
+    async actualizarMateriales() {
+      this.$q.loading.show();
+      // console.log(this.info);
+      for (let i = 0; i < this.info.length; i++) {
+        const element = this.info[i];
+        console.log(element);
+        await this.call_materi_opera({
+          cod_ope: `${element.co_operac}`,
+          ope_mat: `${element.co_opemat}`,
+          cantida: `${element.ca_uniori}`,
+          imp_uni: `${element.im_preori}`
+        });
+      }
+      await this.$emit("click");
+      console.log("Actualziar");
+      //this.$q.loading.hide();
     },
     async eliminar(val) {
       this.$q.loading.show();
@@ -212,4 +256,15 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+.q-field--dense .q-field__control,
+.q-field--dense .q-field__marginal {
+  /*height: 25px;*/
+  /*background-color: red;*/
+}
+
+.inputnuevo {
+  /*background-color: red;*/
+  height: 25px;
+}
+</style>
