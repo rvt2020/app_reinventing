@@ -13,11 +13,11 @@
                 dense
                 filled
                 v-model="buscar"
-                label="Buscar Operación"
+                label="Proforma"
               />
             </div>
             <div class="col-3">
-              <q-btn size="md" color="green" type="submit" icon-right="search" />
+              <q-btn size="md" color="green" type="submit" label="Reinventing" />
             </div>
           </div>
         </q-form>
@@ -28,29 +28,20 @@
     <div v-if="getOperacionesAbrir_operacion.res === 'ok'">
       <div class="row">
         <div class="col-xs-12 col-md-4">
-          <DatosOperacion
-            v-if="getOperacionesAbrir_operacion.operac.length > 0"
-            :info="getOperacionesAbrir_operacion.operac"
-            titulo="Datos de Operación"
-            :hideheader="true"
-            :hidebottom="true"
-          />
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <DatosVehiculo
+          <DatosVehiculoCliente
             v-if="getOperacionesAbrir_operacion.vehicu.length > 0"
             :info="getOperacionesAbrir_operacion.vehicu"
-            titulo="Vehículo"
-            :hideheader="true"
+            titulo="Datos del Cliente"
+            :hideheader="false"
             :hidebottom="true"
           />
         </div>
         <div class="col-xs-12 col-md-4">
-          <DatosCliente
-            v-if="getOperacionesAbrir_operacion.client.length > 0"
-            :info="getOperacionesAbrir_operacion.client"
-            titulo="Cliente"
-            :hideheader="true"
+          <DatosOperacionImporte
+            v-if="getOperacionesAbrir_operacion.operac.length > 0"
+            :info="getOperacionesAbrir_operacion.operac"
+            titulo="Datos de la Proforma"
+            :hideheader="false"
             :hidebottom="true"
           />
         </div>
@@ -115,7 +106,9 @@ export default {
   },
   components: {
     DatosOperacion: () => import("./DatosOperacion"),
+    DatosOperacionImporte: () => import("./DatosOperacionImporte"),
     DatosVehiculo: () => import("./DatosVehiculo"),
+    DatosVehiculoCliente: () => import("./DatosVehiculoCliente"),
     DatosCliente: () => import("./DatosCliente"),
     // Tabla: () => import("./TablaAbrirOperaciones"),
     ListaServicios: () => import("./ListaServicios"),

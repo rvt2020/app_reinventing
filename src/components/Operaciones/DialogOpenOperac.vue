@@ -39,32 +39,24 @@
         <q-card-section>
             <div class="row">
                 <div class="col-xs-12 col-md-4">
-                <DatosOperacion
-                    v-if="getOperacionesAbrir_operacion.operac.length > 0"
-                    :info="getOperacionesAbrir_operacion.operac"
-                    titulo="Datos de Operación"
-                    :hideheader="true"
-                    :hidebottom="true"
-                />
-                </div>
-                <div class="col-xs-12 col-md-4">
-                <DatosVehiculo
+                <DatosVehiculoCliente
                     v-if="getOperacionesAbrir_operacion.vehicu.length > 0"
                     :info="getOperacionesAbrir_operacion.vehicu"
-                    titulo="Vehículo"
+                    titulo="Datos del Cliente"
                     :hideheader="true"
                     :hidebottom="true"
                 />
                 </div>
                 <div class="col-xs-12 col-md-4">
-                <DatosCliente
-                    v-if="getOperacionesAbrir_operacion.client.length > 0"
-                    :info="getOperacionesAbrir_operacion.client"
-                    titulo="Cliente"
+                <DatosOperacionImporte
+                    v-if="getOperacionesAbrir_operacion.operac.length > 0"
+                    :info="getOperacionesAbrir_operacion.operac"
+                    titulo="Datos de la Proforma"
                     :hideheader="true"
                     :hidebottom="true"
                 />
                 </div>
+                
             </div>
 
             <!-- SERVICIOS -->
@@ -115,7 +107,9 @@ export default {
   },
   components: {
     DatosOperacion: () => import("./ImprimirOperacion/DatosOperacion"),
+    DatosOperacionImporte: () => import("./ImprimirOperacion/DatosOperacionImporte"),
     DatosVehiculo: () => import("./ImprimirOperacion/DatosVehiculo"),
+    DatosVehiculoCliente: () => import("./ImprimirOperacion/DatosVehiculoCliente"),
     DatosCliente: () => import("./ImprimirOperacion/DatosCliente"),
     ListaServicios: () => import("./ImprimirOperacion/ListaServicios"),
     ListaMateriales: () => import("./ImprimirOperacion/ListaMateriales"),
