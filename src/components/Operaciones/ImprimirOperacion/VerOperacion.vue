@@ -62,8 +62,8 @@
       <div class="row">
         <div class="col">
           <ListaMateriales
-            v-if="getOperacionesAbrir_operacion.materi.length > 0"
-            :info="getOperacionesAbrir_operacion.materi"
+            v-if="getOperacionesAbrir_operacion.matven.length > 0"
+            :info="getOperacionesAbrir_operacion.matven"
             titulo="Materiales"
             :hideheader="false"
             :hidebottom="true"

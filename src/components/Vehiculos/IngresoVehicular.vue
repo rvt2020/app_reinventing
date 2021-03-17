@@ -24,55 +24,55 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="text-left">Fecha</td>
-                      <td class="text-right">
+                      <td class="text-center">Fecha</td>
+                      <td class="text-center">
                         {{ dataIngresoVehicular.nu_anomod }}
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Placa</td>
-                      <td class="text-right">
+                      <td class="text-center">Placa</td>
+                      <td class="text-center">
                         {{ dataIngresoVehicular.co_plaveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Marca</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         {{ dataIngresoVehicular.no_marveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Modelo</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         {{ dataIngresoVehicular.no_modveh }}
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Año</td>
-                      <td class="text-right">
+                      <td class="text-center">Año</td>
+                      <td class="text-center">
                         {{ dataIngresoVehicular.nu_anofab }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Color</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         {{ dataIngresoVehicular.no_colveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Chasis</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         {{ dataIngresoVehicular.nu_serveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Motor</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         {{ dataIngresoVehicular.nu_motveh }}
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Kilometraje</td>
+                      <td class="text-right">Kilometraje</td>
                       <td class="text-right">
                         <q-input filled dense v-model="val_kil" />
                       </td>
@@ -92,7 +92,7 @@
                   <tbody>
                     <tr>
                       <td class="text-left">Documento de Identidad</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         <!--                        {{ clienteSelect }}-->
                         <q-select
                           v-if="seleccliente"
@@ -144,19 +144,19 @@
                     </tr>
                     <tr>
                       <td class="text-left">Apellido Paterno</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         <q-input filled dense v-model="ape_pat" />
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Apellido Materno</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         <q-input filled dense v-model="ape_mat" />
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Nombre del Cliente</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         <q-input filled dense v-model="nom_cli" />
                       </td>
                     </tr>
@@ -175,7 +175,7 @@
                   <tbody>
                     <tr>
                       <td class="text-left">Centro de Operaciones</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         <q-select
                           filled
                           dense
@@ -190,13 +190,13 @@
                     </tr>
                     <tr>
                       <td class="text-left">Dirección</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         <q-input filled dense v-model="direcci" />
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Descripción de ingreso</td>
-                      <td class="text-right">
+                      <td class="text-left">
                         <q-input
                           filled
                           type="textarea"
