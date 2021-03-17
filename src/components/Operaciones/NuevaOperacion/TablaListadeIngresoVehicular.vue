@@ -123,45 +123,46 @@ export default {
         },
         {
           name: "no_marveh",
+          align: "center",
           label: "Marca",
           field: "no_marveh",
           sortable: true
         },
-        { name: "no_modveh", label: "Modelo", field: "no_modveh" },
-        { name: "nu_anomod", label: "Año", field: "nu_anomod" },
-        { name: "no_colveh", label: "Color", field: "no_colveh" },
+        { name: "no_modveh", align: "left", label: "Modelo", field: "no_modveh" },
+        { name: "nu_anomod", align: "center", label: "Año", field: "nu_anomod" },
+        { name: "no_colveh", align: "left", label: "Color", field: "no_colveh" },
         {
-          name: "no_entsal",
+          name: "no_entsal", align: "center",
           label: "Tipo de Movimiento",
           field: "no_entsal",
           sortable: true
         },
         {
-          name: "fe_regist",
+          name: "fe_regist", align: "center",
           label: "Fecha de Registro",
           field: "fe_regist",
           sortable: true
         },
         {
-          name: "ho_regist",
+          name: "ho_regist", align: "center",
           label: "Hora de Registro",
           field: "ho_regist",
           sortable: true
         },
         {
-          name: "no_chofer",
+          name: "no_chofer", align: "left",
           label: "Conductor",
           field: "no_chofer",
           sortable: true
         },
         {
-          name: "no_cenope",
+          name: "no_cenope", align: "center",
           label: "Centro de Operaciones",
           field: "no_cenope",
           sortable: true
         },
         {
-          name: "de_ingsal",
+          name: "de_ingsal", align: "left",
           label: "Descripción",
           field: "de_ingsal",
           sortable: true
