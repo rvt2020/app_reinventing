@@ -58,7 +58,7 @@
           />
         </div>
       </div>
-      <!-- TablaMateriales Venta -->
+      <!-- TablaMateriales -->
       <div class="row">
         <div class="col">
           <ListaMateriales
