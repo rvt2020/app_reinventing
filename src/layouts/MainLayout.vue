@@ -134,6 +134,59 @@
                 v-bind="link"
               />
 
+            <!-- INICIO MENU VEHICULOS -->
+
+            <q-item
+              class="q-ma-sm navigation-item"
+              clickable
+              active-class="tab-active"
+              v-ripple
+              exact
+              @click="URL('/vehiculos')"
+            >
+              <q-item-section avatar>
+                <q-icon name="directions_car" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label>Vehiculos</q-item-label>
+              </q-item-section>
+            </q-item>
+            <!-- FIN MENU VEHICULOS -->
+            
+            <EssentialLink
+                v-for="link in essentialLinks"
+                :key="link.title"
+                v-bind="link"
+              />
+
+            <!-- INICIO MENU CITAS -->
+
+            <q-item
+              class="q-ma-sm navigation-item"
+              clickable
+              active-class="tab-active"
+              v-ripple
+              exact
+              @click="URL('/citas')"
+            >
+              <q-item-section avatar>
+                <q-icon name="event" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label>Citas</q-item-label>
+              </q-item-section>
+            </q-item>
+            <!-- FIN MENU CITAS -->
+            
+            <EssentialLink
+                v-for="link in essentialLinks"
+                :key="link.title"
+                v-bind="link"
+              />
+
+
             <!-- INICIO MENU OPERACIONES -->
               <q-expansion-item
                   class="q-ma-sm navigation-item"
@@ -177,7 +230,6 @@
                     <q-item-label>Imprimir</q-item-label>
                   </q-item-section>
                 </q-item>
-
               </q-expansion-item>
             <!-- FIN MENU OPERACIONES -->
             
@@ -271,6 +323,34 @@
               </q-expansion-item>
             <!-- FIN MENU LOGISTICA -->
             
+            <!-- INICIO MENU FINANZAS -->
+              <q-expansion-item
+                class="q-ma-sm navigation-item"
+                expand-separator
+                icon="local_atm"
+                label="Finanzas"
+                :content-inset-level="0.5"
+              >
+                <!-- Facturar Operacion -->
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/facturaroperacion')"
+                >
+                  <q-item-section avatar>
+                    <q-icon name="money" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Facturar Operación</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+              </q-expansion-item>
+            <!-- FIN MENU FINANZAS -->
             
             <!-- INICIO MENU REPORTE -->
               <q-expansion-item
@@ -455,11 +535,11 @@
                     </q-item-section>
                   </q-item>
 
-                    <!-- GESTIONES PRECALIFICADAS -->
+                  <!-- GESTIONES PRECALIFICADAS -->
                   <q-expansion-item
                     class="q-ma-sm navigation-item"
                     expand-separator
-                    icon=""
+                    icon="check_circle"
                     label="PreCalificadas"
                     :content-inset-level="0.5"
                   >
@@ -476,99 +556,721 @@
                       </q-item-section>
 
                       <q-item-section>
-                        <q-item-label>Gestión Interesados</q-item-label>
+                        <q-item-label>Interesados</q-item-label>
                       </q-item-section>
                     </q-item>
+
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Chapatumototaxiprecaleev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Chapatumototaxiprecaleac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+
                   </q-expansion-item>
-                  <!-- 
-                  GESTIONES RECHAZADAS
+                  
+                  <!-- GESTIONES RECHAZADAS -->
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="unpublished"
+                    label="Rechazadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Chapatumototaxirechaz')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Chapatumototaxirechazeev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Chapatumototaxirechazeac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+
+                  </q-expansion-item>
+                </q-expansion-item>
+
+                <!-- MOTO LINEAL -->
+                  
+                <q-expansion-item
+                  class="q-ma-sm navigation-item"
+                  expand-separator
+                  icon="two_wheeler"
+                  label="Moto Lineal"
+                  :content-inset-level="0.5"
+                >
+                
                   <q-item
                     class="q-ma-sm navigation-item"
                     clickable
                     active-class="tab-active"
                     v-ripple
                     exact
-                    @click="URL('/landing/chapatumototaxirechaz')"
+                    @click="URL('/landing/motolineal')"
                   >
                     <q-item-section avatar>
-                      <q-icon name="subtitles_off" />
+                      <q-icon name="contact_phone" />
                     </q-item-section>
 
                     <q-item-section>
-                      <q-item-label>Rechazadas</q-item-label>
+                      <q-item-label>Gestión Inicial</q-item-label>
                     </q-item-section>
-                  </q-item> -->
+                  </q-item>
+
+                  <!-- GESTIONES PRECALIFICADAS -->
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="check_circle"
+                    label="PreCalificadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Motolinealprecal')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Motolinealprecaleev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Motolinealprecaleac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+
+                  <!-- GESTIONES RECHAZADAS -->
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="unpublished"
+                    label="Rechazadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Motolinealrechaz')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Motolinealrechazeev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Motolinealrechazeac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+                </q-expansion-item>
+
+                <!-- TAXI PROPIO -->
+                  
+                <q-expansion-item
+                  class="q-ma-sm navigation-item"
+                  expand-separator
+                  icon="local_taxi"
+                  label="Taxi Propio"
+                  :content-inset-level="0.5"
+                >
+                
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/taxipropio')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="contact_phone" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Gestión Inicial</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+                  
+
+                  <!-- GESTIONES PRECALIFICADAS -->
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="check_circle"
+                    label="PreCalificadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Taxipropioprecal')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                      
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Taxipropioprecaleev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Taxipropioprecaleac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+                  
+                  <!-- GESTIONES RECHAZADAS -->
+                  
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="unpublished"
+                    label="Rechazadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Taxipropiorechaz')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Taxipropiorechazeev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Taxipropiorechazeac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+
+                </q-expansion-item>
+
+                <!-- Efectivo al Toque -->
+                  
+                <q-expansion-item
+                  class="q-ma-sm navigation-item"
+                  expand-separator
+                  icon="local_atm"
+                  label="Efectivo al Toque"
+                  :content-inset-level="0.5"
+                >
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/efectivoaltoque')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="contact_phone" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Gestión Inicial</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+                  
+
+                  <!-- GESTIONES PRECALIFICADAS -->
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="check_circle"
+                    label="PreCalificadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Efectivoaltoqueprecal')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                      
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Efectivoaltoqueprecaleev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Efectivoaltoqueprecaleac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+                  
+                  <!-- GESTIONES RECHAZADAS -->
+                  
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="unpublished"
+                    label="Rechazadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Efectivoaltoquerechaz')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Efectivoaltoquerechazeev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Efectivoaltoquerechazeac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+                  
+                </q-expansion-item>
+
+                
+                <q-expansion-item
+                  class="q-ma-sm navigation-item"
+                  expand-separator
+                  icon="car_repair"
+                  label="Conversiones"
+                  :content-inset-level="0.5"
+                >
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/landing/conversiones')"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="contact_phone" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Gestión Inicial</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+                  <!-- GESTIONES PRECALIFICADAS -->
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="check_circle"
+                    label="PreCalificadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Conversionesprecal')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                      
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Conversionesprecaleev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Conversionesprecaleac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+                  
+                  <!-- GESTIONES RECHAZADAS -->
+                  
+                  <q-expansion-item
+                    class="q-ma-sm navigation-item"
+                    expand-separator
+                    icon="unpublished"
+                    label="Rechazadas"
+                    :content-inset-level="0.5"
+                  >
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Conversionesrechaz')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="spellcheck" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Interesados</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Conversionesrechazeev')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="grid_on" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Evaluación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                    <q-item
+                      class="q-ma-sm navigation-item"
+                      clickable
+                      active-class="tab-active"
+                      v-ripple
+                      exact
+                      @click="URL('/landing/Conversionesrechazeac')"
+                    >
+                      <q-item-section avatar>
+                        <q-icon name="done_all" />
+                      </q-item-section>
+
+                      <q-item-section>
+                        <q-item-label>Activación</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                    
+                  </q-expansion-item>
+                    
 
 
                 </q-expansion-item>
-            
-                <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
-                  @click="URL('/landing/motolineal')"
-                >
-                  <q-item-section avatar>
-                    <q-icon name="two_wheeler" />
-                  </q-item-section>
 
-                  <q-item-section>
-                    <q-item-label>Moto lineal</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
-                  @click="URL('/landing/taxipropio')"
-                >
-                  <q-item-section avatar>
-                    <q-icon name="local_taxi" />
-                  </q-item-section>
-
-                  <q-item-section>
-                    <q-item-label>Taxi propio</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
-                  @click="URL('/landing/efectivoaltoque')"
-                >
-                  <q-item-section avatar>
-                    <q-icon name="local_atm" />
-                  </q-item-section>
-
-                  <q-item-section>
-                    <q-item-label>Efectivo al toque</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
-                  @click="URL('/landing/conversiones')"
-                >
-                  <q-item-section avatar>
-                    <q-icon name="list_alt" />
-                  </q-item-section>
-
-                  <q-item-section>
-                    <q-item-label>Conversiones</q-item-label>
-                  </q-item-section>
-                </q-item>
               </q-expansion-item>
 
               <q-item
@@ -698,24 +1400,25 @@
   //   icon: "group",
   //   link: "/usuarios"
   // },
-    {
-      title: "Vehiculos",
-      caption: "github.com/quasarframework",
-      icon: "directions_car",
-      link: "/vehiculos",
-    },
+  //  {
+  //    title: "Vehiculos",
+  //    caption: "github.com/quasarframework",
+  //    icon: "directions_car",
+  //    link: "/vehiculos",
+  //  },
   // {
   //   title: "Personas",
   //   caption: "github.com/quasarframework",
   //   icon: "face",
   //   link: "/personas"
   // },
-    {
-      title: "Citas",
-      caption: "github.com/quasarframework",
-      icon: "event",
-      link: "/citas",
-    }/*,
+    //{
+    //  title: "Citas",
+    //  caption: "github.com/quasarframework",
+    //  icon: "event",
+    //  link: "/citas",
+    //}
+    /*,
     {
       title: "Operaciones",
       caption: "github.com/quasarframework",

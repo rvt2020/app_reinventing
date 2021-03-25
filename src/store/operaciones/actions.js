@@ -88,6 +88,26 @@ export async function call_add_materi_opera({ commit }, payload) {
   console.log(response.data);
   return response.data;
 }
+export async function call_listar_cerrad({ commit }, payload) {
+  console.log("payload", payload);
+  const response = await axiosInstance.post(
+    `/operacflujo/listar_operac_termin`, 
+    payload
+  );
+  console.log(response.data);
+  commit("get_listar_cerrad", response.data);
+}
+
+
+export async function call_insert_factur({ commit }, payload) {
+  console.log("payload", payload);
+  const response = await axiosInstance.post(
+    `/operacflujo/insert_factur_operac`,
+    payload
+  );
+  console.log(response.data);
+  return response.data;
+}
 
 export async function call_lista_sermat_evalua({ commit }, payload) {
   const response = await axiosInstance.get(
@@ -150,6 +170,13 @@ export async function call_combo_tecnico({ commit }) {
   console.log(response.data);
   // return response.data
   commit("get_combo_tecnico", response.data);
+}
+
+export async function call_tipo_descripcion({ commit }) {
+  const response = await axiosInstance.get(`/operacflujo/tipdes`);
+  console.log(response.data);
+  // return response.data
+  commit("get_tctipdes", response.data);
 }
 
 export async function call_asigna_tecnico_servicio({ commit }, payload) {

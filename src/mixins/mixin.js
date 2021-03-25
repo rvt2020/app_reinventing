@@ -166,7 +166,18 @@ const MixinDefault = {
         no_perfil: "Perfil",
         no_respon: "Responsable",
         fe_mangen: "Mnt. General",
-        ca_diaatr: "Dias Atraso"
+        ca_diaatr: "Dias Atraso",
+        id_operac: "Operación",
+        fe_termin: "Fecha Término",
+        im_servic: "Imp.Servicio",
+        im_materi: "Imp.Materiales",
+        im_basimp: "Base Imponible",
+        im_totigv: "IGV",
+        im_totope: "Total Operación",
+        no_produc: "Producto",
+        no_tippla: "Tipo Plan",
+        no_entida: "Entidad",
+        no_exacvr: "Converus"
       }
     };
   },

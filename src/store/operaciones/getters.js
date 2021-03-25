@@ -26,6 +26,11 @@ export function get_combo_cliente(state) {
   return state.get_combo_cliente;
 }
 
+export function get_tctipdes(state) {
+  return state.get_tctipdes;
+}
+
+
 export function get_lista_vehiculo_ingreso(state) {
   return state.get_lista_vehiculo_ingreso;
 }
@@ -57,3 +62,8 @@ export function get_lista_opeser_ini_fin(state) {
 export function get_buscar_operacion(state) {
   return state.get_buscar_operacion;
 }
+
+export function get_listar_cerrad(state) {
+  return state.get_listar_cerrad;
+}
+
