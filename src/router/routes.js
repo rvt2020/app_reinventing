@@ -17,6 +17,12 @@ const routes = [
         component: () =>
           import("components/Operaciones/ImprimirOperacion/VerOperacion.vue")
       },
+      {
+        path: "facturaroperacion",
+        component: () =>
+          import("components/Operaciones/FacturarOperacion/FacturarOperacion.vue")
+      },
+      
       { path: "logisticas", component: () => import("pages/Logistica.vue") },
       { path: "llamadas", component: () => import("pages/Llamadas.vue") },
       {
@@ -87,36 +93,195 @@ const routes = [
         component: () =>
           import("components/Landing/Chapatumototaxi/Chapatumototaxiprecal")
       },
-      
-      // CONVERSIONES
       {
-        path: "landing/conversiones",
+        path: "landing/chapatumototaxiprecaleev",
         component: () =>
-          import("components/Landing/Conversiones/Conversiones")
+          import("components/Landing/Chapatumototaxi/Chapatumototaxiprecaleev")
       },
-      
-      
-
-      // MOTO LINEAL
       {
-        path: "landing/conversiones",
-        component: () => import("components/Landing/Conversiones/Conversiones")
+        path: "landing/chapatumototaxiprecaleac",
+        component: () =>
+          import("components/Landing/Chapatumototaxi/Chapatumototaxiprecaleac")
       },
+      
+      // CHAPA TU MOTOTAXI RECHAZADOS
+      {
+        path: "landing/Chapatumototaxirechaz",
+        component: () =>
+          import("components/Landing/Chapatumototaxi/Chapatumototaxirechaz")
+      },
+      {
+        path: "landing/chapatumototaxirechazeev",
+        component: () =>
+          import("components/Landing/Chapatumototaxi/Chapatumototaxirechazeev")
+      },
+      {
+        path: "landing/chapatumototaxirechazeac",
+        component: () =>
+          import("components/Landing/Chapatumototaxi/Chapatumototaxirechazeac")
+      },
+      
+      
+      
       {
         path: "landing/motolineal",
         component: () => import("components/Landing/Motolineal/Motolineal")
       },
+
+      // MOTO LINEAL PRECALIFICADOS
+      {
+        path: "landing/motolinealprecal",
+        component: () =>
+          import("components/Landing/Motolineal/Motolinealprecal")
+      },
+      {
+        path: "landing/motolinealprecaleev",
+        component: () =>
+          import("components/Landing/Motolineal/Motolinealprecaleev")
+      },
+      {
+        path: "landing/motolinealprecaleac",
+        component: () =>
+          import("components/Landing/Motolineal/Motolinealprecaleac")
+      },
+      
+      // MOTO LINEAL RECHAZADOS
+      {
+        path: "landing/Motolinealrechaz",
+        component: () =>
+          import("components/Landing/Motolineal/Motolinealrechaz")
+      },
+      {
+        path: "landing/motolinealrechazeev",
+        component: () =>
+          import("components/Landing/Motolineal/Motolinealrechazeev")
+      },
+      {
+        path: "landing/motolinealrechazeac",
+        component: () =>
+          import("components/Landing/Motolineal/Motolinealrechazeac")
+      },
+      
+
 
       //TAXI PROPIO
       {
         path: "landing/taxipropio",
         component: () => import("components/Landing/Taxipropio/Taxipropio")
       },
+      
+      // TAXI PROPIO PRECALIFICADOS
+      {
+        path: "landing/taxipropioprecal",
+        component: () =>
+          import("components/Landing/Taxipropio/Taxipropioprecal")
+      },
+      {
+        path: "landing/taxipropioprecaleev",
+        component: () =>
+          import("components/Landing/Taxipropio/Taxipropioprecaleev")
+      },
+      {
+        path: "landing/taxipropioprecaleac",
+        component: () =>
+          import("components/Landing/Taxipropio/Taxipropioprecaleac")
+      },
+      
+      // TAXI PROPIO RECHAZADOS
+      {
+        path: "landing/taxipropiorechaz",
+        component: () =>
+          import("components/Landing/Taxipropio/Taxipropiorechaz")
+      },
+      {
+        path: "landing/taxipropiorechazeev",
+        component: () =>
+          import("components/Landing/Taxipropio/Taxipropiorechazeev")
+      },
+      {
+        path: "landing/taxipropiorechazeac",
+        component: () =>
+          import("components/Landing/Taxipropio/Taxipropiorechazeac")
+      },
+      
+      
+      //EFECTIVO AL TOQUE
       {
         path: "landing/efectivoaltoque",
         component: () =>
           import("components/Landing/Efectivoaltoque/Efectivoaltoque")
+      },
+      {
+        path: "landing/efectivoaltoqueprecal",
+        component: () =>
+          import("components/Landing/Efectivoaltoque/Efectivoaltoqueprecal")
+      },
+      {
+        path: "landing/efectivoaltoqueprecaleev",
+        component: () =>
+          import("components/Landing/Efectivoaltoque/Efectivoaltoqueprecaleev")
+      },
+      {
+        path: "landing/efectivoaltoqueprecaleac",
+        component: () =>
+          import("components/Landing/Efectivoaltoque/Efectivoaltoqueprecaleac")
+      },
+      // EFECTIVO AL TOQUE RECHAZADOS
+      {
+        path: "landing/efectivoaltoquerechaz",
+        component: () =>
+          import("components/Landing/Efectivoaltoque/Efectivoaltoquerechaz")
+      },
+      {
+        path: "landing/efectivoaltoquerechazeev",
+        component: () =>
+          import("components/Landing/Efectivoaltoque/Efectivoaltoquerechazeev")
+      },
+      {
+        path: "landing/efectivoaltoquerechazeac",
+        component: () =>
+          import("components/Landing/Efectivoaltoque/Efectivoaltoquerechazeac")
+      },
+      
+      //CONVERSIONES
+      {
+        path: "landing/conversiones",
+        component: () =>
+          import("components/Landing/Conversiones/Conversiones")
+      },
+      {
+        path: "landing/conversionesprecal",
+        component: () =>
+          import("components/Landing/Conversiones/Conversionesprecal")
+      },
+      {
+        path: "landing/conversionesprecaleev",
+        component: () =>
+          import("components/Landing/Conversiones/Conversionesprecaleev")
+      },
+      {
+        path: "landing/conversionesprecaleac",
+        component: () =>
+          import("components/Landing/Conversiones/Conversionesprecaleac")
+      },
+      // CONVERSIONES RECHAZADOS
+      {
+        path: "landing/conversionesrechaz",
+        component: () =>
+          import("components/Landing/Conversiones/Conversionesrechaz")
+      },
+      {
+        path: "landing/conversionesrechazeev",
+        component: () =>
+          import("components/Landing/Conversiones/Conversionesrechazeev")
+      },
+      {
+        path: "landing/conversionesrechazeac",
+        component: () =>
+          import("components/Landing/Conversiones/Conversionesrechazeac")
       }
+      
+
     ]
   },
   {

@@ -13,10 +13,12 @@ export default function() {
     get_lista_operaci_evalua: [],
     operacionesid3: false,
     operacionesid4: false,
+    get_tctipdes: [],
     get_lista_operaci_asignar: [],
     get_lista_sermat_asignar: [],
     get_combo_tecnico: [],
     get_lista_opeser_ini_fin: [],
-    get_buscar_operacion: []
+    get_buscar_operacion: [],
+    get_listar_cerrad:[]
   };
 }

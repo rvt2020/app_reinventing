@@ -15,10 +15,14 @@ const state = {
   get_tcproduc: [],
   get_tctippla: [],
   get_tcdocume: [],
+  get_tcdocumeactivapre: [],
   get_tcentida: [],
+  get_tcafirma: [],
+  get_tcaprrec: [],
   dialogCrear: false,
   get_listar_bitaco: [],
-  get_report_gestio: []
+  get_report_gestio: [],
+  get_tcdocumerechaz: []
 };
 
 const mutations = {
@@ -73,7 +77,20 @@ const mutations = {
   },
   get_tcentida(state, payload) {
     state.get_tcentida = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tcafirma(state, payload) {
+    state.get_tcafirma = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tcaprrec(state, payload) {
+    state.get_tcaprrec = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tcdocumeactivapre(state, payload) {
+    state.get_tcdocumeactivapre = payload; // payload : información o data  luego se va al state (arriba)
+  },
+  get_tcdocumerechaz(state, payload) {
+    state.get_tcdocumerechaz = payload;
   }
+  
 };
 
 const actions = {
@@ -167,6 +184,26 @@ const actions = {
   async call_tcentida({ commit }) {
     const response = await axiosInstance.get(`comerc/tcentida`);
     commit("get_tcentida", response.data);
+  },
+  
+  async call_tcafirma({ commit }) {
+    const response = await axiosInstance.get(`comerc/tcafirma`);
+    commit("get_tcafirma", response.data);
+  },
+  
+  async call_tcaprrec({ commit }) {
+    const response = await axiosInstance.get(`comerc/tcaprrec`);
+    commit("get_tcaprrec", response.data);
+  },
+  
+  async call_tcdocumeactivapre({ commit }) {
+    const response = await axiosInstance.get(`comerc/tcdocumeactivapre`);
+    commit("get_tcdocumeactivapre", response.data);
+  },
+  
+  async call_tcdocumerechaz({ commit }) {
+    const response = await axiosInstance.get(`comerc/tcdocumerechaz`);
+    commit("get_tcdocumerechaz", response.data);
   }
   
 };
@@ -223,6 +260,18 @@ const getters = {
   },
   get_tcentida(state) {
     return state.get_tcentida;
+  },
+  get_tcafirma(state) {
+    return state.get_tcafirma;
+  },
+  get_tcaprrec(state) {
+    return state.get_tcaprrec;
+  },
+  get_tcdocumeactivapre(state) {
+    return state.get_tcdocumeactivapre;
+  },
+  get_tcdocumerechaz(state) {
+    return state.get_tcdocumerechaz;
   }
 };
 

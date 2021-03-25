@@ -64,12 +64,20 @@ export function get_lista_operaci_asignar(state, payload) {
   state.get_lista_operaci_asignar = payload
 }
 
+export function get_listar_cerrad(state, payload) {
+  state.get_listar_cerrad = payload
+}
+
 export function get_lista_sermat_asignar(state, payload) {
   state.get_lista_sermat_asignar = payload
 }
 
 export function get_combo_tecnico(state, payload) {
   state.get_combo_tecnico = payload
+}
+
+export function get_tctipdes(state, payload) {
+  state.get_tctipdes = payload
 }
 
 export function get_lista_opeser_ini_fin(state, payload) {
