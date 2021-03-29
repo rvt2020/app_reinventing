@@ -87,6 +87,11 @@ export function getCitas(state) {
   // return state.getCitas;
 }
 
+export function get_combo_vehiculo(state) {
+  return state.get_combo_vehiculo;
+}
+
+
 export function getCitasFilter(state) {
   return state.getCitasFilter;
 }

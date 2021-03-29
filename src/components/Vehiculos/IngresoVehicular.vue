@@ -24,55 +24,55 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="text-center">Fecha</td>
-                      <td class="text-center">
+                      <td class="text-left">Fecha</td>
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.nu_anomod }}
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-center">Placa</td>
-                      <td class="text-center">
+                      <td class="text-left">Placa</td>
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.co_plaveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Marca</td>
-                      <td class="text-left">
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.no_marveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Modelo</td>
-                      <td class="text-left">
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.no_modveh }}
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-center">Año</td>
-                      <td class="text-center">
+                      <td class="text-left">Año</td>
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.nu_anofab }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Color</td>
-                      <td class="text-left">
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.no_colveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Chasis</td>
-                      <td class="text-left">
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.nu_serveh }}
                       </td>
                     </tr>
                     <tr>
                       <td class="text-left">Motor</td>
-                      <td class="text-left">
+                      <td class="text-rifht">
                         {{ dataIngresoVehicular.nu_motveh }}
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-right">Kilometraje</td>
+                      <td class="text-left">Kilometraje</td>
                       <td class="text-right">
                         <q-input filled dense v-model="val_kil" />
                       </td>

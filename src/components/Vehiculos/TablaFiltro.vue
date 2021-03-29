@@ -95,13 +95,6 @@
               <q-btn
                 dense
                 size="sm"
-                @click="citas(props.row)"
-                color="green"
-                icon="date_range"
-              />
-              <q-btn
-                dense
-                size="sm"
                 @click="generarOperacion(props.row)"
                 color="primary"
                 label="Ingresar"
@@ -119,6 +112,7 @@
         </template>
       </q-table>
     </q-card>
+
     <q-dialog v-model="employee_dialog">
       <q-card class="my-card" style="width: 100%" flat bordered>
         <q-card-section>
@@ -166,9 +160,12 @@
         </q-card-section>
       </q-card>
     </q-dialog>
+
+
     <div v-if="dialogEdit">
       <DialogEdit :tipo="tipo" :info="dataEdit" />
     </div>
+
   </div>
 </template>
 

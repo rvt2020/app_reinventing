@@ -24,6 +24,12 @@ export async function callCitasTipoCitas({ commit }) {
   commit("getCitasTipos", response.data.marcas);
 }
 
+export async function call_combo_vehiculo({ commit }) {
+  const response = await axiosInstance.get(`/citas/combo_vehiculo`);
+  console.log(response.data);
+  commit("get_combo_vehiculo", response.data);
+}
+
 export async function call_ingresar_vehicu({ commit }, payload) {
   const response = await axiosInstance.post(`/citas/ingresar_vehicu`, payload);
   console.log(response.data);
