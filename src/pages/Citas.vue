@@ -3,6 +3,11 @@
     <div>
       <Titulos icon="event" color="red" @click="boton" titulo="Citas" />
     </div>
+    <!--
+    <div>
+      <Titulosnuevo icon="event" color="red" @click="nuevoboton" titulo="Citas" />
+    </div>
+    -->
     <q-separator color="red" />
     <!--    <div align="center">-->
     <!--      <Filtros />-->
@@ -31,6 +36,11 @@
     <div>
       <DialogCrear :tipo="tipo" :info="dataEdit" />
     </div>
+    <!--
+    <div>
+      <DialogCitar :tipo="tipo" :info="dataEdit" />
+    </div>
+    -->
     <!--    </div>-->
     <!-- content -->
   </q-page>
@@ -102,6 +112,7 @@ export default {
     Titulos: () => import("../components/Titulos"),
     TablaFiltro: () => import("../components/TablaFiltro"),
     DialogCrear: () => import("../components/Citas/Crear"),
+    //DialogCitar: () => import("../components/Citas/Citar"),
     Calendario: () => import("../components/Citas/Calendario")
   },
   methods: {

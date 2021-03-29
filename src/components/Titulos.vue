@@ -23,6 +23,7 @@
             label="Agregar"
           />
         </q-item-section>
+
       </q-item>
     </q-list>
   </div>
