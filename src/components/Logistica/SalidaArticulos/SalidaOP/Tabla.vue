@@ -9,7 +9,7 @@
       :pagination="initialPagination"
       virtual-scroll
       class="my-sticky-header-table"
-      title="Artículos a ingresar"
+      title="Artículos a Despachar"
       :data="info"
       :filter="filter"
       :columns="columns"
@@ -45,6 +45,19 @@
           </div>
           <div v-else>
             {{ props.row.il_selecc }}
+          </div>
+        </q-td>
+      </template>
+      <template v-slot:body-cell-il_sobran="props">
+        <q-td class="text-center" :props="props">
+          <div v-if="!props.row.il_sobran">
+            <q-checkbox size="30px" val="true" v-model="props.row.il_sobran" />
+          </div>
+          <div v-else-if="props.row.il_sobran == true">
+            <q-checkbox size="30px" val="true" color="green" v-model="props.row.il_sobran" />
+          </div>
+          <div v-else>
+            {{ props.row.il_sobran }}
           </div>
         </q-td>
       </template>
@@ -99,53 +112,67 @@ export default {
         {
           name: "co_docide",
           align: "center",
-          label: "Ruc",
+          label: "DNI/Ruc",
           field: "co_docide",
           sortable: true
         },
         {
           name: "no_client",
-          label: "Proveedor",
+          label: "Cliente",
           field: "no_client",
+          align: "left",
           sortable: true
         },
-        { name: "no_operac", label: "Operacion", field: "no_operac" },
-        { name: "co_plaveh", label: "Placa", field: "co_plaveh" },
-        { name: "no_marveh", label: "Marca", field: "no_marveh" },
+        { name: "no_operac", label: "Operacion", align: "center", field: "no_operac" },
+        { name: "co_plaveh", label: "Placa", align: "center", field: "co_plaveh" },
+        { name: "no_marveh", label: "Marca", align: "left", field: "no_marveh" },
         {
           name: "co_barras",
           label: "Codigo",
           field: "co_barras",
+          align: "center", 
           sortable: true
         },
         {
           name: "no_articu",
-          label: "Nombre",
+          label: "Artículo",
           field: "no_articu",
+          align: "left", 
           sortable: true
         },
         {
           name: "ca_articu",
           label: "Cant. Articulos",
           field: "ca_articu",
+          align: "right", 
           sortable: true
         },
         {
           name: "ca_stocks",
           label: "Stock",
           field: "ca_stocks",
+          align: "right", 
           sortable: true
         },
         {
           name: "ti_estado",
           label: "Estado",
           field: "ti_estado",
+          align: "center", 
           sortable: true
         },
         {
           name: "il_selecc",
-          label: "Check",
+          label: "Seleccionar",
+          align: "center", 
           field: "il_selecc",
+          sortable: true
+        },
+        {
+          name: "il_sobran",
+          label: "¿Sobrante?",
+          align: "center", 
+          field: "il_sobran",
           sortable: true
         }
       ],
@@ -165,7 +192,7 @@ export default {
         for (let i = 0; i < this.info.length; i++) {
           const element = this.info[i];
           // console.log("element", element);
-          if (element.il_selecc === true) {
+          if (element.il_selecc === true || element.il_sobran === true) {
             console.log("element", element);
             await this.call_insert_produc_ingsal({
               co_person: this.$q.localStorage.getAll().UserDetalle.co_person,
