@@ -427,7 +427,7 @@
                     </q-item-section>
 
                     <q-item-section>
-                      <q-item-label>Operaciones Reporte Diario</q-item-label>
+                      <q-item-label>Reporte Diario</q-item-label>
                     </q-item-section>
                   </q-item>
                 
@@ -446,7 +446,7 @@
 
                     <q-item-section>
                       <q-item-label
-                        >Operaciones Produccion Operaciones</q-item-label
+                        >Produccion General</q-item-label
                       >
                     </q-item-section>
                   </q-item>
@@ -466,7 +466,7 @@
 
                     <q-item-section>
                       <q-item-label
-                        >Operaciones Seguimiento Mantenimiento</q-item-label
+                        >Seguimiento Mantenimiento</q-item-label
                       >
                     </q-item-section>
                   </q-item>
