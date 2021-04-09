@@ -17,6 +17,8 @@ import reportes from "./store-reportes";
 import almacen from "./store-almacen";
 import landing from "./store-landing";
 import llamadas from "./store-llamadas";
+import finanzas from "./store-finanzas";
+import facturas from "./store-facturas";
 
 Vue.use(Vuex);
 
@@ -47,7 +49,9 @@ export default function(/* { ssrContext } */) {
       reportes,
       almacen,
       landing,
-      llamadas
+      llamadas,
+      finanzas,
+      facturas
     },
 
     // enable strict mode (adds overhead!)

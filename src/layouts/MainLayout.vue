@@ -338,7 +338,7 @@
                   active-class="tab-active"
                   v-ripple
                   exact
-                  @click="URL('/facturaroperacion')"
+                  @click="URL('/facturas/facturasdeventa')"
                 >
                   <q-item-section avatar>
                     <q-icon name="money" />

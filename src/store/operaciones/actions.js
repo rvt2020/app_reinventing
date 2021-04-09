@@ -98,17 +98,6 @@ export async function call_listar_cerrad({ commit }, payload) {
   commit("get_listar_cerrad", response.data);
 }
 
-
-export async function call_insert_factur({ commit }, payload) {
-  console.log("payload", payload);
-  const response = await axiosInstance.post(
-    `/operacflujo/insert_factur_operac`,
-    payload
-  );
-  console.log(response.data);
-  return response.data;
-}
-
 export async function call_lista_sermat_evalua({ commit }, payload) {
   const response = await axiosInstance.get(
     `/operacflujo/lista_sermat_evalua/${payload}`

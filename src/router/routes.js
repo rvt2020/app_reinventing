@@ -17,10 +17,15 @@ const routes = [
         component: () =>
           import("components/Operaciones/ImprimirOperacion/VerOperacion.vue")
       },
+
+      { path: "facturas", component: () => import("pages/Factura.vue") },
       {
-        path: "facturaroperacion",
+        path: "facturas/facturasdeventa",
+        //path: "facturaroperacion",
         component: () =>
-          import("components/Operaciones/FacturarOperacion/FacturarOperacion.vue")
+          //import("components/Finanzas/Facturaciones.vue")
+         //import("components/Facturacion/Facturacion/FacturarOperacion.vue")
+         import("components/Facturacion/Facturacion/Facturacion.vue")
       },
       
       { path: "logisticas", component: () => import("pages/Logistica.vue") },

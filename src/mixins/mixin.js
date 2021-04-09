@@ -177,7 +177,12 @@ const MixinDefault = {
         no_produc: "Producto",
         no_tippla: "Tipo Plan",
         no_entida: "Entidad",
-        no_exacvr: "Converus"
+        no_exacvr: "Converus",
+        fe_emisio: "Fecha Emisión",
+        co_factur: "Código",
+        nu_docume: "Nro.Documento",
+        im_impigv: "IGV",
+        im_totfac: "Total"
       }
     };
   },
