@@ -55,6 +55,7 @@
           />
         </q-td>
       </template>
+      
       <template v-slot:body-cell-accion="props">
         <q-td :props="props">
           <div class="row q-gutter-xs">

@@ -276,7 +276,7 @@
                   @click="URL('/logisticas/tramitedoc')"
                 >
                   <q-item-section avatar>
-                    <q-icon name="receipt" />
+                    <q-icon name="receipt" /> 
                   </q-item-section>
 
                   <q-item-section>
@@ -338,7 +338,7 @@
                   active-class="tab-active"
                   v-ripple
                   exact
-                  @click="URL('/facturaroperacion')"
+                  @click="URL('/finanzas/documentosdeventa')"
                 >
                   <q-item-section avatar>
                     <q-icon name="money" />
