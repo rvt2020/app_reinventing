@@ -12,29 +12,50 @@ const routes = [
       { path: "test", component: () => import("pages/Test.vue") },
       { path: "materiales", component: () => import("pages/Material.vue") },
       { path: "operaciones", component: () => import("pages/Operaciones.vue") },
+
       {
         path: "imprimiroperacion",
-        component: () =>
+        component: () => 
           import("components/Operaciones/ImprimirOperacion/VerOperacion.vue")
       },
       {
         path: "facturaroperacion",
-        component: () =>
+        component: () => 
           import("components/Operaciones/FacturarOperacion/FacturarOperacion.vue")
       },
+      { 
+        path: "finanzas", 
+        component: () =>  
+          import("pages/Finanzas.vue") 
+      },
+      {
+        path: "finanzas/documentosdeventa",
+        component: () => 
+          import("components/Finanzas/DocumentodeVenta.vue")
+      },
       
-      { path: "logisticas", component: () => import("pages/Logistica.vue") },
-      { path: "llamadas", component: () => import("pages/Llamadas.vue") },
+      { 
+        path: "logisticas", 
+        component: () =>  
+          import("pages/Logistica.vue") 
+      },
       {
         path: "logisticas/ordenesdecompra",
-        component: () =>
+        component: () => 
           import("components/Logistica/OrdenDeCompra/OrdenesDeCompra.vue")
       },
       {
         path: "logisticas/tramitedoc",
-        component: () =>
+        component: () => 
           import("components/Logistica/TramiteDocumentario/TramiteDocumentario")
       },
+      
+      { 
+        path: "llamadas", 
+        component: () => 
+          import("pages/Llamadas.vue") 
+      },
+      
       {
         path: "logisticas/ingresoarticulos",
         component: () =>
@@ -47,14 +68,13 @@ const routes = [
       },
       {
         path: "reportes/kardex",
-        component: () => import("components/Reportes/Logistica/Kardex/Kardex")
+        component: () => 
+          import("components/Reportes/Logistica/Kardex/Kardex")
       },
       {
         path: "reportes/inventariovalorizado",
         component: () =>
-          import(
-            "components/Reportes/Logistica/InventarioValorizado/InventarioValorizado"
-          )
+          import("components/Reportes/Logistica/InventarioValorizado/InventarioValorizado")
       },
       {
         path: "reportes/reportediario",
