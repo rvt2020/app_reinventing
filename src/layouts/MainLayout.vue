@@ -69,8 +69,9 @@
                 icon="assignment_turned_in"
                 label="Configuracion"
                 :content-inset-level="0.5"
+                
               >
-              
+              <!-- v-if="usuario!=2" -->
               <!-- USUARIOS -->
                 <q-item
                   class="q-ma-sm navigation-item"
@@ -345,7 +346,7 @@
                   </q-item-section>
 
                   <q-item-section>
-                    <q-item-label>Facturar Operación</q-item-label>
+                    <q-item-label>Facturaciones</q-item-label>
                   </q-item-section>
                 </q-item>
 
@@ -1431,85 +1432,86 @@
       icon: "perm_phone_msg",
       link: "/llamadas"
   }*/
-];
+  ];
 
-export default {
-  name: "MainLayout",
-  mixins: [storagelocal],
-  computed: {
-    fechaActual() {
-      return formattedString;
-    },
-    fotoPerfil() {
-      if (this.userLocal.co_fotper) {
-        return `${process.env.Imagen_URL}/files/${this.userLocal.co_fotper}`;
-      } else {
-        return `https://cdn.quasar.dev/img/boy-avatar.png`;
-      }
-    },
-    ...mapState("example", ["dialogIngresoVehicular", "UploadBasic"]),
-  },
-  components: {
-    EssentialLink,
-    Profile: () => import("pages/Profile"),
-    Test: () => import("pages/Test"),
-    DialogIngresoVehicular: () =>
-      import("components/Vehiculos/IngresoVehicular"),
-    TagUploadBasic: () => import("components/Upload/UploadBasic"),
-  },
-  data() {
-    return {
-      maximizedToggle: false,
-      alert: false,
-      info: null,
-      user: {
-        first_name: "",
-        last_name: "",
-        age: null,
-        email: "",
-        phone: "",
+  export default {
+    name: "MainLayout",
+    mixins: [storagelocal],
+    computed: {
+      fechaActual() {
+        return formattedString;
       },
-      dialogPerfil: false,
-      leftDrawerOpen: false,
-      essentialLinks: linksData,
-    };
-  },
-  methods: {
-    cerrarUpdaloadBasic() {
-      this.$store.commit("example/UploadBasic", false);
+      fotoPerfil() {
+        if (this.userLocal.co_fotper) {
+          return `${process.env.Imagen_URL}/files/${this.userLocal.co_fotper}`;
+        } else {
+          return `https://cdn.quasar.dev/img/boy-avatar.png`;
+        }
+      },
+      ...mapState("example", ["dialogIngresoVehicular", "UploadBasic"]),
     },
-    URL(arg) {
-      this.$router.push(arg);
+    components: {
+      EssentialLink,
+      Profile: () => import("pages/Profile"),
+      Test: () => import("pages/Test"),
+      DialogIngresoVehicular: () =>
+        import("components/Vehiculos/IngresoVehicular"),
+      TagUploadBasic: () => import("components/Upload/UploadBasic"),
     },
-    cerrarDialog() {
-      this.alert = false;
-      this.dialogPerfil = false;
+    data() {
+      return {
+        usuario: this.$q.localStorage.getAll().UserDetalle.co_person,
+        maximizedToggle: false,
+        alert: false,
+        info: null,
+        user: {
+          first_name: "",
+          last_name: "",
+          age: null,
+          email: "",
+          phone: "",
+        },
+        dialogPerfil: false,
+        leftDrawerOpen: false,
+        essentialLinks: linksData,
+      };
     },
-    activarProfile() {
-      this.dialogPerfil = true;
-      const info = this.$q.localStorage.getAll();
-      this.info = info;
-      console.log(info);
+    methods: {
+      cerrarUpdaloadBasic() {
+        this.$store.commit("example/UploadBasic", false);
+      },
+      URL(arg) {
+        this.$router.push(arg);
+      },
+      cerrarDialog() {
+        this.alert = false;
+        this.dialogPerfil = false;
+      },
+      activarProfile() {
+        this.dialogPerfil = true;
+        const info = this.$q.localStorage.getAll();
+        this.info = info;
+        console.log(info);
+      },
+      Logout() {
+        this.$q.loading.show();
+        this.$q.localStorage.clear();
+        // setTimeout(() => {
+        this.$router.push("/auth");
+        this.$q.notify({
+          // progress: true,
+          message: "Regresa pronto",
+          // icon: "favorite_border",
+          // icon: "favorite",
+          color: "white",
+          textColor: "blue-5",
+          position: "top",
+        });
+        this.$q.loading.hide();
+        // }, 2000);
+      },
     },
-    Logout() {
-      this.$q.loading.show();
-      this.$q.localStorage.clear();
-      // setTimeout(() => {
-      this.$router.push("/auth");
-      this.$q.notify({
-        // progress: true,
-        message: "Regresa pronto",
-        // icon: "favorite_border",
-        // icon: "favorite",
-        color: "white",
-        textColor: "blue-5",
-        position: "top",
-      });
-      this.$q.loading.hide();
-      // }, 2000);
-    },
-  },
-};
+  };
 </script>
 <style>
 .q-drawer {

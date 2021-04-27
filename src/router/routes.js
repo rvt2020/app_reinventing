@@ -31,7 +31,7 @@ const routes = [
       {
         path: "finanzas/documentosdeventa",
         component: () => 
-          import("components/Finanzas/DocumentodeVenta.vue")
+          import("src/components/Finanzas/Factura/DocumentodeVenta.vue")
       },
       
       { 

@@ -286,7 +286,7 @@
             title="Bitácora"
             :data="dataTableBitacora"
             row-key="name"
-          />
+          /> 
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -301,7 +301,7 @@ let timeStamp = Date.now();
 export default {
   props: {
     info: {
-      type: Array,
+      type: Array, 
       default: () => [],
     },
   },

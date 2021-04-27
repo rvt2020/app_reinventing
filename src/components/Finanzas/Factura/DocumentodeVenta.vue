@@ -10,6 +10,9 @@
         align="justify"
       >
         <q-tab name="1" label="1. Listado de Facturas" />
+        <q-tab name="2" label="2. Por Cobrar" />
+        <q-tab name="3" label="3. Amortizados" />
+        <q-tab name="4" label="4. Cancelados" />
         <!-- <q-tab name="6" label="6. Pendiente de Finalizar Servicio" /> -->
       </q-tabs>
       <div class="q-gutter-y-sm">
@@ -19,30 +22,26 @@
           transition-prev="fade"
           transition-next="fade"
         >
+          <!-- LISTADO DE FACTURAS -->
           <q-tab-panel name="1">
-            <div class="row">
-              <div class="col">
-                <ListadodeOC />
-              </div>
-            </div>
+            <div class="row"><div class="col"> <ListadodeOC /> </div></div>
           </q-tab-panel>
-
           
+          <!-- POR COBRAR -->
+          <q-tab-panel name="2">
+            <div class="row"><div class="col"> <ListadodeCobrar /> </div></div>
+          </q-tab-panel>
+          
+          <!-- AMORTIZADAS -->
+          <q-tab-panel name="3">
+            <div class="row"><div class="col"> <ListadodeAmortizado /> </div></div>
+          </q-tab-panel>
+          
+          <!-- CANCELADAS  -->
           <q-tab-panel name="4">
-            <div class="row">
-              <div class="col">
-                <!--                <AsingarServicios />-->
-              </div>
-            </div>
+            <div class="row"><div class="col"> <ListadodeCancelados /> </div></div>
           </q-tab-panel>
 
-          <q-tab-panel name="5">
-            <div class="row">
-              <div class="col">
-                <!--                <InicioFin />-->
-              </div>
-            </div>
-          </q-tab-panel>
         </q-tab-panels>
       </div>
     </div>
@@ -59,27 +58,28 @@ export default {
     };
   },
   components: {
+    //OTROS
     InicioFin: () => import("components/Operaciones/InicioFin/InicioFin"),
-    AsingarServicios: () =>
-      import("components/Operaciones/AsignarServicios/AsignarServicios"),
-    ListadodeOC: () =>
-      import("components/Finanzas/Factura/ListadodeOC"),
+    AsingarServicios: () => import("components/Operaciones/AsignarServicios/AsignarServicios"),
+    
+    //FACTURACION Y FINANZAS
+    ListadodeOC: () => import("components/Finanzas/Factura/Emision/ListadodeOC"),
+    ListadodeCobrar: () => import("components/Finanzas/Factura/PorCobrar/ListadoCobrar"),
+    ListadodeAmortizado: () => import("components/Finanzas/Factura/Amortizados/ListadoAmortizado"),
+    ListadodeCancelados: () => import("components/Finanzas/Factura/Cancelados/ListadoCancelados"),
+
+    //TITULOS
     Titulos: () => import("components/Titulos")
   },
+  
   methods: {
     boton(val) {
       // console.log("Boton en Materiales");
       this.tipo = val;
       if (val === 1) {
-        // console.log("Boton en Materiales 1");
-        // this.dialogCrear = true;
-        // console.log("se preciono el boton");
         this.$store.commit("materiales/dialogCrear", true);
       } else if (val === 2) {
         this.dataEdit = this.$store.state.materiales.dataEdit;
-        // console.log("Boton en Materiales 2");
-        // this.dialogCrear = true;
-        // console.log("se preciono el boton");
         this.$store.commit("materiales/dialogCrear", true);
       }
     }
