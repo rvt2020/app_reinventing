@@ -85,24 +85,6 @@
                 label="Nro.Documento"
               />
             </div>
-            <div class="col-xs-12 col-sm-2 q-pa-xs">
-              <q-input
-                autofocus
-                dense
-                filled
-                v-model="ti_estado"
-                label="Estado"
-              />
-            </div>
-            <div class="col-xs-12 col-sm-1 q-pa-xs">
-              <q-input
-                autofocus
-                dense
-                filled
-                v-model="co_operac"
-                label="Código Operación"
-              />
-            </div>
             <div class="col-xs-12 col-sm-1 q-pa-xs">
               <q-btn size="md" color="red" type="submit" icon-right="search" />
             </div>
@@ -165,8 +147,9 @@ export default {
         fe_reghas: `${this.fe_reghas}`,
         no_client: `${this.no_client}`,
         nu_factur: `${this.nu_factur}`,
-        ti_estado: `${this.ti_estado}`,
-        co_operac: `${this.co_operac}`
+        ti_estado: "",
+        co_operac: "",
+        ti_bandej: 2
       });
       this.$q.loading.hide();
     }
@@ -180,10 +163,11 @@ export default {
         fe_reghas: `${this.fe_reghas}`,
         no_client: `${this.no_client}`,
         nu_factur: `${this.nu_factur}`,
-        ti_estado: `${this.ti_estado}`,
-        co_operac: `${this.co_operac}`
+        ti_estado: "",
+        co_operac: "",
+        ti_bandej: 2
       });
-      await this.$router.replace("/finanzas/documentosdeventa?id=1");
+      await this.$router.replace("/finanzas/documentosdeventa?id=2");
       this.$store.commit("example/location", "Finanzas / Listado de Factura");
 
       // this.$q.notify({

@@ -5,7 +5,7 @@
       card-class="bg-amber-1 text-brown"
       table-class="text-grey-8"
       table-header-class="text-brown"
-      title="Listado"
+      title="Lista de Facturas por Cobrar"
       :data="info"
       dense
       :filter="filter"
@@ -16,7 +16,6 @@
       class="my-sticky-header-table"
     >
       <template v-slot:top-right>
-        <q-btn color="primary" label="Facturar" @click="crearOC"></q-btn>
         <q-input
           class="q-pl-sm"
           dense
@@ -48,26 +47,13 @@
         </q-td>
       </template>
       
-      <template v-slot:body-cell-accion="props">
-        <q-td :props="props">
-          <div class="row q-gutter-xs">
-            <div>
-              <q-btn
-                size="xs"
-                round
-                icon="delete"
-                color="red"
-                @click="eliminar(props.row)"
-              />
-            </div>
-          </div>
-        </q-td>
-      </template>
       
     </q-table>
+    
     <div>
       <DialogCrear :tipo="tipo" :info="dataEdit" />
     </div>
+
     <q-dialog
       v-model="dialogDetalleOrden"
       persistent
@@ -80,11 +66,12 @@
       <DialogGenerarOperacion />
     </q-dialog>
 
+    
   </div>
 </template>
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { MixinDefault } from "../../../mixins/mixin";
+import { MixinDefault } from "../../../../mixins/mixin";
 import { date } from "quasar";
 let timeStamp = Date.now();
 
@@ -173,13 +160,6 @@ export default {
           field: "im_pretot",
           align: "right",
           sortable: true
-        },
-        {
-          name: "accion",
-          label: "Accion",
-          field: "accion",
-          align: "center",
-          sortable: true
         }
       ]
     };
@@ -196,6 +176,7 @@ export default {
       console.log("Crear O/C");
       this.$store.commit("finanzas/dialogCrear", true);
     },
+    
     async eliminar(val) {
       this.$q
         .dialog({
@@ -220,7 +201,8 @@ export default {
                 no_client: "",
                 nu_factur: "",
                 ti_estado: "",
-                co_operac: ""
+                co_operac: "",
+                ti_bandej: 2
               });
               this.$q.notify({
                 message: `${responseEliminar.message}`
@@ -251,6 +233,7 @@ export default {
 
       console.log("siempre se ejecuta");
     },
+    
     async generarOperacion(val) {
       this.$q.loading.show();
       this.$store.commit("finanzas/documentoVenta", val.co_factur);

@@ -7,9 +7,11 @@ const state = {
   get_inform_factur: [],
   get_listar_operac_encont: [],
   get_listar_detall_factur: [],
+  get_listar_amorti_factur: [],
   documentoVenta: null,
   get_catalogo_tcclient: [],
-  get_catalogo_tctipdoc: []
+  get_catalogo_tctipdoc: [],
+  get_catalogo_tcentfin: []
 };
 
 const mutations = {
@@ -31,6 +33,9 @@ const mutations = {
   get_listar_detall_factur(state, payload) {
     state.get_listar_detall_factur = payload;
   },
+  get_listar_amorti_factur(state, payload) {
+    state.get_listar_amorti_factur = payload;
+  },
   documentoVenta(state, payload) {
     state.documentoVenta = payload;
   },
@@ -39,6 +44,9 @@ const mutations = {
   },
   get_catalogo_tctipdoc(state, payload) {
     state.get_catalogo_tctipdoc = payload;
+  },
+  get_catalogo_tcentfin(state, payload) {
+    state.get_catalogo_tcentfin = payload;
   }
 };
 
@@ -65,13 +73,30 @@ const actions = {
     );
     commit("get_listar_detall_factur", response.data);
   },
+  async call_listar_amorti_factur({ commit }, payload) {
+    const response = await axiosInstance.post(
+      `/factur/listar_amorti`,
+      payload
+    );
+    commit("get_listar_amorti_factur", response.data);
+  },
   async call_insert_factur({ commit }, payload) {
     const response = await axiosInstance.post(`/factur/insert_factur`, payload);
     // commit("get_insert_ordcom", response.data);
     return response.data;
   },
+  async call_amorti_factur({ commit }, payload) {
+    const response = await axiosInstance.post(`/factur/amorti_factur`, payload);
+    // commit("get_insert_ordcom", response.data);
+    return response.data;
+  },
   async call_delete_detalle_factur({ commit }, payload) {
     const response = await axiosInstance.post(`/factur/delete_detalle_factur`, payload);
+    // commit("get_insert_ordcom", response.data);
+    return response.data;
+  },
+  async call_update_factur({ commit }, payload) {
+    const response = await axiosInstance.post(`/factur/update_factur`, payload);
     // commit("get_insert_ordcom", response.data);
     return response.data;
   },
@@ -86,10 +111,9 @@ const actions = {
     const response = await axiosInstance.get(`/factur/catalogo/tctipdoc`);
     commit("get_catalogo_tctipdoc", response.data);
   },
-  async call_update_factur({ commit }, payload) {
-    const response = await axiosInstance.get(`/factur/update_factur`);
-    return response.data;
-    // commit("get_update_ordcom", response.data);
+  async call_catalogo_entfin({ commit }) {
+    const response = await axiosInstance.get(`/factur/catalogo/tcentfin`);
+    commit("get_catalogo_tcentfin", response.data);
   },
   async call_manten_produc_factur({ commit }, payload) {
     const response = await axiosInstance.post(
@@ -119,11 +143,17 @@ const getters = {
   get_listar_detall_factur(state) {
     return state.get_listar_detall_factur;
   },
+  get_listar_amorti_factur(state) {
+    return state.get_listar_amorti_factur;
+  },
   get_catalogo_tcclient(state) {
     return state.get_catalogo_tcclient;
   },
   get_catalogo_tctipdoc(state) {
     return state.get_catalogo_tctipdoc;
+  },
+  get_catalogo_tcentfin(state) {
+    return state.get_catalogo_tcentfin;
   }
 };
 

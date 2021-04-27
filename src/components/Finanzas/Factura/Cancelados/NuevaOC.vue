@@ -223,7 +223,8 @@ export default {
             no_client: "",
             nu_factur: "",
             ti_estado: "",
-            co_operac: ""
+            co_operac: "",
+            ti_bandej: 0
           });
           this.$store.commit("finanzas/dialogCrear", false);
         } else if (responseService.res == "ko") {

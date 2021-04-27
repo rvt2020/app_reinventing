@@ -3,19 +3,20 @@
     <q-card :class="$q.screen.gt.md ? 'full-height' : ''" square>
       <!--      {{ get_inform_ordcom }}-->
       <q-bar class="bg-primary text-white">
-        DETALLE FACTURA
+        DETALLE FACTURA POR COBRAR
         <q-space />
         <q-btn dense flat icon="close" @click="cerrar">
           <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
         </q-btn>
       </q-bar>
+      
       <q-card-section style="height: 45%">
         <div class="row">
-          <div class="col-xs-12 col-md-4 q-pa-xs">
+          <div class="col-xs-12 col-md-6 q-pa-xs">
             <DatosdelaOC :info="get_inform_factur" />
           </div>
-          <div class="col-xs-12 col-md-8 q-pa-xs">
-            <TablaProductosdelaOrden />
+          <div class="col-xs-12 col-md-6 q-pa-xs">
+            <Amortizar />
           </div>
         </div>
       </q-card-section>
@@ -23,7 +24,7 @@
       <q-separator />
 
       <q-card-section style="height: 45%">
-        <BuscarProductos />
+        <TablaProductosdelaOrden />
       </q-card-section>
     </q-card>
   </div>
@@ -31,7 +32,7 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import { MixinDefault } from "../../../mixins/mixin";
+import { MixinDefault } from "../../../../mixins/mixin";
 import { date } from "quasar";
 let timeStamp = Date.now();
 
@@ -39,13 +40,12 @@ export default {
   components: {
     DatosdelaOC: () => import("./DatosdelaOC"),
     TablaProductosdelaOrden: () => import("./TablaProductosdelaOrden"),
-    BuscarProductos: () => import("./BuscarProductos")
+    Amortizar: () => import("./Amortizar")
   },
   computed: {
     ...mapState("finanzas", ["dialogCrear", "dialogDetalleOrden"]),
     ...mapGetters("finanzas", [
-      "get_inform_factur",
-      "get_listar_operac_encont"
+      "get_inform_factur"
     ])
   },
   name: "DialogDetalleOrden",
@@ -210,8 +210,9 @@ export default {
         fe_reghas: "",
         no_client: "",
         nu_factur: "",
-        ti_estado: "",
-        co_operac: ""
+        ti_estado: "Por Cobrar",
+        co_operac: "",
+        ti_bandej: 2
       });
       this.$store.commit("finanzas/dialogDetalleOrden", false);
       this.$q.loading.hide();
