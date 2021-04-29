@@ -24,7 +24,14 @@
       <q-separator />
 
       <q-card-section style="height: 45%">
-        <TablaProductosdelaOrden />
+        <div class="row">
+          <div class="col-xs-12 col-md-6 q-pa-xs">
+            <TablaProductosdelaOrden />
+          </div>
+          <div class="col-xs-12 col-md-6 q-pa-xs">
+            <TablaAmortizacion />
+          </div>
+        </div>
       </q-card-section>
     </q-card>
   </div>
@@ -40,7 +47,8 @@ export default {
   components: {
     DatosdelaOC: () => import("./DatosdelaOC"),
     TablaProductosdelaOrden: () => import("./TablaProductosdelaOrden"),
-    Cancelar: () => import("./Cancelar")
+    Cancelar: () => import("./Cancelar"),
+    TablaAmortizacion: () => import("./TablaAmortizacion")
   },
   computed: {
     ...mapState("finanzas", ["dialogCrear", "dialogDetalleOrden"]),
@@ -95,7 +103,7 @@ export default {
           sortable: true,
           sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
         }
-      ],
+      ], 
 
       data: [
         {
