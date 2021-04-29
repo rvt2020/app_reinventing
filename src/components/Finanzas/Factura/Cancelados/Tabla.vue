@@ -167,7 +167,8 @@ export default {
       "call_listar_operac_encont",
       "call_listar_detall_factur",
       "call_delete_factur",
-      "call_listar_factur"
+      "call_listar_factur",
+      "call_listar_amorti_factur"
     ]),
     async crearOC() {
       console.log("Crear O/C");
@@ -242,6 +243,9 @@ export default {
         co_operac: ""
       });
       await this.call_listar_detall_factur({
+        co_factur: `${val.co_factur}`
+      });
+      await this.call_listar_amorti_factur({
         co_factur: `${val.co_factur}`
       });
       // await this.call_combo_cliente();
