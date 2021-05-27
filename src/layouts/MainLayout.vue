@@ -189,49 +189,23 @@
 
 
             <!-- INICIO MENU OPERACIONES -->
-              <q-expansion-item
-                  class="q-ma-sm navigation-item"
-                  expand-separator
-                  icon="rule"
-                  label="Operaciones"
-                  :content-inset-level="0.5"
-                >
-                <!-- Operaciones -->
-                <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
-                  @click="URL('/operaciones')"
-                >
-                  <q-item-section avatar>
-                    <q-icon name="assignment_late" />
-                  </q-item-section>
+            <q-item
+              class="q-ma-sm navigation-item"
+              clickable
+              active-class="tab-active"
+              v-ripple
+              exact
+              @click="URL('/operaciones')"
+            >
+              <q-item-section avatar>
+                <q-icon name="car_repair" />
+              </q-item-section>
 
-                  <q-item-section>
-                    <q-item-label>Operaciones</q-item-label>
-                  </q-item-section>
-                </q-item>
-
-                <!-- Imprimir Operacion -->
-                <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
-                  @click="URL('/imprimiroperacion')"
-                >
-                  <q-item-section avatar>
-                    <q-icon name="local_printshop" />
-                  </q-item-section>
-
-                  <q-item-section>
-                    <q-item-label>Imprimir</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-expansion-item>
+              <q-item-section>
+               <q-item-label>Operaciones</q-item-label>
+              </q-item-section>
+            </q-item>
+            
             <!-- FIN MENU OPERACIONES -->
             
 
