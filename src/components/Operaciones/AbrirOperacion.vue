@@ -53,6 +53,7 @@
             :hideheader="true"
             :hidebottom="true"
           />
+          <!-- AGREGAR SERVICIOS Y MATERIALES / ACTAS y PROFORMAS -->
           <div class="text-center q-pa-md q-gutter-md">
             <q-btn
               v-if="getOperacionesAbrir_operacion.client.length > 0"
@@ -62,8 +63,28 @@
               label="Agregar Servicios y Materiales"
               @click="agregarServicios = true"
             />
+            <!--
+            <q-btn
+              v-if="getOperacionesAbrir_operacion.client.length > 0"
+              size="sm"
+              color="primary"
+              icon-right="local_printshop"
+              label="Proforma"
+              @click="proforma"
+            />
+            -->
+            <q-btn
+              v-if="getOperacionesAbrir_operacion.client.length > 0"
+              size="sm"
+              color="primary"
+              icon-right="local_printshop"
+              label="Acta"
+              @click="acta"
+            />
           </div>
         </div>
+
+
       </div>
       <!-- TablaServicios -->
       <div class="row">
@@ -186,6 +207,19 @@ export default {
         this.noencontrado = true;
       }
     },
+    acta(val) {
+      const url = `https://api.apps.com.pe/actadeservicios/${this.buscar}/1`;
+      var element = document.createElement("a");
+      element.setAttribute("href", url);
+      element.setAttribute("download", url);
+
+      element.style.display = "none";
+      document.body.appendChild(element);
+
+      element.click();
+      document.body.removeChild(element);
+    },
+
     async cerrarDialogAddServicios() {
       this.agregarServicios = false;
       await this.buscarOperaciones();
