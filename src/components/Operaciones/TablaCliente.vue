@@ -29,6 +29,10 @@
           <td class="text-left">Cliente</td>
           <td class="text-right">{{ info[0].co_docide }}</td>
         </tr>
+        <tr>
+          <td class="text-left">Referido</td>
+          <td class="text-right">{{ info[0].no_referi }}</td>
+        </tr>
       </tbody>
     </q-markup-table>
     

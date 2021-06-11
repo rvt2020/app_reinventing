@@ -82,6 +82,20 @@
               />
             </div>
             <div class="col-12">
+              <q-select
+                filled
+                dense
+                v-model="centrocosto"
+                :options="get_catalogo_tccencos.operac"
+                option-label="no_cencos"
+                option-value="co_cencos"
+                emit-value
+                map-options
+                label="Centro de Costo"
+                hint="Centro de Costo"
+              />
+            </div>
+            <div class="col-12">
               <q-input
                 v-model="motivodetramite"
                 filled
@@ -158,6 +172,7 @@ export default {
       "get_catalogo_tcprovee",
       "get_catalogo_tctipdoc",
       "get_catalogo_tcmoneda",
+      "get_catalogo_tccencos",
       "get_catalogo_tcsolici"
     ]),
     foo: {
@@ -197,6 +212,7 @@ export default {
       tipopago: "",
       conigv: "",
       proveedor: "",
+      centrocosto: "",
       empresa: null,
       categoria: null,
       mostrarFormulario: false,
@@ -219,6 +235,7 @@ export default {
       "call_catalogo_tcprovee",
       "call_catalogo_tctipdoc",
       "call_catalogo_tcmoneda",
+      "call_catalogo_tccencos",
       "call_listar_tradoc",
       "call_catalogo_tcsolici"
     ]),
@@ -253,6 +270,7 @@ export default {
         );
       });
     },
+    
     async traerCategorias() {
       await this.callMaterialesCategorias(this.empresa);
     },
@@ -277,7 +295,8 @@ export default {
           fe_tradoc: `${this.fechadetramite}`,
           il_conigv: `${this.conigv}`,
           ti_docume: `${this.tipodedocumento}`,
-          co_arcadj: `${this.$store.state.example.arcadj}`
+          co_arcadj: `${this.$store.state.example.arcadj}`,
+          co_cencos: `${this.centrocosto}`
         });
         console.log("responseService", responseService);
         if (responseService.res == "ok") {
@@ -317,6 +336,7 @@ export default {
     this.call_catalogo_tcprovee();
     this.call_catalogo_tctipdoc();
     this.call_catalogo_tcmoneda();
+    this.call_catalogo_tccencos();
     this.call_catalogo_tcsolici();
     console.log("mounted - crear - materiales");
     // await this.callMaterialesEmpresas();

@@ -138,7 +138,13 @@ export default {
           name: "co_operac", align: "left", label: "Operación", field: "co_operac" 
         },
         { 
-          name: "im_basimp", align: "right", label: "S/.Total", field: "im_basimp" , sortable: true
+          name: "im_basimp", align: "right", label: "S/.Neto", field: "im_basimp" , sortable: true
+        },
+        { 
+          name: "im_igvope", align: "right", label: "S/.IGV", field: "im_igvope" , sortable: true
+        },
+        { 
+          name: "im_totope", align: "right", label: "S/.Total", field: "im_totope" , sortable: true
         },
         { 
           name: "accion", label: "Accion", field: "accion" 

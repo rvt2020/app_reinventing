@@ -3,7 +3,7 @@
     <q-table
       color="primary"
       card-class="bg-amber-1 text-brown"
-      table-class="text-grey-8"
+      table-class="text-grey-10"
       table-header-class="text-brown"
       class="my-sticky-header-table"
       title="Vehiculos"
@@ -30,6 +30,7 @@ export default {
   computed: {
     ...mapGetters("operaciones", [
       "get_combo_cliente",
+      "get_combo_referido",
       "get_lista_vehiculo_ingreso",
     ]),
   },

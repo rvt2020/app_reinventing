@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-card class="full-height" square>
+    <q-card class="" square>
       <q-bar class="bg-primary text-white">
         Nueva Operacion
         <q-space />
@@ -12,7 +12,7 @@
         <div class="row">
           <!-- {{ get_combo_cliente.client }} -->
           <!-- {{ clienteSelect }} -->
-          <div class="col-xs-12 col-sm-9 q-px-sm">
+          <div class="col-xs-12 col-sm-6 q-px-sm">
             <q-select
               filled
               v-model="clienteSelect"
@@ -37,40 +37,64 @@
                 </q-item>
               </template>
             </q-select>
-            <!-- <q-select
-              v-model="clienteSelect"
-              :options="get_combo_cliente.client"
-              option-value="co_person"
-              option-label="no_person"
+          </div>
+
+          <div class="col-xs-12 col-sm-6 q-px-sm">
+            <q-select
+              filled
+              v-model="referidoSelect"
+              clearable
+              use-input
+              hide-selected
+              fill-input
+              input-debounce="0"
+              label="Referido"
+              :options="optionsr"
+              option-value="co_referi"
+              option-label="no_referi"
               emit-value
               map-options
-              label="Cliente o Propietario"
-              filled
-            /> -->
-          </div>
-          <div
-            class="col-xs-12 col-sm-3 q-px-sm text-center"
-            style="align-self: center"
-          >
-            <q-btn
-              :loading="loadboton"
-              class="full-width"
-              size="md"
-              color="primary"
-              @click="registrarNuevaOperacion()"
-              icon="check"
-              label="Registrar"
-            />
+              @filter="filterR"
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-grey">
+                    No results
+                  </q-item-section>
+                </q-item>
+              </template>
+            </q-select>
+
           </div>
         </div>
+
+        <q-card-section>
+          <div class="col-xs-10 col-sm-5 q-px-sm">
+            <TablaVehiculos />
+          </div>
+        </q-card-section>
+
+        <q-separator />
+        
+
+        <div
+          class="col-xs-12 col-sm-3 q-px-sm text-center"
+          style="align-self: center"
+          >
+          <q-btn
+            :loading="loadboton" outline
+            size="md"
+            color="positive"
+            @click="registrarNuevaOperacion()"
+            icon="check"
+            label="Registrar"
+          />
+        </div>
       </q-card-section>
+      
 
-      <q-separator />
-
-      <q-card-section>
-        <TablaVehiculos />
-      </q-card-section>
-
+      
+      
       <!-- <q-card-actions align="right">
         <q-btn flat label="Decline" color="primary" v-close-popup />
         <q-btn flat label="Accept" color="primary" v-close-popup />
@@ -89,6 +113,7 @@ export default {
   computed: {
     ...mapGetters("operaciones", [
       "get_combo_cliente",
+      "get_combo_referido",
       "get_lista_vehiculo_ingreso",
     ]),
   },
@@ -99,6 +124,7 @@ export default {
     return {
       loadboton: false,
       clienteSelect: null,
+      referidoSelect: null,
       model: null,
       infoMateriales: [],
       infoServicios: [],
@@ -106,8 +132,13 @@ export default {
       cantidad: null,
       maximizedToggle: true,
       tipodebusqueda: null,
+      
       options: [],
       newoptions: [],
+      
+      optionsr: [],
+      newoptionsr: [],
+      
       buscarServiciosMateriales: "",
       filter: "",
       columns1: [
@@ -163,6 +194,7 @@ export default {
       "call_combo_cliente",
       "call_lista_vehiculo_ingreso",
       "call_nueva_operacion",
+      "call_combo_referido",
     ]),
     filterFn(val, update, abort) {
       let asd = [];
@@ -181,6 +213,26 @@ export default {
         );
       });
     },
+    
+    filterR(val, update, abort) {
+      let asd = [];
+      for (let index = 0; index < this.newoptionsr.length; index++) {
+        const elementr = this.newoptionsr[index];
+        if (elementr.no_referi) {
+          asd.push(elementr);
+        }
+      }
+      // console.log("asd", asd);
+      update(() => {
+        const needle = val.toLowerCase();
+        // console.log(needle);
+        this.optionsr = asd.filter(
+          (v) => v.no_referi.toLowerCase().indexOf(needle) > -1
+        );
+      });
+    },
+    
+
     cerrar() {
       this.$store.commit("operaciones/agregarServicios", false);
     },
@@ -191,6 +243,7 @@ export default {
           cod_adu: `${this.get_lista_vehiculo_ingreso.vehic[0].co_aduana}`,
           cod_per: `${this.clienteSelect}`,
           cod_usu: `${this.userLocal.co_usuari}`,
+          cod_ref: `${this.referidoSelect}`,
         });
         console.log(response);
         if (response.res == "ok") {
@@ -233,8 +286,13 @@ export default {
     },
   },
   async created() {
+    this.call_combo_referido();
     this.options = this.get_combo_cliente.client;
     this.newoptions = this.get_combo_cliente.client;
+    
+    this.optionsr = this.get_combo_referido.client;
+    this.newoptionsr = this.get_combo_referido.client;
+    
     this.$q.notify({
       message: "Creando",
     });
