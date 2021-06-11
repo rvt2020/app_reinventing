@@ -12,6 +12,7 @@ const state = {
   ordenCompra: null,
   get_catalogo_tcprovee: [],
   get_tcservic: [],
+  get_tccencos: [],
   get_catalogo_tcmoneda: [],
   get_catalogo_tcsolici: []
 };
@@ -49,6 +50,9 @@ const mutations = {
   },
   get_tcservic(state, payload) {
     state.get_tcservic = payload;
+  },
+  get_tccencos(state, payload) {
+    state.get_tccencos = payload;
   },
   get_catalogo_tcmoneda(state, payload) {
     state.get_catalogo_tcmoneda = payload;
@@ -115,6 +119,10 @@ const actions = {
   async call_tcservic({ commit }, payload) {
     const response = await axiosInstance.get(`/ordcom/tcservic`);
     commit("get_tcservic", response.data);
+  },
+  async call_tccencos({ commit }, payload) {
+    const response = await axiosInstance.get(`/ordcom/tccencos`);
+    commit("get_tccencos", response.data);
   },
   async call_catalogo_tcmoneda({ commit }) {
     const response = await axiosInstance.get(`/ordcom/catalogo/tcmoneda`);
@@ -185,6 +193,9 @@ const getters = {
   },
   get_tcservic(state) {
     return state.get_tcservic;
+  },
+  get_tccencos(state) {
+    return state.get_tccencos;
   },
   get_catalogo_tcmoneda(state) {
     return state.get_catalogo_tcmoneda;

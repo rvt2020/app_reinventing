@@ -82,6 +82,21 @@
               />
             </div>
             <div class="col-12">
+              <q-select
+                filled
+                dense
+                v-model="centrodecosto"
+                :options="get_tccencos.operac"
+                option-label="no_cencos"
+                option-value="co_cencos"
+                emit-value
+                map-options
+                label="Centro de Costo"
+                hint="Centro de Costo"
+              />
+            </div>
+            
+            <div class="col-12">
               <q-input
                 v-model="motivodecompra"
                 filled
@@ -148,6 +163,7 @@ export default {
     ...mapGetters("logisticas", [
       "get_catalogo_tcprovee",
       "get_tcservic",
+      "get_tccencos",
       "get_catalogo_tcmoneda",
       "get_catalogo_tcsolici"
     ]),
@@ -181,6 +197,7 @@ export default {
       solicitante: "",
       tipodecompra: "",
       motivodecompra: "",
+      centrodecosto: "",
       moneda: "",
       tipopago: "",
       conigv: "",
@@ -205,6 +222,7 @@ export default {
       "call_insert_ordcom",
       "call_catalogo_tcprovee",
       "call_tcservic",
+      "call_tccencos",
       "call_catalogo_tcmoneda",
       "call_listar_ordcom",
       "call_catalogo_tcsolici"
@@ -254,7 +272,8 @@ export default {
           fe_ordcom: this.fechadecompra,
           pn_solici: this.solicitante,
           il_conigv: this.conigv,
-          ti_compra: this.tipopago
+          ti_compra: this.tipopago,
+          co_cencos: this.centrodecosto
         });
         console.log("responseService", responseService);
         if (responseService.res == "ok") {
@@ -293,6 +312,7 @@ export default {
     this.$q.loading.show();
     this.call_catalogo_tcprovee();
     this.call_tcservic();
+    this.call_tccencos();
     this.call_catalogo_tcsolici();
     this.call_catalogo_tcmoneda();
     console.log("mounted - crear - materiales");

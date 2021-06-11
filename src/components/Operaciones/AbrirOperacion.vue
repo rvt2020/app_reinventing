@@ -81,6 +81,17 @@
               label="Acta"
               @click="acta"
             />
+
+            <q-btn
+              v-if="getOperacionesAbrir_operacion.client.length > 0"
+              size="sm"
+              color="primary"
+              icon-right="local_printshop"
+              label="Proforma"
+              @click="proforma"
+            />
+
+            
           </div>
         </div>
 
@@ -220,6 +231,19 @@ export default {
       document.body.removeChild(element);
     },
 
+    proforma(val) {
+      const url = `https://api.apps.com.pe/actadeservicios/${this.buscar}/1`;
+      var element = document.createElement("a");
+      element.setAttribute("href", url);
+      element.setAttribute("download", url);
+
+      element.style.display = "none";
+      document.body.appendChild(element);
+
+      element.click();
+      document.body.removeChild(element);
+    },
+
     async cerrarDialogAddServicios() {
       this.agregarServicios = false;
       await this.buscarOperaciones();
@@ -231,6 +255,8 @@ export default {
     },
     
   },
+  
+  
   async created() {
     this.$q.loading.show();
     console.log("2. Abrir Operación");

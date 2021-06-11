@@ -38,6 +38,10 @@ export function get_combo_cliente(state, payload) {
   state.get_combo_cliente = payload
 }
 
+export function get_combo_referido(state, payload) {
+  state.get_combo_referido = payload
+}
+
 export function get_lista_vehiculo_ingreso(state, payload) {
   state.get_lista_vehiculo_ingreso = payload
 }

@@ -26,6 +26,10 @@ export function get_combo_cliente(state) {
   return state.get_combo_cliente;
 }
 
+export function get_combo_referido(state) {
+  return state.get_combo_referido;
+}
+
 export function get_tctipdes(state) {
   return state.get_tctipdes;
 }
