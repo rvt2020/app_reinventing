@@ -232,7 +232,7 @@ export default {
     },
 
     proforma(val) {
-      const url = `https://api.apps.com.pe/actadeservicios/${this.buscar}/1`;
+      const url = `https://api.apps.com.pe/proformadeservicios/${this.buscar}/1`;
       var element = document.createElement("a");
       element.setAttribute("href", url);
       element.setAttribute("download", url);
