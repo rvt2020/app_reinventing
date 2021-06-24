@@ -66,6 +66,9 @@ const routes = [
         component: () =>
           import("components/Logistica/SalidaArticulos/SalidaArticulos")
       },
+
+      // REPORTES
+
       {
         path: "reportes/kardex",
         component: () => 
@@ -98,6 +101,10 @@ const routes = [
       {
         path: "reportes/landing",
         component: () => import("components/Reportes/Landing/Landing")
+      },
+      {
+        path: "reportes/referidos",
+        component: () => import("components/Reportes/Referidos/Referidos")
       },
       
       // CHAPA TU MOTOTAXI INICIAL

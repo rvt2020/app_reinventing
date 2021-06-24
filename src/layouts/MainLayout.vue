@@ -69,9 +69,8 @@
                 icon="assignment_turned_in"
                 label="Configuracion"
                 :content-inset-level="0.5"
-                
+                v-if=Modulo_Configuracion
               >
-              <!-- v-if="usuario!=2" -->
               <!-- USUARIOS -->
                 <q-item
                   class="q-ma-sm navigation-item"
@@ -80,6 +79,8 @@
                   v-ripple
                   exact
                   @click="URL('/usuarios')"
+                  v-if=Modulo_Configuracion_Usuarios
+                  
                 >
                   <q-item-section avatar>
                     <q-icon name="group" />
@@ -98,6 +99,7 @@
                   v-ripple
                   exact
                   @click="URL('/personas')"
+                  v-if=Modulo_Configuracion_Personas
                 >
                   <q-item-section avatar>
                     <q-icon name="face" />
@@ -116,6 +118,7 @@
                   v-ripple
                   exact
                   @click="URL('/materiales')"
+                  v-if=Modulo_Configuracion_Materiales
                 >
                   <q-item-section avatar>
                     <q-icon name="list_alt" />
@@ -144,6 +147,7 @@
               v-ripple
               exact
               @click="URL('/vehiculos')"
+              v-if=Modulo_Vehiculos
             >
               <q-item-section avatar>
                 <q-icon name="directions_car" />
@@ -170,6 +174,7 @@
               v-ripple
               exact
               @click="URL('/citas')"
+              v-if=Modulo_Citas
             >
               <q-item-section avatar>
                 <q-icon name="event" />
@@ -196,6 +201,7 @@
               v-ripple
               exact
               @click="URL('/operaciones')"
+              v-if=Modulo_Operaciones
             >
               <q-item-section avatar>
                 <q-icon name="car_repair" />
@@ -222,6 +228,7 @@
                 icon="assignment_turned_in"
                 label="Logistica"
                 :content-inset-level="0.5"
+                v-if=Modulo_Logistica
               >
                 <!-- ORDENES DE COMPRA -->
                 <q-item
@@ -231,6 +238,7 @@
                   v-ripple
                   exact
                   @click="URL('/logisticas/ordenesdecompra')"
+                  v-if=Modulo_Logistica_OrdenCompra
                 >
                   <q-item-section avatar>
                     <q-icon name="assignment_late" />
@@ -249,6 +257,7 @@
                   v-ripple
                   exact
                   @click="URL('/logisticas/tramitedoc')"
+                  v-if=Modulo_Logistica_TramiteDocumentario
                 >
                   <q-item-section avatar>
                     <q-icon name="receipt" /> 
@@ -267,6 +276,7 @@
                   v-ripple
                   exact
                   @click="URL('/logisticas/ingresoarticulos')"
+                  v-if=Modulo_Logistica_IngresoArticulos
                 >
                   <q-item-section avatar>
                     <q-icon name="queue" />
@@ -285,6 +295,7 @@
                   v-ripple
                   exact
                   @click="URL('/logisticas/salidaarticulos')"
+                  v-if=Modulo_Logistica_SalidaArticulos
                 >
                   <q-item-section avatar>
                     <q-icon name="call_made" />
@@ -305,6 +316,7 @@
                 icon="local_atm"
                 label="Finanzas"
                 :content-inset-level="0.5"
+                v-if=Modulo_Finanzas
               >
                 <!-- Facturar Operacion -->
                 <q-item
@@ -314,6 +326,7 @@
                   v-ripple
                   exact
                   @click="URL('/finanzas/documentosdeventa')"
+                  v-if=Modulo_Finanzas_Facturaciones
                 >
                   <q-item-section avatar>
                     <q-icon name="money" />
@@ -334,6 +347,7 @@
                 icon="plagiarism"
                 label="Reporte"
                 :content-inset-level="0.5"
+                v-if=Modulo_Reportes
               >
                 <!-- SUBMENU LOGISTICA -->
                 <q-expansion-item
@@ -342,6 +356,7 @@
                   icon="receipt_long"
                   label="Logistica"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Reportes_Logistica
                 >
                   <!-- KARDEX -->
                   <q-item
@@ -351,6 +366,7 @@
                     v-ripple
                     exact
                     @click="URL('/reportes/kardex')"
+                    v-if=Modulo_Reportes_Logistica_Kardex
                   >
                     <q-item-section avatar>
                       <q-icon name="assignment" />
@@ -369,6 +385,7 @@
                     v-ripple
                     exact
                     @click="URL('/reportes/inventariovalorizado')"
+                    v-if=Modulo_Reportes_Logistica_InventarioValorizado
                   >
                     <q-item-section avatar>
                       <q-icon name="assignment" />
@@ -387,6 +404,8 @@
                   icon="receipt_long"
                   label="Operaciones"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Reportes_Operaciones
+
                 >
                   <!-- REPORTE DIARIO -->
                   <q-item
@@ -396,6 +415,7 @@
                     v-ripple
                     exact
                     @click="URL('/reportes/reportediario')"
+                    v-if=Modulo_Reportes_Operaciones_ReporteDiario
                   >
                     <q-item-section avatar>
                       <q-icon name="description" />
@@ -414,6 +434,7 @@
                     v-ripple
                     exact
                     @click="URL('/reportes/produccionoperaciones')"
+                    v-if=Modulo_Reportes_Operaciones_ProduccionOperaciones
                   >
                     <q-item-section avatar>
                       <q-icon name="description" />
@@ -434,6 +455,7 @@
                     v-ripple
                     exact
                     @click="URL('/reportes/seguimientomantenimiento')"
+                    v-if=Modulo_Reportes_Operaciones_SeguimientoMantenimiento
                   >
                     <q-item-section avatar>
                       <q-icon name="description" />
@@ -456,6 +478,8 @@
                   icon="receipt_long"
                   label="Landing"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Reportes_Landing
+
                 >
                   <q-item
                     class="q-ma-sm navigation-item"
@@ -464,6 +488,7 @@
                     v-ripple
                     exact
                     @click="URL('/reportes/landing')"
+                    v-if=Modulo_Reportes_Landing_Landing
                   >
                     <q-item-section avatar>
                       <q-icon name="description" />
@@ -471,6 +496,35 @@
 
                     <q-item-section>
                       <q-item-label>Gestion Landing</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-expansion-item>
+
+                <!-- COMISIONES REFERIDOS -->
+              
+                <q-expansion-item
+                  class="q-ma-sm navigation-item"
+                  expand-separator
+                  icon="receipt_long"
+                  label="Referidos"
+                  :content-inset-level="0.5"
+                  v-if=Modulo_Reportes_Referidos
+                >
+                  <q-item
+                    class="q-ma-sm navigation-item"
+                    clickable
+                    active-class="tab-active"
+                    v-ripple
+                    exact
+                    @click="URL('/reportes/referidos')"
+                    v-if=Modulo_Reportes_Referidos_Referidos
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="description" />
+                    </q-item-section>
+
+                    <q-item-section>
+                      <q-item-label>Referidos Comisiones</q-item-label>
                     </q-item-section>
                   </q-item>
                 </q-expansion-item>
@@ -483,6 +537,7 @@
                 icon="chrome_reader_mode"
                 label="Landing"
                 :content-inset-level="0.5"
+                v-if=Modulo_Landing
               >
                  <!-- SUBMENU LANDINGS -->
                 <q-expansion-item
@@ -491,6 +546,7 @@
                   icon="electric_rickshaw"
                   label="Moto Taxi"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Landing_MotoTaxi
                 >
                   <!-- GESTION INICIAL -->
                   <q-item
@@ -500,6 +556,7 @@
                     v-ripple
                     exact
                     @click="URL('/landing/chapatumototaxi')"
+                    v-if=Modulo_Landing_MotoTaxi_GestionInicial
                   >
                     <q-item-section avatar>
                       <q-icon name="contact_phone" />
@@ -517,6 +574,7 @@
                     icon="check_circle"
                     label="PreCalificadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_MotoTaxi_Precalificadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -525,6 +583,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Chapatumototaxiprecal')"
+                      v-if=Modulo_Landing_MotoTaxi_Precalificadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -542,6 +601,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Chapatumototaxiprecaleev')"
+                      v-if=Modulo_Landing_MotoTaxi_Precalificadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -559,6 +619,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Chapatumototaxiprecaleac')"
+                      v-if=Modulo_Landing_MotoTaxi_Precalificadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -578,6 +639,7 @@
                     icon="unpublished"
                     label="Rechazadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_MotoTaxi_Rechazadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -586,6 +648,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Chapatumototaxirechaz')"
+                      v-if=Modulo_Landing_MotoTaxi_Rechazadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -603,6 +666,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Chapatumototaxirechazeev')"
+                      v-if=Modulo_Landing_MotoTaxi_Rechazadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -620,6 +684,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Chapatumototaxirechazeac')"
+                      v-if=Modulo_Landing_MotoTaxi_Rechazadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -641,6 +706,7 @@
                   icon="two_wheeler"
                   label="Moto Lineal"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Landing_MotoLineal
                 >
                 
                   <q-item
@@ -650,6 +716,7 @@
                     v-ripple
                     exact
                     @click="URL('/landing/motolineal')"
+                    v-if=Modulo_Landing_MotoLineal_GestionInicial
                   >
                     <q-item-section avatar>
                       <q-icon name="contact_phone" />
@@ -667,6 +734,7 @@
                     icon="check_circle"
                     label="PreCalificadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_MotoLineal_Precalificadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -675,6 +743,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Motolinealprecal')"
+                      v-if=Modulo_Landing_MotoLineal_Precalificadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -692,6 +761,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Motolinealprecaleev')"
+                      v-if=Modulo_Landing_MotoLineal_Precalificadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -709,6 +779,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Motolinealprecaleac')"
+                      v-if=Modulo_Landing_MotoLineal_Precalificadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -728,6 +799,7 @@
                     icon="unpublished"
                     label="Rechazadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_MotoLineal_Rechazadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -736,6 +808,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Motolinealrechaz')"
+                      v-if=Modulo_Landing_MotoLineal_Rechazadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -754,6 +827,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Motolinealrechazeev')"
+                      v-if=Modulo_Landing_MotoLineal_Rechazadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -771,6 +845,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Motolinealrechazeac')"
+                      v-if=Modulo_Landing_MotoLineal_Rechazadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -792,6 +867,7 @@
                   icon="local_taxi"
                   label="Taxi Propio"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Landing_TaxiPropio
                 >
                 
                   <q-item
@@ -801,6 +877,7 @@
                     v-ripple
                     exact
                     @click="URL('/landing/taxipropio')"
+                    v-if=Modulo_Landing_TaxiPropio_GestionInicial
                   >
                     <q-item-section avatar>
                       <q-icon name="contact_phone" />
@@ -820,6 +897,7 @@
                     icon="check_circle"
                     label="PreCalificadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_TaxiPropio_Precalificadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -828,6 +906,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Taxipropioprecal')"
+                      v-if=Modulo_Landing_TaxiPropio_Precalificadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -845,6 +924,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Taxipropioprecaleev')"
+                      v-if=Modulo_Landing_TaxiPropio_Precalificadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -862,6 +942,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Taxipropioprecaleac')"
+                      v-if=Modulo_Landing_TaxiPropio_Precalificadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -882,6 +963,7 @@
                     icon="unpublished"
                     label="Rechazadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_TaxiPropio_Rechazadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -890,6 +972,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Taxipropiorechaz')"
+                      v-if=Modulo_Landing_TaxiPropio_Rechazadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -908,6 +991,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Taxipropiorechazeev')"
+                      v-if=Modulo_Landing_TaxiPropio_Rechazadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -925,6 +1009,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Taxipropiorechazeac')"
+                      v-if=Modulo_Landing_TaxiPropio_Rechazadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -947,6 +1032,7 @@
                   icon="local_atm"
                   label="Efectivo al Toque"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Landing_EfectivoalToque
                 >
                   <q-item
                     class="q-ma-sm navigation-item"
@@ -955,6 +1041,7 @@
                     v-ripple
                     exact
                     @click="URL('/landing/efectivoaltoque')"
+                    v-if=Modulo_Landing_EfectivoalToque_GestionInicial
                   >
                     <q-item-section avatar>
                       <q-icon name="contact_phone" />
@@ -974,6 +1061,7 @@
                     icon="check_circle"
                     label="PreCalificadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_EfectivoalToque_Precalificadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -982,6 +1070,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Efectivoaltoqueprecal')"
+                      v-if=Modulo_Landing_EfectivoalToque_Precalificadas_interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -999,6 +1088,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Efectivoaltoqueprecaleev')"
+                      v-if=Modulo_Landing_EfectivoalToque_Precalificadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -1016,6 +1106,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Efectivoaltoqueprecaleac')"
+                      v-if=Modulo_Landing_EfectivoalToque_Precalificadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -1036,6 +1127,7 @@
                     icon="unpublished"
                     label="Rechazadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_EfectivoalToque_Rechazadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -1044,6 +1136,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Efectivoaltoquerechaz')"
+                      v-if=Modulo_Landing_EfectivoalToque_Rechazadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -1062,6 +1155,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Efectivoaltoquerechazeev')"
+                      v-if=Modulo_Landing_EfectivoalToque_Rechazadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -1079,6 +1173,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Efectivoaltoquerechazeac')"
+                      v-if=Modulo_Landing_EfectivoalToque_Rechazadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -1100,6 +1195,7 @@
                   icon="car_repair"
                   label="Conversiones"
                   :content-inset-level="0.5"
+                  v-if=Modulo_Landing_Conversiones
                 >
                   <q-item
                     class="q-ma-sm navigation-item"
@@ -1108,6 +1204,7 @@
                     v-ripple
                     exact
                     @click="URL('/landing/conversiones')"
+                    v-if=Modulo_Landing_Conversiones_GestionInicial
                   >
                     <q-item-section avatar>
                       <q-icon name="contact_phone" />
@@ -1125,6 +1222,7 @@
                     icon="check_circle"
                     label="PreCalificadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_Conversiones_Precalificadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -1133,6 +1231,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Conversionesprecal')"
+                      v-if=Modulo_Landing_Conversiones_Precalificadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -1150,6 +1249,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Conversionesprecaleev')"
+                      v-if=Modulo_Landing_Conversiones_Precalificadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -1167,6 +1267,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Conversionesprecaleac')"
+                      v-if=Modulo_Landing_Conversiones_Precalificadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -1187,6 +1288,7 @@
                     icon="unpublished"
                     label="Rechazadas"
                     :content-inset-level="0.5"
+                    v-if=Modulo_Landing_Conversiones_Rechazadas
                   >
                     <q-item
                       class="q-ma-sm navigation-item"
@@ -1195,6 +1297,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Conversionesrechaz')"
+                      v-if=Modulo_Landing_Conversiones_Rechazadas_Interesados
                     >
                       <q-item-section avatar>
                         <q-icon name="spellcheck" />
@@ -1213,6 +1316,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Conversionesrechazeev')"
+                      v-if=Modulo_Landing_Conversiones_Rechazadas_Evaluacion
                     >
                       <q-item-section avatar>
                         <q-icon name="grid_on" />
@@ -1230,6 +1334,7 @@
                       v-ripple
                       exact
                       @click="URL('/landing/Conversionesrechazeac')"
+                      v-if=Modulo_Landing_Conversiones_Rechazadas_Activacion
                     >
                       <q-item-section avatar>
                         <q-icon name="done_all" />
@@ -1399,7 +1504,7 @@
       caption: "github.com/quasarframework",
       icon: "rule",
       link: "/operaciones",
-    },
+    }, 
     {
       title: "Llamadas",
       caption: "github.com/quasarframework",
@@ -1422,6 +1527,549 @@
           return `https://cdn.quasar.dev/img/boy-avatar.png`;
         }
       },
+      /////////////////////////////CONFIGURACION//////////////////////////////////////////
+      Modulo_Configuracion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+
+      Modulo_Configuracion_Usuarios() { 
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+       },
+      Modulo_Configuracion_Personas() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Configuracion_Materiales() { return true; },
+
+      
+      /////////////////////////////VEHICULOS//////////////////////////////////////////
+      Modulo_Vehiculos() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      /////////////////////////////CITAS//////////////////////////////////////////
+      Modulo_Citas() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      
+      /////////////////////////////OPERACIONES//////////////////////////////////////////
+      Modulo_Operaciones() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      /////////////////////////////LOGISTICA//////////////////////////////////////////
+      Modulo_Logistica() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Logistica_OrdenCompra() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Logistica_TramiteDocumentario() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Logistica_IngresoArticulos() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Logistica_SalidaArticulos() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+
+      /////////////////////////////FINANZAS//////////////////////////////////////////
+      Modulo_Finanzas() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 2 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 5 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Finanzas_Facturaciones() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+
+      /////////////////////////////REPORTES//////////////////////////////////////////
+      Modulo_Reportes() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 2 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 5 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Reportes_Logistica() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Logistica_Kardex() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Logistica_InventarioValorizado() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Operaciones() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Operaciones_ReporteDiario() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Operaciones_ProduccionOperaciones() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Operaciones_SeguimientoMantenimiento() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Landing() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Landing_Landing() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Referidos() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Reportes_Referidos_Referidos() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+
+      /////////////////////////////LANGING//////////////////////////////////////////
+      Modulo_Landing() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return true;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Landing_MotoTaxi() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Landing_MotoTaxi_GestionInicial() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+        
+      },
+      Modulo_Landing_MotoTaxi_Precalificadas() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoTaxi_Precalificadas_Interesados() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoTaxi_Precalificadas_Evaluacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoTaxi_Precalificadas_Activacion() { return true; },
+      Modulo_Landing_MotoTaxi_Rechazadas() { return true; },
+      Modulo_Landing_MotoTaxi_Rechazadas_Interesados() { return true; },
+      Modulo_Landing_MotoTaxi_Rechazadas_Evaluacion() { return true; },
+      Modulo_Landing_MotoTaxi_Rechazadas_Activacion() { return true; },
+
+      Modulo_Landing_MotoLineal() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010// EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Landing_MotoLineal_GestionInicial() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Precalificadas() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Precalificadas_Interesados() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Precalificadas_Evaluacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Precalificadas_Activacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Rechazadas() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Rechazadas_Interesados() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Rechazadas_Evaluacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_MotoLineal_Rechazadas_Activacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+
+
+      Modulo_Landing_TaxiPropio() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Landing_TaxiPropio_GestionInicial() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_TaxiPropio_Precalificadas() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_TaxiPropio_Precalificadas_Interesados() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_TaxiPropio_Precalificadas_Evaluacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_TaxiPropio_Precalificadas_Activacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_TaxiPropio_Rechazadas() { return true; },
+      Modulo_Landing_TaxiPropio_Rechazadas_Interesados() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_TaxiPropio_Rechazadas_Evaluacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      Modulo_Landing_TaxiPropio_Rechazadas_Activacion() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+
+      Modulo_Landing_EfectivoalToque() { return true; },
+      Modulo_Landing_EfectivoalToque_GestionInicial() { return true; },
+      Modulo_Landing_EfectivoalToque_Precalificadas() { return true; },
+      Modulo_Landing_EfectivoalToque_Precalificadas_interesados() { return true; },
+      Modulo_Landing_EfectivoalToque_Precalificadas_Evaluacion() { return true; },
+      Modulo_Landing_EfectivoalToque_Precalificadas_Activacion() { return true; },
+      Modulo_Landing_EfectivoalToque_Rechazadas() { return true; },
+      Modulo_Landing_EfectivoalToque_Rechazadas_Interesados() { return true; },
+      Modulo_Landing_EfectivoalToque_Rechazadas_Evaluacion() { return true; },
+      Modulo_Landing_EfectivoalToque_Rechazadas_Activacion() { return true; },
+
+      Modulo_Landing_Conversiones() {
+        if (
+          this.$q.localStorage.getAll().UserDetalle.co_person == 2 // EDWIN MARTINEZ
+        ) {
+          return false;
+        } else {
+          return true; 
+        }
+      },
+      
+      Modulo_Landing_Conversiones_GestionInicial() { return true; },
+      Modulo_Landing_Conversiones_Precalificadas() { return true; },
+      Modulo_Landing_Conversiones_Precalificadas_Interesados() { return true; },
+      Modulo_Landing_Conversiones_Precalificadas_Evaluacion() { return true; },
+      Modulo_Landing_Conversiones_Precalificadas_Activacion() { return true; },
+      Modulo_Landing_Conversiones_Rechazadas() { return true; },
+      Modulo_Landing_Conversiones_Rechazadas_Interesados() { return true; },
+      Modulo_Landing_Conversiones_Rechazadas_Evaluacion() { return true; },
+      Modulo_Landing_Conversiones_Rechazadas_Activacion() { return true; },
+
       ...mapState("example", ["dialogIngresoVehicular", "UploadBasic"]),
     },
     components: {
