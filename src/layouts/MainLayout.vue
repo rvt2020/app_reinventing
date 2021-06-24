@@ -2052,7 +2052,7 @@
 
       Modulo_Landing_Conversiones() {
         if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 2 // EDWIN MARTINEZ
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
         ) {
           return false;
         } else {
