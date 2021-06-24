@@ -1654,8 +1654,8 @@
       /////////////////////////////FINANZAS//////////////////////////////////////////
       Modulo_Finanzas() {
         if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 2 || // JOSEPH CARRION
-          this.$q.localStorage.getAll().UserDetalle.co_person == 5 // EDWIN MARTINEZ
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
         ) {
           return false;
         } else {
@@ -1677,8 +1677,8 @@
       /////////////////////////////REPORTES//////////////////////////////////////////
       Modulo_Reportes() {
         if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 2 || // JOSEPH CARRION
-          this.$q.localStorage.getAll().UserDetalle.co_person == 5 // EDWIN MARTINEZ
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4011 || // JOSEPH CARRION
+          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
         ) {
           return false;
         } else {
