@@ -177,7 +177,16 @@ const MixinDefault = {
         no_produc: "Producto",
         no_tippla: "Tipo Plan",
         no_entida: "Entidad",
-        no_exacvr: "Converus"
+        no_exacvr: "Converus",
+        ca_aproba: "Cant. Aprobada",
+        im_aproba: "Imp. Aprobado",
+        ca_porpag: "Cant. por Pagar",
+        im_porpag: "Imp. por Pagar",
+        ca_pagado: "Cant. Pagado",
+        im_pagado: "Imp. Pagado",
+        ca_comref: "Cant. Total",
+        im_comisi: "Imp. Total",
+        ca_operac: "Operaciones"
       }
     };
   },

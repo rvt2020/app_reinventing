@@ -18,10 +18,14 @@ const state = {
   get_tipo_trabajo: [],
   get_tipo_agrupa: [],
   get_fecha_actualizacion: [],
-  get_reporte_diario: []
+  get_reporte_diario: [],
+  get_referi_comisi: []
 };
 
 const mutations = {
+  get_referi_comisi(state, payload) {
+    state.get_referi_comisi = payload;
+  },
   get_empresas(state, payload) {
     state.get_empresas = payload;
   },
@@ -194,6 +198,10 @@ const actions = {
     );
     // return response.data;
     commit("get_reporte_diario", response.data);
+  },
+  async call_referi_comisi({ commit }, payload) {
+    const response = await axiosInstance.post(`/referi/referi_comisi`, payload);
+    commit("get_referi_comisi", response.data);
   }
 };
 
@@ -242,6 +250,9 @@ const getters = {
   },
   get_reporte_diario(state) {
     return state.get_reporte_diario;
+  },
+  get_referi_comisi(state) {
+    return state.get_referi_comisi;
   }
 };
 

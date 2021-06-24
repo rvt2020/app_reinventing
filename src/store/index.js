@@ -19,6 +19,7 @@ import landing from "./store-landing";
 import llamadas from "./store-llamadas";
 import finanzas from "./store-finanzas";
 
+
 Vue.use(Vuex);
 
 /*
