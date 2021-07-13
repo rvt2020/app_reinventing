@@ -78,15 +78,7 @@
         </template>
         <template v-slot:body-cell-action="props">
           <q-td :props="props">
-            <div class="q-gutter-sm">
-              <q-btn
-                dense
-                size="sm"
-                @click="editar(props.row)"
-                color="warning"
-                icon="edit"
-              />
-            </div>
+            
           </q-td>
         </template>
         <template v-slot:no-data="{ icon, message, filter }">

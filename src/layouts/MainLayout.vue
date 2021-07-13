@@ -1346,12 +1346,38 @@
                     </q-item>
                     
                   </q-expansion-item>
-                    
-
-
                 </q-expansion-item>
-
               </q-expansion-item>
+
+            <!-- INICIO MENU VENTAS -->
+              <q-expansion-item
+                class="q-ma-sm navigation-item"
+                expand-separator
+                icon="view_carousel"
+                label="Ventas"
+                :content-inset-level="0.5"
+              >
+              <!-- VEHICULOS -->  
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/Ventas')"
+                  
+                >
+                  <q-item-section avatar>
+                    <q-icon name="drive_eta" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Vehiculos</q-item-label>
+                  </q-item-section>
+                </q-item>
+               
+              </q-expansion-item>
+            <!-- FIN MENU VENTAS -->
 
               <q-item
                 class="q-ma-sm navigation-item"
@@ -1863,97 +1889,19 @@
       Modulo_Landing_MotoTaxi_Rechazadas_Activacion() { return true; },
 
       Modulo_Landing_MotoLineal() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010// EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
+         return true; 
       },
       
-      Modulo_Landing_MotoLineal_GestionInicial() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas_Interesados() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas_Evaluacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas_Activacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas_Interesados() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas_Evaluacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas_Activacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-
+      Modulo_Landing_MotoLineal_GestionInicial() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas_Interesados() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas_Evaluacion() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas_Activacion() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas_Interesados() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas_Evaluacion() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas_Activacion() { return true; },
+      
 
       Modulo_Landing_TaxiPropio() {
         if (
@@ -2070,7 +2018,10 @@
       Modulo_Landing_Conversiones_Rechazadas_Evaluacion() { return true; },
       Modulo_Landing_Conversiones_Rechazadas_Activacion() { return true; },
 
-      ...mapState("example", ["dialogIngresoVehicular", "UploadBasic"]),
+      ...mapState("example", [
+          "dialogIngresoVehicular", 
+          "dialogIngresoVentas", 
+          "UploadBasic"]),
     },
     components: {
       EssentialLink,
@@ -2078,6 +2029,8 @@
       Test: () => import("pages/Test"),
       DialogIngresoVehicular: () =>
         import("components/Vehiculos/IngresoVehicular"),
+      DialogIngresoVentas: () =>
+        import("components/Ventas/IngresoVehicular"),
       TagUploadBasic: () => import("components/Upload/UploadBasic"),
     },
     data() {
