@@ -1889,97 +1889,19 @@
       Modulo_Landing_MotoTaxi_Rechazadas_Activacion() { return true; },
 
       Modulo_Landing_MotoLineal() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010// EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
+         return true; 
       },
       
-      Modulo_Landing_MotoLineal_GestionInicial() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas_Interesados() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas_Evaluacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Precalificadas_Activacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas_Interesados() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas_Evaluacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-      Modulo_Landing_MotoLineal_Rechazadas_Activacion() {
-        if (
-          this.$q.localStorage.getAll().UserDetalle.co_person == 4010 // EDWIN MARTINEZ
-        ) {
-          return false;
-        } else {
-          return true; 
-        }
-      },
-
+      Modulo_Landing_MotoLineal_GestionInicial() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas_Interesados() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas_Evaluacion() { return true; },
+      Modulo_Landing_MotoLineal_Precalificadas_Activacion() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas_Interesados() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas_Evaluacion() { return true; },
+      Modulo_Landing_MotoLineal_Rechazadas_Activacion() { return true; },
+      
 
       Modulo_Landing_TaxiPropio() {
         if (
