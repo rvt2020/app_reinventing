@@ -1346,12 +1346,38 @@
                     </q-item>
                     
                   </q-expansion-item>
-                    
-
-
                 </q-expansion-item>
-
               </q-expansion-item>
+
+            <!-- INICIO MENU VENTAS -->
+              <q-expansion-item
+                class="q-ma-sm navigation-item"
+                expand-separator
+                icon="view_carousel"
+                label="Ventas"
+                :content-inset-level="0.5"
+              >
+              <!-- VEHICULOS -->  
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/Ventas')"
+                  
+                >
+                  <q-item-section avatar>
+                    <q-icon name="drive_eta" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Vehiculos</q-item-label>
+                  </q-item-section>
+                </q-item>
+               
+              </q-expansion-item>
+            <!-- FIN MENU VENTAS -->
 
               <q-item
                 class="q-ma-sm navigation-item"
@@ -2070,7 +2096,10 @@
       Modulo_Landing_Conversiones_Rechazadas_Evaluacion() { return true; },
       Modulo_Landing_Conversiones_Rechazadas_Activacion() { return true; },
 
-      ...mapState("example", ["dialogIngresoVehicular", "UploadBasic"]),
+      ...mapState("example", [
+          "dialogIngresoVehicular", 
+          "dialogIngresoVentas", 
+          "UploadBasic"]),
     },
     components: {
       EssentialLink,
@@ -2078,6 +2107,8 @@
       Test: () => import("pages/Test"),
       DialogIngresoVehicular: () =>
         import("components/Vehiculos/IngresoVehicular"),
+      DialogIngresoVentas: () =>
+        import("components/Ventas/IngresoVehicular"),
       TagUploadBasic: () => import("components/Upload/UploadBasic"),
     },
     data() {
