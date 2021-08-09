@@ -73,64 +73,35 @@
               >
               <!-- USUARIOS -->
                 <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
+                  class="q-ma-sm navigation-item" clickable active-class="tab-active" v-ripple exact
                   @click="URL('/usuarios')"
                   v-if=Modulo_Configuracion_Usuarios
-                  
                 >
-                  <q-item-section avatar>
-                    <q-icon name="group" />
-                  </q-item-section>
-
-                  <q-item-section>
-                    <q-item-label>Usuarios</q-item-label>
-                  </q-item-section>
+                  <q-item-section avatar> <q-icon name="group" /> </q-item-section>
+                  <q-item-section> <q-item-label>Usuarios</q-item-label> </q-item-section>
                 </q-item>
                 
               <!-- PERSONAS -->
                 <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
+                  class="q-ma-sm navigation-item" clickable active-class="tab-active" v-ripple exact
                   @click="URL('/personas')"
                   v-if=Modulo_Configuracion_Personas
                 >
-                  <q-item-section avatar>
-                    <q-icon name="face" />
-                  </q-item-section>
-
-                  <q-item-section>
-                    <q-item-label>Personas</q-item-label>
-                  </q-item-section>
+                  <q-item-section avatar> <q-icon name="face" /> </q-item-section>
+                  <q-item-section> <q-item-label>Personas</q-item-label> </q-item-section>
                 </q-item>
 
               <!-- MATERIALES -->
-                <q-item
-                  class="q-ma-sm navigation-item"
-                  clickable
-                  active-class="tab-active"
-                  v-ripple
-                  exact
+                <q-item class="q-ma-sm navigation-item" clickable active-class="tab-active" v-ripple exact
                   @click="URL('/materiales')"
                   v-if=Modulo_Configuracion_Materiales
                 >
-                  <q-item-section avatar>
-                    <q-icon name="list_alt" />
-                  </q-item-section>
-
-                  <q-item-section>
-                    <q-item-label>Materiales</q-item-label>
-                  </q-item-section>
+                  <q-item-section avatar> <q-icon name="list_alt" /> </q-item-section>
+                  <q-item-section> <q-item-label>Materiales</q-item-label> </q-item-section>
                 </q-item>
               
               </q-expansion-item>
-            <!-- FIN MENU CONFIGURACION -->
+              <!-- FIN MENU CONFIGURACION -->
               
               <EssentialLink
                 v-for="link in essentialLinks"
@@ -1356,16 +1327,16 @@
                 icon="view_carousel"
                 label="Ventas"
                 :content-inset-level="0.5"
-              >
-              <!-- VEHICULOS -->  
+              > 
+              <!-- VEHICULOS -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable
                   active-class="tab-active"
                   v-ripple
                   exact
-                  @click="URL('/Ventas')"
-                  
+                  @click="URL('/comercial/Comercial')"
+                     
                 >
                   <q-item-section avatar>
                     <q-icon name="drive_eta" />
@@ -1375,8 +1346,8 @@
                     <q-item-label>Vehiculos</q-item-label>
                   </q-item-section>
                 </q-item>
-               
-              </q-expansion-item>
+                 
+              </q-expansion-item> 
             <!-- FIN MENU VENTAS -->
 
               <q-item
@@ -1888,10 +1859,7 @@
       Modulo_Landing_MotoTaxi_Rechazadas_Evaluacion() { return true; },
       Modulo_Landing_MotoTaxi_Rechazadas_Activacion() { return true; },
 
-      Modulo_Landing_MotoLineal() {
-         return true; 
-      },
-      
+      Modulo_Landing_MotoLineal() {return true; },
       Modulo_Landing_MotoLineal_GestionInicial() { return true; },
       Modulo_Landing_MotoLineal_Precalificadas() { return true; },
       Modulo_Landing_MotoLineal_Precalificadas_Interesados() { return true; },
@@ -2019,8 +1987,7 @@
       Modulo_Landing_Conversiones_Rechazadas_Activacion() { return true; },
 
       ...mapState("example", [
-          "dialogIngresoVehicular", 
-          "dialogIngresoVentas", 
+          "dialogIngresoVehicular",
           "UploadBasic"]),
     },
     components: {
@@ -2029,8 +1996,6 @@
       Test: () => import("pages/Test"),
       DialogIngresoVehicular: () =>
         import("components/Vehiculos/IngresoVehicular"),
-      DialogIngresoVentas: () =>
-        import("components/Ventas/IngresoVehicular"),
       TagUploadBasic: () => import("components/Upload/UploadBasic"),
     },
     data() {

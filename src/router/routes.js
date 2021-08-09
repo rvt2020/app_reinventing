@@ -6,7 +6,6 @@ const routes = [
       { path: "", component: () => import("pages/Index.vue") },
       { path: "usuarios", component: () => import("pages/Usuarios.vue") },
       { path: "vehiculos", component: () => import("pages/Vehiculos.vue") },
-      { path: "ventas", component: () => import("pages/Ventas.vue") },
       { path: "personas", component: () => import("pages/Personas.vue") },
       { path: "perfil", component: () => import("pages/Profile.vue") },
       { path: "citas", component: () => import("pages/Citas.vue") },
@@ -302,9 +301,15 @@ const routes = [
         path: "landing/conversionesrechazeac",
         component: () =>
           import("components/Landing/Conversiones/Conversionesrechazeac")
-      }
-      
+      },
+      //VENTAS
+      {
+        path: "comercial/comercial",
+        component: () => 
+          import("src/components/Comercial/Comercial/DocumentoComercial.vue")
 
+      },
+      
     ]
   },
   {
