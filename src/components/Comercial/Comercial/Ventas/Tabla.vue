@@ -40,7 +40,7 @@
         <q-td :props="props">
           <q-btn
             size="xs"
-            color="primary"
+            color="green"
             :label="`${props.row.co_plaveh}`"
             @click="generarOperacion(props.row)"
           />
@@ -66,6 +66,7 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 import { MixinDefault } from "../../../../mixins/mixin";
+//import { MixinDefault } from "../../../mixins/mixin";
 import { date } from "quasar";
 let timeStamp = Date.now();
 
@@ -107,7 +108,6 @@ export default {
         // rowsNumber: xx if getting data from a server
       },
       columns: [
-        {name: "co_vehicu", align: "left", label: "Código", field: "co_vehicu", sortable: true},
         {name: "co_plaveh", align: "center", label: "Placa", field: "co_plaveh", sortable: true},
         {name: "no_marveh", align: "left", label: "Marca", field: "no_marveh", sortable: true},
         {name: "no_modveh", align: "left", label: "Modelo", field: "no_modveh", sortable: true},
@@ -117,7 +117,7 @@ export default {
         {name: "no_colveh", align: "left", label: "Color", field: "no_colveh", sortable: true},
         {name: "nu_serveh", align: "left", label: "Chasis", field: "nu_serveh", sortable: true},
         {name: "nu_motveh", align: "left", label: "Motor", field: "nu_motveh", sortable: true},
-        {name: "nu_asiveh", align: "right", label: "Asientos", field: "nu_asiveh", sortable: true}
+        {name: "co_vehicu", align: "left", label: "Ver", field: "co_vehicu", sortable: true}
       ]
     };
   },
@@ -132,9 +132,10 @@ export default {
       await this.call_inform_vehicu({
         co_vehicu: `${val.co_vehicu}` 
       });
+      await this.call_listar_vehicu();
       console.log(val);
       this.$q.notify({
-        message: `${val.co_factur}`
+        message: `${val.co_vehicu}`
       });
       this.$store.commit("comercial/dialogOperacion", true);
       this.$q.loading.hide();
@@ -144,3 +145,4 @@ export default {
   
 };
 </script>
+

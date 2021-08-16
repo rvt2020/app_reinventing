@@ -17,39 +17,39 @@
         <tbody>
           <tr>
             <td class="text-left">Código</td>
-            <td class="text-right">{{ info.operac[0].co_vehicu }}</td>
+            <td class="text-right">{{ info.resultado[0].co_vehicu }}</td>
           </tr>
           <tr>
             <td class="text-left">placa</td>
-            <td class="text-right">{{ info.operac[0].co_plaveh }}</td>
+            <td class="text-right">{{ info.resultado[0].co_plaveh }}</td>
           </tr>
           <tr>
             <td class="text-left">Marca</td>
-            <td class="text-right">{{ info.operac[0].no_marveh }}</td>
+            <td class="text-right">{{ info.resultado[0].no_marveh }}</td>
           </tr>
           <tr>
             <td class="text-left">Modelo</td>
-            <td class="text-right">{{ info.operac[0].no_modveh }}</td>
+            <td class="text-right">{{ info.resultado[0].no_modveh }}</td>
           </tr>
           <tr>
             <td class="text-left">Versión</td>
-            <td class="text-right">{{ info.operac[0].no_verveh }}</td>
+            <td class="text-right">{{ info.resultado[0].no_verveh }}</td>
           </tr>
           <tr>
             <td class="text-left">Año</td>
-            <td class="text-right">{{ info.operac[0].nu_anofab }}</td>
+            <td class="text-right">{{ info.resultado[0].nu_anofab }}</td>
           </tr>
           <tr>
             <td class="text-left">Color</td>
-            <td class="text-right">{{ info.operac[0].no_colveh }}</td>
+            <td class="text-right">{{ info.resultado[0].no_colveh }}</td>
           </tr>
           <tr>
             <td class="text-left">Chasis</td>
-            <td class="text-right">{{ info.operac[0].nu_serveh }}</td>
+            <td class="text-right">{{ info.resultado[0].nu_serveh }}</td>
           </tr>
           <tr>
             <td class="text-left">Motor</td>
-            <td class="text-right">{{ info.operac[0].nu_motveh }}</td>
+            <td class="text-right">{{ info.resultado[0].nu_motveh }}</td>
           </tr>
         </tbody>
       </q-markup-table>
@@ -61,15 +61,9 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   props: ["info"],
-  name: "DatosdelaOC",
+  name: "DatosVehiculo",
   methods: {
-    ...mapActions("finanzas", ["call_update_factur"]),
-    async actualizar() {
-      await this.call_update_factur({
-        co_factur: this.co_factur,
-        ti_estado: this.ti_estado
-      });
-    }
+    ...mapActions("finanzas", ["call_update_factur"])
   }
 };
 </script>

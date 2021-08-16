@@ -31,7 +31,7 @@ export default {
     DatosVehiculo: () => import("./DatosVehiculo")
   },
   computed: {
-    ...mapState("comercial", ["dialogOperaciom"]),
+    ...mapState("comercial", ["dialogOperacion"]),
     ...mapGetters("comercial", [
       "get_inform_vehicu"
     ])
@@ -200,5 +200,4 @@ export default {
   }
 };
 </script>
-
 <style scoped></style>

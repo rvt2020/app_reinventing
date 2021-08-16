@@ -7,6 +7,69 @@
       <div class="col-10 q-pb-md">
         <q-form @submit="buscarOperaciones">
           <div class="row">
+            <div class="col-xs-12 col-sm-2 q-pa-xs">
+              <q-input
+                clearable
+                filled
+                dense
+                v-model="fe_regdes"
+                label="Emisión Desde"
+              >
+                <template v-slot:append>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      ref="qDateProxy"
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="fe_regdes" mask="YYYY-MM-DD">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+            <div class="col-xs-12 col-sm-2 q-pa-xs">
+              <q-input
+                clearable
+                filled
+                dense
+                v-model="fe_reghas"
+                label="Emisión Hasta"
+              >
+                <template v-slot:append>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      ref="qDateProxy"
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="fe_reghas" mask="YYYY-MM-DD">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+            <div class="col-xs-12 col-sm-1 q-pa-xs">
+              <q-btn size="md" color="red" type="submit" icon-right="search" />
+            </div>
           </div>
         </q-form>
       </div>
@@ -40,6 +103,8 @@ export default {
       buscar: "",
       tipo: 1,
       dataEdit: [],
+      fe_regdes: "",
+      fe_reghas: "",
       co_operac: "",
       co_plaveh: ""
     };
@@ -60,7 +125,7 @@ export default {
       this.$q.loading.show();
       // await this.call_mostrar_ingreso();
       await this.call_listar_vehicu({co_plaveh: `${this.co_plaveh}`});
-      await this.$router.replace("/comercial/documentosdeventa?id=1");
+      await this.$router.replace("/comercial/comercial");
       this.$store.commit("example/location", "Comercial / Listado de Vehiculos");
 
     } catch (e) {
