@@ -127,7 +127,7 @@ export default {
       await this.call_listar_vehicu({co_plaveh: `${this.co_plaveh}`});
       await this.$router.replace("/comercial/comercial");
       this.$store.commit("example/location", "Comercial / Listado de Vehiculos");
-
+      this.$q.loading.hide();
     } catch (e) {
       console.log(e);
     }
