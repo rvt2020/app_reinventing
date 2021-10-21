@@ -352,6 +352,7 @@ export default {
       co_moneda: null,
       fechadeemision: "",
       numerodocumento: "",
+      precioventa: "",
       doc_ide: "",
       ape_pat: "",
       ape_mat: "",
