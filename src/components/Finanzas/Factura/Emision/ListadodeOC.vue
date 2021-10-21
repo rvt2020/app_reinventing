@@ -14,7 +14,7 @@
                 dense
                 v-model="fe_regdes"
                 label="Emisión Desde"
-              >
+              > 
                 <template v-slot:append>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy

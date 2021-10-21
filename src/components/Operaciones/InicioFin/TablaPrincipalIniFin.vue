@@ -177,7 +177,7 @@ export default {
         {
           name: "fe_finpro",
           label: "Fin",
-          field: "fe_finpro",
+          field: "  ",
           align: "left",
           sortable: true,
         },
