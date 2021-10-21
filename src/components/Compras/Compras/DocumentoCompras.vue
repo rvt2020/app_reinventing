@@ -9,7 +9,7 @@
         narrow-indicator
         align="justify"
       >
-        <q-tab name="1" label="Vehiculos" />
+        <q-tab name="1" label="Compra de Vehiculos" />
       </q-tabs>
       <div class="q-gutter-y-sm">
         <q-tab-panels
@@ -18,9 +18,9 @@
           transition-prev="fade"
           transition-next="fade"
         >
-          <!-- VEHICULOS -->
+          <!-- ARTICULOS QUE SON VEHICULOS -->
           <q-tab-panel name="1">
-            <div class="row"><div class="col"> <ListaVehiculos /> </div></div>
+            <div class="row"><div class="col"> <ListaCompras /> </div></div>
           </q-tab-panel>
         
         </q-tab-panels>
@@ -38,8 +38,8 @@ export default {
     };
   },
   components: {
-   //COMERCIAL
-    ListaVehiculos: () => import("components/Comercial/Comercial/Ventas/ListaVehiculos"),
+   //COMPRA DE ARTICULOS QUE SON VEHICULOS
+    ListaCompras: () => import("components/Compras/Compras/OrdenCompra/ListaCompras"),
 
     //TITULOS
     Titulos: () => import("components/Titulos")
@@ -58,7 +58,7 @@ export default {
     }
   },
   async created() {
-    this.$store.commit("example/location", "Comercial");
+    this.$store.commit("example/location", "Compras");
     if (this.$route.query.id != undefined) {
       this.tab = `${this.$route.query.id}`;
     }

@@ -1328,7 +1328,26 @@
                 label="Ventas"
                 :content-inset-level="0.5"
               > 
-              <!-- VEHICULOS -->
+                <!-- VEHICULOS -->
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/compras/Compras')"
+                     
+                >
+                  <q-item-section avatar>
+                    <q-icon name="drive_eta" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Compras</q-item-label>
+                  </q-item-section>
+                </q-item>
+                
+                <!-- VEHICULOS -->
                 <q-item
                   class="q-ma-sm navigation-item"
                   clickable

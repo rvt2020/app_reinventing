@@ -7,65 +7,41 @@
       <div class="col-10 q-pb-md">
         <q-form @submit="buscarOperaciones">
           <div class="row">
-            <div class="col-xs-12 col-sm-2 q-pa-xs">
+            <div class="col-xs-12 col-sm-3 q-pa-xs">
               <q-input
-                clearable
-                filled
+                autofocus
                 dense
-                v-model="fe_regdes"
-                label="Emisión Desde"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      ref="qDateProxy"
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="fe_regdes" mask="YYYY-MM-DD">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
+                filled
+                v-model="no_marveh"
+                label="Marca"
+              />
+            </div>
+            <div class="col-xs-12 col-sm-3 q-pa-xs">
+              <q-input
+                autofocus
+                dense
+                filled
+                v-model="no_modveh"
+                label="Modelo"
+              />
+            </div>
+            <div class="col-xs-12 col-sm-3 q-pa-xs">
+              <q-input
+                autofocus
+                dense
+                filled
+                v-model="no_colveh"
+                label="Color"
+              />
             </div>
             <div class="col-xs-12 col-sm-2 q-pa-xs">
               <q-input
-                clearable
-                filled
+                autofocus
                 dense
-                v-model="fe_reghas"
-                label="Emisión Hasta"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      ref="qDateProxy"
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="fe_reghas" mask="YYYY-MM-DD">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
+                filled
+                v-model="nu_anoveh"
+                label="Año"
+              />
             </div>
             <div class="col-xs-12 col-sm-1 q-pa-xs">
               <q-btn size="md" color="red" type="submit" icon-right="search" />
@@ -103,10 +79,10 @@ export default {
       buscar: "",
       tipo: 1,
       dataEdit: [],
-      fe_regdes: "",
-      fe_reghas: "",
-      co_operac: "",
-      co_plaveh: ""
+      no_marveh: "",
+      no_modveh: "",
+      no_colveh: "",
+      nu_anoveh: ""
     };
   },
   components: {
@@ -116,7 +92,12 @@ export default {
     ...mapActions("comercial", ["call_listar_vehicu"]),
     async buscarOperaciones() {
       this.$q.loading.show();
-      await this.call_listar_vehicu({co_plaveh: `${this.co_plaveh}`});
+      await this.call_listar_vehicu({
+        no_marveh: `${this.no_marveh}`,
+        no_modveh: `${this.no_modveh}`,
+        no_colveh: `${this.no_colveh}`,
+        nu_anoveh: `${this.nu_anoveh}`
+      });
       this.$q.loading.hide();
     }
   },
@@ -124,8 +105,13 @@ export default {
     try {
       this.$q.loading.show();
       // await this.call_mostrar_ingreso();
-      await this.call_listar_vehicu({co_plaveh: `${this.co_plaveh}`});
-      await this.$router.replace("/comercial/comercial");
+      await this.call_listar_vehicu({
+        no_marveh: `${this.no_marveh}`,
+        no_modveh: `${this.no_modveh}`,
+        no_colveh: `${this.no_colveh}`,
+        nu_anoveh: `${this.nu_anoveh}`
+      });
+      //await this.$router.replace("/comercial/comercial");
       this.$store.commit("example/location", "Comercial / Listado de Vehiculos");
       this.$q.loading.hide();
     } catch (e) {

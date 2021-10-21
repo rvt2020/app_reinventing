@@ -302,11 +302,17 @@ const routes = [
         component: () =>
           import("components/Landing/Conversiones/Conversionesrechazeac")
       },
-      //VENTAS
+      //VENTAS Y COMPRAS
       {
         path: "comercial/comercial",
         component: () => 
           import("src/components/Comercial/Comercial/DocumentoComercial.vue")
+
+      },
+      {
+        path: "compras/compras",
+        component: () => 
+          import("src/components/Compras/Compras/DocumentoCompras.vue")
 
       },
       

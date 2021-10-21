@@ -1,21 +1,14 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col"><u>Datos del Vehiculo </u></div>
-      <div class="col text-right q-pa-xs">
-        <!--<q-btn
-          size="8px"
-          @click="actualizar"
-          color="primary"
-          label="Actualizar"
-        />--> 
-      </div>
-    </div>
-    <!--    {{ info }}-->
-    <q-card flat bordered>
+    <q-card style="width: 590px; max-width: 100vw;">
       <q-markup-table dense>
-        <tbody>
+        <thead>
           <tr>
+            <td class="text-left text-h6">Datos del Vehículo</td>
+          </tr>
+        </thead>
+        <tbody>
+         <tr>
             <td class="text-left">Código</td>
             <td class="text-right">{{ info.resultado[0].co_vehicu }}</td>
           </tr>
@@ -44,11 +37,11 @@
             <td class="text-right">{{ info.resultado[0].no_colveh }}</td>
           </tr>
           <tr>
-            <td class="text-left">Chasis</td>
+            <td class="text-left">Precio de Vehiculo</td>
             <td class="text-right">{{ info.resultado[0].nu_serveh }}</td>
           </tr>
           <tr>
-            <td class="text-left">Motor</td>
+            <td class="text-left">Moneda</td>
             <td class="text-right">{{ info.resultado[0].nu_motveh }}</td>
           </tr>
         </tbody>
@@ -63,7 +56,7 @@ export default {
   props: ["info"],
   name: "DatosVehiculo",
   methods: {
-    ...mapActions("finanzas", ["call_update_factur"])
+    ...mapActions("comercial", ["call_update_vehicu"])
   }
 };
 </script>
