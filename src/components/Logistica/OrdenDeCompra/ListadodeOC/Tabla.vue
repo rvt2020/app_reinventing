@@ -57,18 +57,20 @@
         </q-td>
       </template>
       
-      <template v-slot:body-cell-accion="props">
+      <template v-slot:body-cell-ver="props">
+        <q-td :props="props">
+          <q-btn
+            size="xs"
+            icon="visibility"
+            color="info"
+            @click="verarchivos(props.row)"
+          />
+        </q-td>
+      </template>
+      
+      <template v-slot:body-cell-eliminar="props">
         <q-td :props="props">
           <div class="row q-gutter-xs">
-            <div>
-              <q-btn
-                size="xs"
-                round
-                icon="visibility"
-                color="info"
-                @click="verarchivos(props.row)"
-              />
-            </div>
             <div>
               <q-btn
                 size="xs"
@@ -81,6 +83,19 @@
           </div>
         </q-td>
       </template>
+
+      <template v-slot:body-cell-imprimir="props">
+        <q-td :props="props">
+          <q-btn
+                size="xs"
+                round
+                icon="picture_as_pdf"
+                color="green"
+                @click="imprimir(props.row)"
+              />
+        </q-td>
+      </template>
+      
 
     </q-table>
     <div>
@@ -201,24 +216,42 @@ export default {
           name: "fe_autori",
           label: "Visado Jefatura",
           field: "fe_autori",
+           align: "center",
           sortable: true
         },
         {
           name: "fe_gerenc",
           label: "Visado Gerencia",
           field: "fe_gerenc",
+          align: "center",
           sortable: true
         },
         {
           name: "ca_arcadj",
           label: "Adjunto",
           field: "ca_arcadj",
+          align: "center",
           sortable: true
         },
         {
-          name: "accion",
-          label: "Accion",
-          field: "accion",
+          name: "ver",
+          label: "Archivo",
+          field: "ver",
+          align: "center",
+          sortable: true
+        },
+        {
+          name: "imprimir",
+          label: "Imprimir",
+          field: "imprimir",
+          align: "center",
+          sortable: true
+        },
+        {
+          name: "eliminar",
+          label: "Eliminar",
+          field: "eliminar",
+          align: "center",
           sortable: true
         }
       ]
@@ -293,6 +326,18 @@ export default {
       this.select_to_arca = val;
       console.log("arcadj", val);
       this.upload = true;
+    },
+    imprimir(val) {
+      const url = `https://api.apps.com.pe/ordencompra/${val.co_ordcom}/1`;
+      var element = document.createElement("a");
+      element.setAttribute("href", url);
+      element.setAttribute("download", url);
+
+      element.style.display = "none";
+      document.body.appendChild(element);
+
+      element.click();
+      document.body.removeChild(element);
     },
     async eliminar(val) {
       this.$q
