@@ -91,6 +91,15 @@
               @click="proforma"
             />
 
+             <q-btn
+              v-if="getOperacionesAbrir_operacion.client.length > 0"
+              size="sm"
+              color="primary"
+              icon-right="local_printshop"
+              label="Carta Característica"
+              @click="caracteristica"
+            />
+
             
           </div>
         </div>
@@ -243,6 +252,20 @@ export default {
       element.click();
       document.body.removeChild(element);
     },
+
+    caracteristica(val) {
+      const url = `https://api.apps.com.pe/cartacaract/${this.buscar}/1`;
+      var element = document.createElement("a");
+      element.setAttribute("href", url);
+      element.setAttribute("download", url);
+
+      element.style.display = "none";
+      document.body.appendChild(element);
+
+      element.click();
+      document.body.removeChild(element);
+    },
+
 
     async cerrarDialogAddServicios() {
       this.agregarServicios = false;
