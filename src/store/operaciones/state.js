@@ -6,6 +6,7 @@ export default function() {
     get_mostrar_ingreso: [],
     get_combo_cliente: [],
     get_combo_referido: [],
+    get_combo_conyuge: [],
     get_lista_vehiculo_ingreso: [],
     operacion: null,
     agregarServicios: false,

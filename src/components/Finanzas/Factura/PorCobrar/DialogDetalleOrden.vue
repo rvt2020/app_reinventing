@@ -18,14 +18,13 @@
           <div class="col-xs-12 col-md-6 q-pa-xs">
             <Amortizar />
           </div>
+          <div class="col-xs-12 col-md-6 q-pa-xs">
+            <TablaProductosdelaOrden />
+          </div>
         </div>
       </q-card-section>
 
       <q-separator />
-
-      <q-card-section style="height: 45%">
-        <TablaProductosdelaOrden />
-      </q-card-section>
     </q-card>
   </div>
 </template>

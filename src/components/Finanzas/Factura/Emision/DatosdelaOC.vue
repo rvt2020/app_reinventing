@@ -2,14 +2,7 @@
   <div>
     <div class="row">
       <div class="col"><u>Datos de la Factura </u></div>
-      <div class="col text-right q-pa-xs">
-        <!--<q-btn
-          size="8px"
-          @click="actualizar"
-          color="primary"
-          label="Actualizar"
-        />--> 
-      </div>
+      
     </div>
     <!--    {{ info }}-->
     <q-card flat bordered>
@@ -17,43 +10,66 @@
         <tbody>
           <tr>
             <td class="text-left">Código</td>
-            <td class="text-right">{{ info.operac[0].co_factur }}</td>
+            <td class="text-left">{{ info.operac[0].co_factur }}</td>
           </tr>
           <tr>
             <td class="text-left">Nro.Documento</td>
-            <td class="text-right">{{ info.operac[0].nu_docume }}</td>
+            <td class="text-left">
+                <q-input v-model="info.operac[0].nu_docume" />
+                </td>
           </tr>
           <tr>
             <td class="text-left">Fecha Emisión</td>
-            <td class="text-right">{{ info.operac[0].fe_emisio }}</td>
+            <td class="text-left">{{ info.operac[0].fe_emisio }}</td>
           </tr>
           <tr>
             <td class="text-left">Cliente</td>
-            <td class="text-right">{{ info.operac[0].no_client }}</td>
+            <td class="text-left">{{ info.operac[0].no_client }}</td>
           </tr>
           <tr>
             <td class="text-left">Tipo de Documento</td>
-            <td class="text-right">{{ info.operac[0].no_docume }}</td>
+            <td class="text-left">{{ info.operac[0].no_docume }}</td>
           </tr>
           <tr>
             <td class="text-left">Estado</td>
-            <td class="text-right">{{ info.operac[0].no_estado }}</td>
+            <td class="text-left">{{ info.operac[0].no_estado }}</td>
           </tr>
           <tr>
             <td class="text-left">Base Imponible</td>
-            <td class="text-right">{{ info.operac[0].im_basimp }}</td>
+            <td class="text-left">{{ info.operac[0].im_basimp }}</td>
           </tr>
           <tr>
             <td class="text-left">IGV</td>
-            <td class="text-right">{{ info.operac[0].im_totigv }}</td>
+            <td class="text-left">{{ info.operac[0].im_totigv }}</td>
           </tr>
           <tr>
             <td class="text-left">Total</td>
-            <td class="text-right">{{ info.operac[0].im_pretot }}</td>
+            <td class="text-left">{{ info.operac[0].im_pretot }}</td>
+          </tr>
+          <tr>
+            <td class="text-left">Documento</td>
+            <td class="text-left">
+              <q-uploader
+                auto-upload
+                :url="urlimagen"
+                label="Adjuntar Archivo"
+                color="primary"
+                text-color="black"
+                no-thumbnails
+                class="full-width"
+                @uploaded="uploaded"
+                />
+            </td>
           </tr>
         </tbody>
       </q-markup-table>
     </q-card>
+    <div class="row">
+        <div class="col-xs-2 col-md-2 q-pa-xs">
+        <q-btn color="green" @click="actualizar" label="Actualizar" />
+      </div>
+      
+    </div>
   </div>
 </template>
 
@@ -61,15 +77,92 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   props: ["info"],
-  name: "DatosdelaOC",
-  methods: {
-    ...mapActions("finanzas", ["call_update_factur"]),
-    async actualizar() {
-      await this.call_update_factur({
-        co_factur: this.co_factur,
-        ti_estado: this.ti_estado
-      });
+  computed: {
+    foo: {
+      get() {
+        return this.dataEdit;
+      },
+      set(value) {
+        this.$store.commit("main/foo", value);
+      }
+    },
+    urlimagen() {
+      return `${process.env.Imagen_URL}/upload`;
     }
+  },
+  name: "DatosdelaOC",
+  data() {
+    return {
+      options2: this.getMaterialesCategorias,
+      tipo: 1,
+      dataEdit: [],
+      co_factur: "",
+      nu_docume: ""
+    };
+  },
+  methods: {
+    ...mapActions("finanzas", [
+      "call_update_factur_docume",
+      "call_listar_operac_encont",
+      "call_manten_produc_factur",
+      "call_listar_detall_factur",
+      "call_inform_factur",
+      "call_catalogo_entfin",
+      "call_catalogo_tipdoc",
+      "call_amorti_factur",
+      "call_listar_factur"
+    ]),
+
+    uploaded(files) {
+      console.log("subio");
+      console.log(files);
+      const response = JSON.parse(files.xhr.response).name;
+      this.$q.notify({
+        message: response
+      });
+      console.log(response);
+      this.$store.commit("example/arcadj", response);
+    },
+    
+    async cerrar() {
+      this.$q.loading.show();
+      await this.call_listar_factur({
+        fe_regdes: "",
+        fe_reghas: "",
+        no_client: "",
+        nu_factur: "",
+        ti_estado: "Por Cobrar",
+        co_operac: "",
+        ti_bandej: 2
+      });
+      this.$store.commit("finanzas/dialogDetalleOrden", false);
+      this.$q.loading.hide();
+    },
+
+    async actualizar() {
+      console.log("Entra");
+      this.loadboton = true;
+
+      await this.call_update_factur_docume({
+        co_factur: `${this.info.operac[0].co_factur}`,
+        nu_docume: `${this.info.operac[0].nu_docume}`,
+        co_arcadj: `${this.$store.state.example.arcadj}`
+      });
+
+      await this.call_listar_factur({
+            fe_regdes: "",
+            fe_reghas: "",
+            no_client: "",
+            nu_factur: "",
+            ti_estado: "Por Cobrar",
+            co_operac: "",
+            ti_bandej: 2
+            });
+      this.$store.commit("finanzas/dialogCrear", false);
+      this.cerrar();
+      // }
+    }
+
   }
 };
 </script>

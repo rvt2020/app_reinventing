@@ -30,6 +30,10 @@ export function get_combo_referido(state) {
   return state.get_combo_referido;
 }
 
+export function get_combo_conyuge(state) {
+  return state.get_combo_conyuge;
+}
+
 export function get_tctipdes(state) {
   return state.get_tctipdes;
 }

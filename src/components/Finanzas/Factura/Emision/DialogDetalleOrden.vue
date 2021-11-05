@@ -16,15 +16,14 @@
           </div>
           <div class="col-xs-12 col-md-8 q-pa-xs">
             <TablaProductosdelaOrden />
+             <BuscarProductos />
           </div>
+          
         </div>
       </q-card-section>
 
       <q-separator />
 
-      <q-card-section style="height: 45%">
-        <BuscarProductos />
-      </q-card-section>
     </q-card>
   </div>
 </template>

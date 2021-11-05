@@ -67,8 +67,8 @@
                     </tr>
                     <tr>
                       <td class="text-left">Motor</td>
-                      <td class="text-rifht">
-                        {{ dataIngresoVehicular.nu_motveh }}
+                      <td class="text-right">
+                        <q-input filled dense v-model="dataIngresoVehicular.nu_motveh" />
                       </td>
                     </tr>
                     <tr>
@@ -81,6 +81,7 @@
                 </q-markup-table>
               </q-card>
             </div>
+
             <div class="col-xs-12 col-md-6 q-pa-xs">
               <q-card flat bordered class="my-card">
                 <q-markup-table dense>

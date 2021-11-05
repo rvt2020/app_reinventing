@@ -137,8 +137,18 @@ export default {
           align: "left",
           sortable: true
         },
-        { name: "no_factur", align: "center",label: "Código", field: "no_factur" },
-        { name: "nu_docume", align: "center",label: "Nro.Documento", field: "nu_docume" },
+        { 
+          name: "no_factur", 
+          align: "center",
+          label: "Código", 
+          field: "no_factur" 
+        },
+        { 
+          name: "nu_docume", 
+          align: "center",
+          label: "Nro.Documento", 
+          field: "nu_docume" 
+        },
         { name: "no_estado", align: "center",label: "Estado", field: "no_estado" },
         {
           name: "im_basimp",
