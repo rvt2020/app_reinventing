@@ -57,6 +57,13 @@ export async function call_combo_referido({ commit }) {
   commit("get_combo_referido", response.data);
 }
 
+export async function call_combo_conyuge({ commit }) {
+  const response = await axiosInstance.get(`/operacflujo/combo_conyuge`);
+  console.log(response.data);
+  commit("get_combo_conyuge", response.data);
+}
+
+
 export async function call_lista_vehiculo_ingreso({ commit }, payload) {
   const response = await axiosInstance.get(
     `/operacflujo/lista_vehiculo_ingreso/${payload}`

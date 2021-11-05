@@ -42,6 +42,10 @@ export function get_combo_referido(state, payload) {
   state.get_combo_referido = payload
 }
 
+export function get_combo_conyuge(state, payload) {
+  state.get_combo_conyuge = payload
+}
+
 export function get_lista_vehiculo_ingreso(state, payload) {
   state.get_lista_vehiculo_ingreso = payload
 }

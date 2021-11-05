@@ -55,15 +55,7 @@
                               </q-item-section>
                             </q-item>
                           </template>
-                          <template v-slot:append>
-                            <q-btn
-                              round
-                              dense
-                              flat
-                              icon="add"
-                              @click="seleccliente = !seleccliente"
-                            />
-                          </template>
+                          
                         </q-select>
                         <q-input v-else filled dense v-model="doc_ide">
                           <template v-slot:append>
@@ -96,6 +88,34 @@
                         <q-input filled dense v-model="nom_cli" />
                       </td>
                     </tr>
+                    <tr>
+                    <td class="text-left">Cónyuge</td>
+                    <td class="text-right">
+                      <q-select
+                        filled
+                        v-model="conyugeSelect"
+                        clearable
+                        use-input
+                        hide-selected
+                        fill-input
+                        input-debounce="0"
+                        label="Buscar"
+                        :options="optionsc"
+                        option-label="no_conyug"
+                        emit-value
+                        map-options
+                        @filter="filterC"
+                      >
+                        <template v-slot:no-option>
+                          <q-item>
+                            <q-item-section class="text-grey">
+                              No results
+                            </q-item-section>
+                          </q-item>
+                        </template>
+                      </q-select>
+                    </td>
+                  </tr>
                   </tbody>
                 </q-markup-table>
               </q-card>
@@ -105,46 +125,46 @@
         <!-- DATOS DEL VENDEDOR -->
         <div class="row">
           <div class="col-xs-12 col-md-12 q-pa-xs">
-              <q-card flat bordered class="my-card">
-                <q-markup-table dense>
-                  <thead>
-                    <tr>
-                      <td class="text-left text-h6">Vendedor</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="text-left">Nombres o Apellido</td>
-                      <td class="text-right">
-                        <q-select
-                          filled
-                          v-model="referidoSelect"
-                          clearable
-                          use-input
-                          hide-selected
-                          fill-input
-                          input-debounce="0"
-                          label="Buscar"
-                          :options="optionsr"
-                          option-label="no_referi"
-                          emit-value
-                          map-options
-                          @filter="filterR"
-                        >
-                          <template v-slot:no-option>
-                            <q-item>
-                              <q-item-section class="text-grey">
-                                No results
-                              </q-item-section>
-                            </q-item>
-                          </template>
-                        </q-select>
-                      </td>
-                    </tr>
-                  </tbody>
-                </q-markup-table>
-              </q-card>
-            </div>
+            <q-card flat bordered class="my-card">
+              <q-markup-table dense>
+                <thead>
+                  <tr>
+                    <td class="text-left text-h6">Vendedor</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">Nombres o Apellido</td>
+                    <td class="text-right">
+                      <q-select
+                        filled
+                        v-model="referidoSelect"
+                        clearable
+                        use-input
+                        hide-selected
+                        fill-input
+                        input-debounce="0"
+                        label="Buscar"
+                        :options="optionsr"
+                        option-label="no_referi"
+                        emit-value
+                        map-options
+                        @filter="filterR"
+                      >
+                        <template v-slot:no-option>
+                          <q-item>
+                            <q-item-section class="text-grey">
+                              No results
+                            </q-item-section>
+                          </q-item>
+                        </template>
+                      </q-select>
+                    </td>
+                  </tr>
+                </tbody>
+              </q-markup-table>
+            </q-card>
+          </div>
         </div>
         
         <!-- DATOS DE LA VENTA FINAL  -->
@@ -306,7 +326,7 @@ export default {
     ...mapState("comercial", ["dialogOperacion"]),
     ...mapGetters("personas", ["getPersonasFilter"]),
     ...mapGetters("comercial", ["get_inform_vehicu", "get_catalogo_tctipveh", "get_catalogo_tctipdct", "get_resultado_calculo"]),
-    ...mapGetters("operaciones", ["get_combo_cliente", "get_combo_referido"]),
+    ...mapGetters("operaciones", ["get_combo_cliente", "get_combo_referido", "get_combo_conyuge"]),
     ...mapGetters("tramites", ["get_catalogo_tcmoneda"])
     
   },
@@ -334,12 +354,18 @@ export default {
       val_des: 0,
       tip_cam: 4.0,
       clienteSelect: null,
-      referidoSelect: null,
       seleccliente: true,
-      optionsr: [],
-      newoptionsr: [],
       options: [],
       newoptions: [],
+      
+      referidoSelect: null,
+      optionsr: [],
+      newoptionsr: [],
+      
+      conyugeSelect: null,
+      optionsc: [],
+      newoptionsc: [],
+      
       columns: [
         { name: "name", required: true, label: "Dessert (100g serving)", align: "left", field: row => row.name, format: val => `${val}`, sortable: true },
         {name: "calories", align: "center", label: "Calories", field: "calories", sortable: true },
@@ -376,7 +402,7 @@ export default {
         "call_insert_calculo_venta",
         "call_resete_calcul"
       ]),
-    ...mapActions("operaciones", ["call_combo_cliente", "call_combo_referido"]),
+    ...mapActions("operaciones", ["call_combo_cliente", "call_combo_referido", "call_combo_conyuge"]),
     ...mapActions("tramites", ["call_catalogo_tcmoneda"]),
     ...mapActions("personas", ["callPersonasFilter"]),  
     
@@ -416,6 +442,24 @@ export default {
       });
     },
     
+    filterC(val, update, abort) {
+      let asd = [];
+      for (let index = 0; index < this.newoptionsc.length; index++) {
+        const elementc = this.newoptionsc[index];
+        if (elementc.no_conyug) {
+          asd.push(elementc);
+        }
+      }
+      // console.log("asd", asd);
+      update(() => {
+        const needle = val.toLowerCase();
+        // console.log(needle);
+        this.optionsc = asd.filter(
+          (v) => v.no_conyug.toLowerCase().indexOf(needle) > -1
+        );
+      });
+    },
+    
     async buscarPersonas() {
       this.doc_ide = this.clienteSelect.co_docide;
       this.ape_pat = this.clienteSelect.no_apepat;
@@ -436,7 +480,8 @@ export default {
           co_client: this.clienteSelect.co_person,
           co_usuari: this.$q.localStorage.getAll().UserDetalle.co_person,
           co_person: this.referidoSelect.co_referi,
-          co_moneda: this.moneda
+          co_moneda: this.moneda,
+          co_conyug: this.conyugeSelect.co_conyug
         });
         console.log(response);
         if (response.res == "ok") {
@@ -486,10 +531,15 @@ export default {
 
       await this.call_catalogo_tctipdct();
       await this.call_catalogo_tcmoneda();
+      
       await this.call_combo_referido();
       this.optionsr = this.get_combo_referido.client;
       this.newoptionsr = this.get_combo_referido.client;
-
+      
+      await this.call_combo_conyuge();
+      this.optionsc = this.get_combo_conyuge.client;
+      this.newoptionsc = this.get_combo_conyuge.client;
+      
       await this.call_combo_cliente();
       this.options = this.get_combo_cliente.client;
       this.newoptions = this.get_combo_cliente.client;
@@ -515,6 +565,10 @@ export default {
     await this.call_combo_referido();
     this.optionsr = this.get_combo_referido.client;
     this.newoptionsr = this.get_combo_referido.client;
+    
+    await this.call_combo_conyuge();
+    this.optionsc = this.get_combo_conyuge.client;
+    this.newoptionsc = this.get_combo_conyuge.client;
     
     await this.call_combo_cliente();
     this.options = this.get_combo_cliente.client;

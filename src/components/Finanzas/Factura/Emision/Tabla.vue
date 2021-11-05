@@ -48,6 +48,18 @@
         </q-td>
       </template>
       
+      <template v-slot:body-cell-ver="props">
+        <q-td :props="props">
+          <q-btn
+            size="xs"
+            icon="visibility"
+            color="info"
+            @click="verarchivos(props.row)"
+          />
+        </q-td>
+      </template>
+      
+
       <template v-slot:body-cell-accion="props">
         <q-td :props="props">
           <div class="row q-gutter-xs">
@@ -79,7 +91,15 @@
     >
       <DialogGenerarOperacion />
     </q-dialog>
+    <q-dialog v-model="visor">
+      <q-card>
+        <div v-for="item in arcadjs">
+          <a :href="item.url" target="_blank">{{ item.url }}</a>
+        </div>
 
+        <!--        {{ arcadjs }}-->
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 <script>
@@ -175,6 +195,14 @@ export default {
           sortable: true
         },
         {
+          name: "ver",
+          label: "Archivo",
+          field: "ver",
+          align: "center",
+          sortable: true
+        },
+        
+        {
           name: "accion",
           label: "Accion",
           field: "accion",
@@ -191,8 +219,49 @@ export default {
       "call_listar_detall_factur",
       "call_delete_factur",
       "call_listar_factur",
-      "call_update_factur"
+      "call_update_factur",
+      "call_listar_arcadj_factur"
     ]),
+    async verarchivos(val) {
+      try {
+        let URLS = [];
+        console.log(val);
+        // co_ordcom
+        const archivo = await this.call_listar_arcadj_factur({
+          co_factur: val.co_factur
+        });
+        const array = archivo.operac;
+        for (let index = 0; index < array.length; index++) {
+          const element = array[index];
+          console.log(element);
+          const conteo = `${element.co_arcadj}`;
+          const conteoNuevo = conteo.length;
+          console.log("conteo", conteo.length);
+          console.log("elemento", element);
+          if (conteoNuevo > 7) {
+            console.log(`${process.env.Imagen_URL}/files/${element.co_arcadj}`);
+            URLS.push({
+              url: `${process.env.Imagen_URL}/files/${element.co_arcadj}`
+            });
+          } else {
+            console.log(
+              `http://sistema.reinventing.com.pe/image?co_archiv=${element.co_arcadj}`
+            );
+            URLS.push({
+              url: `http://sistema.reinventing.com.pe/image?co_archiv=${element.co_arcadj}`
+            });
+          }
+        }
+        this.arcadjs = URLS;
+        this.visor = true;
+      } catch (e) {
+        console.log(e);
+        this.$q.notify({
+          message: "Intente en otro momento"
+        });
+      }
+    },
+    
     async crearOC() {
       console.log("Crear O/C");
       this.$store.commit("finanzas/dialogCrear", true);

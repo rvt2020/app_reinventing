@@ -100,6 +100,22 @@ const actions = {
     // commit("get_insert_ordcom", response.data);
     return response.data;
   },
+  
+  async call_update_factur_docume({ commit }, payload) {
+    const response = await axiosInstance.post(`/factur/update_factur_docume`, payload);
+    // commit("get_insert_ordcom", response.data);
+    return response.data;
+  },
+  
+  async call_listar_arcadj_factur({ commit }, payload) {
+    const response = await axiosInstance.post(
+      `/factur/listar_arcadj_factur`,
+      payload
+    );
+    return response.data;
+    // commit("get_listar_arcadj_ordcom", response.data);
+  },
+
   async call_catalogo_tcclient({ commit }, payload) {
     const response = await axiosInstance.get(
       `/factur/catalogo/tcclient`,
