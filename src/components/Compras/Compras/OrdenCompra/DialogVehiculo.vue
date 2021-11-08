@@ -397,7 +397,8 @@ export default {
         "call_catalogo_tctipveh", 
         "call_catalogo_tcmoneda", 
         "call_insert_vehven",
-        "call_catalogo_tctipdct"
+        "call_catalogo_tctipdct",
+        "call_listar_vehicu"
         ]),
     ...mapActions("marcas", ["callMarcas"]),
     ...mapActions("modelos", ["callModelosFilter", "callModelosFilterMarca"]),
@@ -444,28 +445,27 @@ export default {
         });
         
         //console.log("responseService", responseService);
-        if (responseService.res == "ok") {
-          this.loadboton = false;
-          this.onResert();
-          this.$q.notify({
-            message: responseService.message
+        this.$q.notify({
+            message: `Se regristró el vehiculo correctamente`
           });
-          await this.call_listar_factur({
-            fe_regdes: "",
-            fe_reghas: "",
-            no_client: "",
-            nu_factur: "",
-            ti_estado: "",
-            co_operac: "",
-            ti_bandej: 0
-          });
-        } else if (responseService.res == "ko") {
-          this.loadboton = false;
-          this.$q.notify({
-            message: `${responseService.message} - verifique los campos`
-          });
-        }
+        await this.call_listar_compra_vehicu();
+      
         this.$q.loading.hide();
+        
+        this.$router.push(`/comercial/Comercial`);
+        this.$router.go();
+        this.loadboton = false;
+        
+        await this.call_listar_vehicu({
+          no_marveh: "",
+          no_modveh: "",
+          no_colveh: "",
+          nu_anoveh: ""
+        });
+        
+        this.$q.loading.hide();
+    
+        
       } catch (error) {
         console.log(error);
         this.$q.notify({
