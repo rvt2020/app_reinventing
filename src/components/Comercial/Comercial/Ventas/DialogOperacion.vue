@@ -362,7 +362,7 @@ export default {
       optionsr: [],
       newoptionsr: [],
       
-      conyugeSelect: null,
+      conyugeSelect: 0,
       optionsc: [],
       newoptionsc: [],
       
@@ -475,31 +475,34 @@ export default {
       await this.call_catalogo_tctipdct();
       try {
         //SP QUE GENERA LA OPERACION
-        const response = await this.call_insert_operac_venta({
-          co_vehicu: this.get_inform_vehicu.resultado[0].co_vehicu,
-          co_client: this.clienteSelect.co_person,
-          co_usuari: this.$q.localStorage.getAll().UserDetalle.co_person,
-          co_person: this.referidoSelect.co_referi,
-          co_moneda: this.moneda,
-          co_conyug: this.conyugeSelect.co_conyug
-        });
-        console.log(response);
-        if (response.res == "ok") {
-          this.$q.notify({
-            message: `${response.message}`,
+        if (this.conyugeSelect.co_conyug == undefined) {
+           await this.call_insert_operac_venta({
+            co_vehicu: this.get_inform_vehicu.resultado[0].co_vehicu,
+            co_client: this.clienteSelect.co_person,
+            co_usuari: this.$q.localStorage.getAll().UserDetalle.co_person,
+            co_person: this.referidoSelect.co_referi,
+            co_moneda: this.moneda,
+            co_conyug: null
           });
-          this.$store.commit("operaciones/agregarServicios", false);
-          this.$store.commit("operaciones/numeroDeOperacion", "33");
-          // this.$store.commit("operaciones/step", "2");
-          this.$router.push(`/operaciones?id=2&op=${response.message}`);
-          this.$router.go();
-          this.loadboton = false;
-        } else if (response.res == "ko") {
-          this.$q.notify({
-            message: `${response.message}`,
-          });
-          this.loadboton = false;
+ 
+        } else {
+           await this.call_insert_operac_venta({
+              co_vehicu: this.get_inform_vehicu.resultado[0].co_vehicu,
+              co_client: this.clienteSelect.co_person,
+              co_usuari: this.$q.localStorage.getAll().UserDetalle.co_person,
+              co_person: this.referidoSelect.co_referi,
+              co_moneda: this.moneda,
+              co_conyug: this.conyugeSelect.co_conyug
+            });
         }
+        this.$q.notify({
+            message: `Se regristró la operación correctamente`
+          });
+        this.$router.push(`/operaciones?id=5`);
+        this.$router.go();
+        this.loadboton = false;
+        this.$q.loading.hide();
+    
       } catch (error) {
         console.log(error);
         this.$q.notify({
