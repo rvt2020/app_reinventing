@@ -2,7 +2,7 @@
   <div>
     <!--    {{ get_listar_detall_ordcom }}-->
     <div class="row">
-      <div class="col"><u>Productos de Factura </u></div>
+      <div class="col"><u>Detalle de Factura </u></div>
       <div class="col text-right q-pa-xs">
         <!--<q-btn
           size="8px"
@@ -49,7 +49,7 @@ export default {
   name: "TablaProductosdelaOrden",
   computed: {
     ...mapState("finanzas", ["documentoVenta"]),
-    ...mapGetters("finanzas", ["get_listar_detall_factur"])
+    ...mapGetters("finanzas", ["get_listar_detall_factur", "get_listar_operac_factur", "get_listar_caract_vehicu"])
   },
   data() {
     return {
@@ -74,15 +74,15 @@ export default {
           name: "name",
           required: true,
           label: "Código",
-          align: "left",
+          align: "center",
           field: row => row.co_factur,
           format: val => `${val}`,
           sortable: true
         },
         {
           name: "co_facdet",
-          align: "left",
-          label: "ID",
+          align: "center",
+          label: "Id",
           field: "co_facdet",
           sortable: true
         },
@@ -96,15 +96,15 @@ export default {
         {
           name: "va_cantid",
           align: "right",
-          label: "Cantidad",
+          label: "Operación",
           field: "va_cantid"
         },
-        {
+        /*{
           name: "im_preuni",
           align: "right",
           label: "Precio U.",
           field: "im_preuni"
-        },
+        },*/
         {
           name: "im_basimp",
           align: "right",
@@ -140,7 +140,9 @@ export default {
       "call_manten_produc_factur",
       "call_listar_detall_factur",
       "call_delete_detalle_factur",
-      "call_inform_factur"
+      "call_inform_factur",
+      "call_listar_operac_factur",
+      "call_listar_caract_vehicu"
     ]),
     async eliminar(val) {
       this.$q.loading.show();
@@ -162,6 +164,13 @@ export default {
       await this.call_listar_detall_factur({
         co_factur: `${val.co_factur}`
       });
+      await this.call_listar_caract_vehicu({
+        co_factur: `${val.co_factur}`
+      });
+      await this.call_listar_operac_factur({
+        co_factur: `${val.co_factur}`
+      });
+      
       this.$q.loading.hide();
     },
     async acrtualizar() {
@@ -185,6 +194,13 @@ export default {
       await this.call_listar_detall_factur({
         co_factur: this.documentoVenta,
       });
+      await this.call_listar_caract_vehicu({
+        co_factur: this.documentoVenta,
+      });
+      await this.call_listar_operac_factur({
+        co_factur: this.documentoVenta,
+      });
+      
       this.$q.loading.hide();
     },
     async buscarProductos() {
@@ -194,6 +210,7 @@ export default {
         co_plaveh: this.placa,
         co_operac: this.operacion
       });
+      
     }
   }
 };

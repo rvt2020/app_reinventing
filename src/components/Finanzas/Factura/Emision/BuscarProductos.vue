@@ -49,7 +49,7 @@
     </div>
     <div class="col-xs-12 col-md-12 q-pa-xs">
       <div class="row">
-        <div class="col"><u>Operaciones Encontrados </u></div>
+        <div class="col"><u>Operaciones </u></div>
         <div class="col text-right q-pa-xs">
           <!--          <q-btn size="8px" color="primary" label="Agregar" />-->
         </div>
@@ -78,6 +78,18 @@
                 dense
                 label="agregar"
               />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-im_adelan="props">
+            <q-td class="text-center" :props="props">
+              <q-input
+                color="green"
+                dense
+                reverse-fill-mask
+                v-model="props.row.im_adelan"
+                style="padding: 2px 2px 2px 10px; width: 100px; margin-left: 15px; height: 18px; border-left: gray solid 1px"
+              />
+              <!--          {{ props.row.ingresa }}-->
             </q-td>
           </template>
         </q-table>
@@ -147,6 +159,12 @@ export default {
           name: "im_totope", align: "right", label: "S/.Total", field: "im_totope" , sortable: true
         },
         { 
+          name: "im_pendie", align: "right", label: "S/.Pendiente", field: "im_pendie" , sortable: true
+        },
+        {
+          name: "im_adelan", align: "center", label: "Pago (Inc. IGV)", field: "im_adelan", sortable: true
+        },
+        { 
           name: "accion", label: "Accion", field: "accion" 
         }
       ],
@@ -159,6 +177,7 @@ export default {
       "call_listar_operac_encont",
       "call_manten_produc_factur",
       "call_listar_detall_factur",
+      "call_listar_operac_factur",
       "call_inform_factur"
     ]),
     async agregar(val) {
@@ -167,13 +186,18 @@ export default {
       await this.call_manten_produc_factur({
         co_factur: val.co_factur,
         co_operac: val.co_operac,
-        ti_accion: "I"
+        ti_accion: "I",
+        im_abonad: val.im_adelan
       });
       console.log("buscar - aagregar");
       await this.buscarProductos();
       await this.call_listar_detall_factur({
         co_factur: `${val.co_factur}`
       });
+      await this.call_listar_operac_factur({
+        co_factur: `${val.co_factur}`
+      });
+      
       await this.call_inform_factur({
         co_factur: `${val.co_factur}`
       });

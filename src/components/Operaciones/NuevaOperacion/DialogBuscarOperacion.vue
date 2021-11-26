@@ -20,7 +20,7 @@
                     filled
                     v-model="cod_ope"
                     type="text"
-                    label="Nombre de la Operacion"
+                    label="Nombre del Cliente"
                   />
                 </div>
                 <div class="col-xs-12 col-sm-2 q-pa-xs">

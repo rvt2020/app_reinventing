@@ -516,6 +516,7 @@ export default {
     async calcular() {
       this.$q.loading.show();
       await this.call_insert_calculo_venta({
+        im_preven: this.get_inform_vehicu.resultado[0].nu_serveh,
         co_vehicu: this.get_inform_vehicu.resultado[0].co_vehicu,
         va_tipcam: this.tip_cam,
         ti_desven: this.co_dctven,

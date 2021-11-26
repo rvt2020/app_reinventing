@@ -11,12 +11,15 @@
       </q-bar>
       <q-card-section style="height: 45%">
         <div class="row">
-          <div class="col-xs-12 col-md-4 q-pa-xs">
+          <div class="col-xs-15 col-md-6 q-pa-s">
             <DatosdelaOC :info="get_inform_factur" />
+            <TablaCaracteristicaVehiculo />
           </div>
-          <div class="col-xs-12 col-md-8 q-pa-xs">
+          <div class="col-xs-12 col-md-6 q-pa-xs">
+            <TablaOperacionesFacturadas />
             <TablaProductosdelaOrden />
-             <BuscarProductos />
+            <BuscarProductos />
+            
           </div>
           
         </div>
@@ -38,13 +41,18 @@ export default {
   components: {
     DatosdelaOC: () => import("./DatosdelaOC"),
     TablaProductosdelaOrden: () => import("./TablaProductosdelaOrden"),
+    TablaOperacionesFacturadas: () => import("./TablaOperacionesFacturadas"),
+    TablaCaracteristicaVehiculo: () => import("./TablaCaracteristicaVehiculo"),
     BuscarProductos: () => import("./BuscarProductos")
   },
   computed: {
     ...mapState("finanzas", ["dialogCrear", "dialogDetalleOrden"]),
     ...mapGetters("finanzas", [
       "get_inform_factur",
-      "get_listar_operac_encont"
+      "get_listar_operac_encont",
+      "get_listar_operac_factur",
+      "get_listar_caract_vehicu"
+      
     ])
   },
   name: "DialogDetalleOrden",
