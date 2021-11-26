@@ -165,6 +165,7 @@ export default {
       "call_catalogo_tipdoc",
       "call_listar_detall_factur",
       "call_listar_operac_encont",
+      "call_listar_caract_vehicu",
       "call_listar_factur"
     ]),
     filterFn(val, update, abort) {

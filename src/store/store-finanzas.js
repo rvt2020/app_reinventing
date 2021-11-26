@@ -11,7 +11,9 @@ const state = {
   documentoVenta: null,
   get_catalogo_tcclient: [],
   get_catalogo_tctipdoc: [],
-  get_catalogo_tcentfin: []
+  get_catalogo_tcentfin: [],
+  get_listar_operac_factur: [],
+  get_listar_caract_vehicu: []
 };
 
 const mutations = {
@@ -47,7 +49,14 @@ const mutations = {
   },
   get_catalogo_tcentfin(state, payload) {
     state.get_catalogo_tcentfin = payload;
+  },
+  get_listar_caract_vehicu(state, payload) {
+    state.get_listar_caract_vehicu = payload;
+  },
+  get_listar_operac_factur(state, payload) {
+    state.get_listar_operac_factur = payload;
   }
+
 };
 
 const actions = {
@@ -73,6 +82,14 @@ const actions = {
     );
     commit("get_listar_detall_factur", response.data);
   },
+  async call_listar_operac_factur({ commit }, payload) {
+    const response = await axiosInstance.post(
+      `/factur/listar_operac_factur`,
+      payload
+    );
+    commit("get_listar_operac_factur", response.data);
+  },
+  
   async call_listar_amorti_factur({ commit }, payload) {
     const response = await axiosInstance.post(
       `/factur/listar_amorti`,
@@ -101,6 +118,15 @@ const actions = {
     return response.data;
   },
   
+  async call_listar_caract_vehicu({ commit }, payload) {
+    const response = await axiosInstance.post(
+      `/factur/listar_caract_vehicu`,
+      payload
+    );
+    commit("get_listar_caract_vehicu", response.data);
+  },
+  
+
   async call_update_factur_docume({ commit }, payload) {
     const response = await axiosInstance.post(`/factur/update_factur_docume`, payload);
     // commit("get_insert_ordcom", response.data);
@@ -156,9 +182,16 @@ const getters = {
   get_listar_operac_encont(state) {
     return state.get_listar_operac_encont;
   },
+  get_listar_operac_factur(state) {
+    return state.get_listar_operac_factur;
+  },  
   get_listar_detall_factur(state) {
     return state.get_listar_detall_factur;
   },
+  get_listar_caract_vehicu(state) {
+    return state.get_listar_caract_vehicu;
+  },
+  
   get_listar_amorti_factur(state) {
     return state.get_listar_amorti_factur;
   },

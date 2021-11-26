@@ -217,6 +217,8 @@ export default {
       "call_inform_factur",
       "call_listar_operac_encont",
       "call_listar_detall_factur",
+      "call_listar_operac_factur",
+      "call_listar_caract_vehicu",
       "call_delete_factur",
       "call_listar_factur",
       "call_update_factur",
@@ -326,6 +328,12 @@ export default {
     async generarOperacion(val) {
       this.$q.loading.show();
       this.$store.commit("finanzas/documentoVenta", val.co_factur);
+      await this.call_listar_operac_factur({
+        co_factur: `${val.co_factur}`
+      });
+      await this.call_listar_caract_vehicu({
+        co_factur: `${val.co_factur}`
+      });
       await this.call_inform_factur({
         co_factur: `${val.co_factur}` 
       });

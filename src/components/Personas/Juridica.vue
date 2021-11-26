@@ -27,15 +27,20 @@
             lazy-rules
             :rules="[(val) => (val && val.length > 0) || 'Campo obligatorio']"
           />
+
         </div>
         <div class="col-12">
-          <q-toggle
-            false-value="0"
-            label="Proveedor"
-            true-value="1"
-            color="green"
-            v-model="juridica.swt_pro"
+          <q-input
+            dense
+            ref="nom_com"
+            filled
+            v-model="juridica.nom_com"
+            label="Nombre Comercial"
+            hint="Ingresa Nombre Comercial*"
+            lazy-rules
+            :rules="[(val) => (val && val.length > 0) || 'Campo obligatorio']"
           />
+          
         </div>
       </q-card-section>
       <q-card-actions align="right">
@@ -57,6 +62,7 @@ export default {
         swt_pro: null,
         doc_ide: "",
         raz_soc: "",
+        nom_com: "",
       },
     };
   },
@@ -72,8 +78,10 @@ export default {
       console.log("submit");
       try {
         const respAdd = await this.callPersonasAddJuridica({
-          ...this.juridica,
-          nom_com: this.juridica.raz_soc,
+          doc_ide: this.juridica.doc_ide,
+          raz_soc: this.juridica.raz_soc,
+          nom_com: this.juridica.nom_com
+
         });
         console.log("respAdd", respAdd);
         if (respAdd.res == "ok") {

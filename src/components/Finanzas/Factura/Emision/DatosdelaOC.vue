@@ -15,10 +15,10 @@
           <tr>
             <td class="text-left">Nro.Documento</td>
             <td class="text-left">
-                <q-input v-model="info.operac[0].nu_docume" />
-                </td>
+              <q-input v-model="info.operac[0].nu_docume" />
+            </td>
           </tr>
-          <tr>
+          <tr> 
             <td class="text-left">Fecha Emisión</td>
             <td class="text-left">{{ info.operac[0].fe_emisio }}</td>
           </tr>

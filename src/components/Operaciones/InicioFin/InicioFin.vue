@@ -34,7 +34,7 @@
                 filled
                 dense
                 type="text"
-                label="Tecnico"
+                label="Trabajador"
                 clearable
               />
             </div>

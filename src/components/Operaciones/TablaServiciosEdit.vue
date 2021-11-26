@@ -209,7 +209,7 @@ export default {
         {
           name: "accion",
           align: "right",
-          label: "Accion",
+          label: "",
           field: "accion",
           sortable: true
         }
