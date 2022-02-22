@@ -153,7 +153,7 @@ export default {
           name: "name",
           required: true,
           label: "Fecha",
-          align: "left",
+          align: "center",
           field: row => row.fe_regist,
           format: val => `${this.formatFechaCorta(val)}`,
           sortable: true
@@ -169,16 +169,18 @@ export default {
           name: "no_razsoc",
           label: "Proveedor",
           field: "no_razsoc",
+          align: "left",
           sortable: true
         },
         {
           name: "no_tradoc",
           label: "Tramite Doc",
           field: "no_tradoc",
+          align: "center",
           sortable: true
         },
-        { name: "no_estado", label: "Estado", field: "no_estado" },
-        { name: "co_moneda", label: "Moneda", field: "co_moneda" },
+        { name: "no_estado", label: "Estado", align: "left", field: "no_estado" },
+        { name: "co_moneda", label: "Moneda", align: "left",field: "co_moneda" },
         {
           name: "im_baseim",
           label: "Precio Neto",
@@ -193,7 +195,7 @@ export default {
         },
         {
           name: "ca_articu",
-          label: "Cant. Produc.",
+          label: "Productos",
           field: "ca_articu",
           sortable: true
         },
@@ -201,18 +203,21 @@ export default {
           name: "fe_solici",
           label: "Visado Solicitante",
           field: "fe_solici",
+          align: "center",
           sortable: true
         },
         {
           name: "fe_jefaut",
           label: "Visado Jefatura",
           field: "fe_jefaut",
+          align: "center",
           sortable: true
         },
         {
           name: "ca_arcadj",
           label: "Adjunto",
           field: "ca_arcadj",
+          align: "center",
           sortable: true
         },
         {
@@ -229,6 +234,7 @@ export default {
       "call_inform_tradoc",
       "call_listar_produc_encont",
       "call_listar_detall_tradoc",
+      "call_listar_detall_servic_tradoc",
       "call_delete_tradoc",
       "call_listar_tradoc",
       "call_insert_arcadj",
@@ -366,6 +372,9 @@ export default {
         no_produc: ""
       });
       await this.call_listar_detall_tradoc({
+        co_tradoc: `${val.co_tradoc}`
+      });
+      await this.call_listar_detall_servic_tradoc({
         co_tradoc: `${val.co_tradoc}`
       });
       console.log(val);

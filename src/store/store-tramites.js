@@ -8,7 +8,9 @@ const state = {
   get_listar_pendie_visado_gerencia: [],
   get_inform_tradoc: [],
   get_listar_produc_encont: [],
+  get_listar_servic_encont: [],
   get_listar_detall_tradoc: [],
+  get_listar_detall_servic_tradoc: [],
   tramiteDoc: null,
   get_catalogo_tcprovee: [],
   get_catalogo_tctipdoc: [],
@@ -39,8 +41,14 @@ const mutations = {
   get_listar_produc_encont(state, payload) {
     state.get_listar_produc_encont = payload;
   },
+  get_listar_servic_encont(state, payload) {
+    state.get_listar_servic_encont = payload;
+  },
   get_listar_detall_tradoc(state, payload) {
     state.get_listar_detall_tradoc = payload;
+  },
+  get_listar_detall_servic_tradoc(state, payload) {
+    state.get_listar_detall_servic_tradoc = payload;
   },
   tramiteDoc(state, payload) {
     state.tramiteDoc = payload;
@@ -92,12 +100,26 @@ const actions = {
     );
     commit("get_listar_produc_encont", response.data);
   },
+  async call_listar_servic_encont({ commit }, payload) {
+    const response = await axiosInstance.post(
+      `/tradoc/listar_servic_encont`,
+      payload
+    );
+    commit("get_listar_servic_encont", response.data);
+  },
   async call_listar_detall_tradoc({ commit }, payload) {
     const response = await axiosInstance.post(
       `/tradoc/listar_detall_tradoc`,
       payload
     );
     commit("get_listar_detall_tradoc", response.data);
+  },
+  async call_listar_detall_servic_tradoc({ commit }, payload) {
+    const response = await axiosInstance.post(
+      `/tradoc/listar_detall_servic_tradoc`,
+      payload
+    );
+    commit("get_listar_detall_servic_tradoc", response.data);
   },
   async call_insert_tradoc({ commit }, payload) {
     const response = await axiosInstance.post(`/tradoc/insert_tradoc`, payload);
@@ -149,6 +171,14 @@ const actions = {
     return response.data;
     // commit("get_update_tradoc", response.data);
   },
+  async call_manten_servic_tradoc({ commit }, payload) {
+    const response = await axiosInstance.post(
+      `/tradoc/manten_servic_tradoc`,
+      payload
+    );
+    return response.data;
+    // commit("get_update_tradoc", response.data);
+  },
   async call_delete_tradoc({ commit }, payload) {
     const response = await axiosInstance.post(`/tradoc/delete_tradoc`, payload);
     return response.data;
@@ -185,8 +215,14 @@ const getters = {
   get_listar_produc_encont(state) {
     return state.get_listar_produc_encont;
   },
+  get_listar_servic_encont(state) {
+    return state.get_listar_servic_encont;
+  },
   get_listar_detall_tradoc(state) {
     return state.get_listar_detall_tradoc;
+  },
+  get_listar_detall_servic_tradoc(state) {
+    return state.get_listar_detall_servic_tradoc;
   },
   get_catalogo_tcprovee(state) {
     return state.get_catalogo_tcprovee;

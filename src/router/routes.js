@@ -315,6 +315,13 @@ const routes = [
           import("src/components/Compras/Compras/DocumentoCompras.vue")
 
       },
+      //TIV
+      {
+        path: "tramites/vehiculos",
+        component: () =>
+          import("src/components/Tiv/Tiv/DocumentoTiv.vue")
+      },
+      
       
     ]
   },

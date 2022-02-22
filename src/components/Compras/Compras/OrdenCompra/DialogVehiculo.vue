@@ -78,6 +78,18 @@
                       /> 
                     </td>
                   </tr>
+                  <!-- REGISTRO OTRO MODELO -->
+                  <tr>
+                    <td class="text-left">Otro Modelo (Si no Existe)</td>
+                    <td style="width: 150px;">
+                      <q-input
+                        dense
+                        ref="otromodelo"
+                        filled
+                        v-model="otromodelo"
+                      />
+                    </td>
+                  </tr>
                   <!-- REGISTRO AÑO -->
                   <tr>
                     <td class="text-left">Año</td>
@@ -352,6 +364,7 @@ export default {
       co_moneda: null,
       fechadeemision: "",
       numerodocumento: "",
+      otromodelo: "",
       precioventa: "",
       doc_ide: "",
       ape_pat: "",
@@ -367,6 +380,21 @@ export default {
       newoptionsr: [],
       options: [],
       newoptions: [],
+      
+      //CORREOS
+      no_emisor: "enviacorreos@reinventing.com.pe",
+      no_recept: [
+        "jose.bobadilla@reinventing.com.pe", 
+        "julio.mazuelos@reinventing.com.pe",
+        "norma.cortavitarte@reinventing.com.pe",
+        "joseph.carrion@reinventing.com.pe",
+        "viviana.castro@reinventing.com.pe",
+        "jose.mazuelos@reinventing.com.pe"
+        ],
+      no_asunto: "Solicitud de Facturación de Vehículo",
+      no_mensaj: "Generar Factura del vehículo",
+      no_html: "Buen día.<br><br>Se requiere realizar la factura de la operación 2494.<br><br>Gracias",
+
       columns: [
         { name: "name", required: true, label: "Dessert (100g serving)", align: "left", field: row => row.name, format: val => `${val}`, sortable: true },
         {name: "calories", align: "center", label: "Calories", field: "calories", sortable: true },
@@ -401,6 +429,8 @@ export default {
         "call_listar_vehicu"
         ]),
     ...mapActions("marcas", ["callMarcas"]),
+    ...mapActions("correos", ["call_envia_correo"]),
+    
     ...mapActions("modelos", ["callModelosFilter", "callModelosFilterMarca"]),
     
     uploaded(files) {
@@ -431,7 +461,9 @@ export default {
         const responseService = await this.call_insert_vehven({
           co_ordcom: this.get_inform_compra_art.resultado[0].co_ordcom,
           co_comart: this.get_inform_compra_art.resultado[0].co_comart,
+          co_marveh: this.mar_veh,
           co_modveh: this.mod_veh,
+          no_modveh: this.otromodelo,
           nu_anomod: this.anio,
           nu_serveh: this.chasis,
           nu_motveh: this.motor,
@@ -449,22 +481,12 @@ export default {
             message: `Se regristró el vehiculo correctamente`
           });
         await this.call_listar_compra_vehicu();
-      
+        
         this.$q.loading.hide();
         
         this.$router.push(`/comercial/Comercial`);
         this.$router.go();
-        this.loadboton = false;
-        
-        await this.call_listar_vehicu({
-          no_marveh: "",
-          no_modveh: "",
-          no_colveh: "",
-          nu_anoveh: ""
-        });
-        
-        this.$q.loading.hide();
-    
+        this.loadboton = false;  
         
       } catch (error) {
         console.log(error);

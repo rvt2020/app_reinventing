@@ -69,6 +69,17 @@
           :columns="columns"
           row-key="name"
         >
+          <template v-slot:body-cell-descripcion="props">
+            <q-td :props="props">
+              <q-input
+                filled
+                input-class="text-left"
+                v-model="props.row.descripcion"
+                dense
+                size="50"
+              />
+            </q-td>
+          </template>
           <template v-slot:body-cell-cantidad="props">
             <q-td :props="props">
               <q-input
@@ -76,6 +87,7 @@
                 input-class="text-right"
                 v-model="props.row.cantidad"
                 dense
+                size="4"
               />
             </q-td>
           </template>
@@ -131,21 +143,43 @@ export default {
         },
         {
           name: "no_catego",
-          align: "center",
+          align: "left",
           label: "Categoría",
           field: "no_catego",
           sortable: true
         },
         {
           name: "no_subcat",
+          align: "left",
           label: "Sub Categoría",
           field: "no_subcat",
           sortable: true
         },
-        { name: "co_barpro", label: "Código", field: "co_barpro" },
-        { name: "no_produc", label: "Producto", field: "no_produc" },
-        { name: "cantidad", label: "Cantidad", field: "cantidad" },
-        { name: "accion", label: "Accion", field: "accion" }
+        { 
+          name: "co_barpro", 
+          align: "center",
+          label: "Código", 
+          field: "co_barpro" 
+        },
+        { 
+          name: "no_produc", 
+          align: "left",
+          label: "Producto", 
+          field: "no_produc" 
+        },
+        { 
+          name: "descripcion", 
+          align: "left",
+          label: "Descripción / Comentario", 
+          field: "descripcion" 
+        },
+        { 
+          name: "cantidad", 
+          align: "right",
+          label: "Cantidad", 
+          field: "cantidad" 
+        },
+        { name: "accion", label: "", field: "accion" }
       ],
 
       data: []
@@ -166,6 +200,7 @@ export default {
         ca_articu: val.cantidad,
         co_moneda: 28,
         im_preuni: 0,
+        no_descri: val.descripcion,
         ti_accion: "I"
       });
       console.log("buscar - aagregar");

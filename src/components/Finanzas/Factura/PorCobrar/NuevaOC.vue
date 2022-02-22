@@ -104,7 +104,8 @@ export default {
     ...mapGetters("finanzas", [
       "get_catalogo_tcclient",
       "get_catalogo_tctipdoc",
-      "get_catalogo_tcentfin"
+      "get_catalogo_tcentfin",
+      "get_catalogo_tcmonabo"
     ]),
     foo: {
       get() {
@@ -163,6 +164,7 @@ export default {
     ...mapActions("finanzas", [
       "call_insert_factur",
       "call_catalogo_tcclient",
+      "call_catalogo_monabo",
       "call_catalogo_tipdoc",
       "call_listar_detall_factur",
       "call_listar_operac_encont",
@@ -250,6 +252,7 @@ export default {
     this.$q.loading.show();
     this.call_catalogo_tcclient();
     this.call_catalogo_tipdoc();
+    this.call_catalogo_monabo();
     console.log("mounted - crear - materiales");
     // await this.callMaterialesEmpresas();
     this.mostrarFormulario = true;
