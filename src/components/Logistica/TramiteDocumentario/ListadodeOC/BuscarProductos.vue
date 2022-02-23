@@ -2,8 +2,9 @@
   <div class="row">
     <div class="col-xs-12 col-md-12 q-pa-xs">
       <!--      {{ get_listar_produc_encont }}-->
-      <q-card flat bordered>
-        <div class="row">
+      <div class="col"><u>Filtro Repuestos / Servicios </u></div>
+        <q-card flat bordered>
+          <div class="row">
           <div class="col-xs-12 col-md-2 q-pa-xs">
             <q-input
               autofocus
@@ -11,28 +12,10 @@
               disable
               filled
               v-model="tramiteDoc"
-              label="O/C"
+              label="T/D"
             />
           </div>
-          <div class="col-xs-12 col-md-3 q-pa-xs">
-            <q-select
-              filled
-              dense
-              v-model="categoria"
-              :options="options"
-              label="Categoría"
-            />
-          </div>
-          <div class="col-xs-12 col-md-3 q-pa-xs">
-            <q-select
-              filled
-              dense
-              v-model="subcategoria"
-              :options="options"
-              label="Subcategoria"
-            />
-          </div>
-          <div class="col-xs-12 col-md-3 q-pa-xs">
+          <div class="col-xs-12 col-md-8 q-pa-xs">
             <q-input
               autofocus
               dense
@@ -49,7 +32,7 @@
     </div>
     <div class="col-xs-12 col-md-12 q-pa-xs">
       <div class="row">
-        <div class="col"><u>Productos Encontrados </u></div>
+        <div class="col"><u>Repuestos / Servicios Encontrados </u></div>
         <div class="col text-right q-pa-xs">
           <!--          <q-btn size="8px" color="primary" label="Agregar" />-->
         </div>
@@ -76,9 +59,23 @@
                 input-class="text-right"
                 v-model="props.row.cantidad"
                 dense
+                size="5"
               />
             </q-td>
           </template>
+          <!--
+          <template v-slot:body-cell-co_operac="props">
+            <q-td :props="props">
+              <q-input
+                filled
+                input-class="text-right"
+                v-model="props.row.co_operac"
+                dense
+                size="5"
+              />
+            </q-td>
+          </template>
+          -->
           <template v-slot:body-cell-accion="props">
             <q-td :props="props">
               <q-btn
@@ -102,7 +99,10 @@ export default {
   name: "TablaProductosdelaOrden",
   computed: {
     ...mapState("tramites", ["tramiteDoc"]),
-    ...mapGetters("tramites", ["get_listar_produc_encont"])
+    ...mapGetters("tramites", [
+        "get_listar_servic_encont", 
+        "get_listar_produc_encont"
+      ])
   },
   data() {
     return {
@@ -123,7 +123,7 @@ export default {
         {
           name: "name",
           required: true,
-          label: "O/C",
+          label: "T/D",
           align: "left",
           field: row => row.co_tradoc,
           format: val => `${val}`,
@@ -131,31 +131,54 @@ export default {
         },
         {
           name: "no_catego",
-          align: "center",
+          align: "left",
           label: "Categoría",
           field: "no_catego",
           sortable: true
         },
         {
           name: "no_subcat",
+          align: "left",
           label: "Sub Categoría",
           field: "no_subcat",
           sortable: true
         },
-        { name: "co_barpro", label: "Código", field: "co_barpro" },
-        { name: "no_produc", label: "Producto", field: "no_produc" },
-        { name: "cantidad", label: "Cantidad", field: "cantidad" },
-        { name: "accion", label: "Accion", field: "accion" }
+        { 
+          name: "no_produc", 
+          align: "left",
+          label: "Producto", 
+          field: "no_produc" 
+        },
+        { 
+          name: "cantidad", 
+          label: "Cantidad", 
+          field: "cantidad",
+          align: "right"
+        },
+        /*{ 
+          name: "co_operac", 
+          label: "Operación", 
+          field: "co_operac",
+          align: "right"
+        },*/
+        { 
+          name: "accion", 
+          label: "", 
+          field: "accion" }
       ],
 
       data: []
     };
-  },
+  }, 
   methods: {
     ...mapActions("tramites", [
-      "call_listar_produc_encont",
       "call_manten_produc_tradoc",
-      "call_listar_detall_tradoc"
+      "call_manten_servic_tradoc",
+      "call_listar_detall_tradoc",
+      "call_listar_detall_servic_tradoc",
+      "call_listar_servic_encont",
+      "call_listar_produc_encont"
+
     ]),
     async agregar(val) {
       this.$q.loading.show();
@@ -170,7 +193,13 @@ export default {
       });
       console.log("buscar - aagregar");
       await this.buscarProductos();
+      
       await this.call_listar_detall_tradoc({
+        co_tradoc: `${val.co_tradoc}`
+      });
+      this.$q.loading.hide();
+
+      await this.call_listar_detall_servic_tradoc({
         co_tradoc: `${val.co_tradoc}`
       });
       this.$q.loading.hide();

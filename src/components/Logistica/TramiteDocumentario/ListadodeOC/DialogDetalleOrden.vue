@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-card :class="$q.screen.gt.md ? 'full-height' : ''" square>
+    <q-card :class="$q.screen.gt.md ? 'min-height' : ''" square>
       <!--      {{ get_inform_tradoc }}-->
       <q-bar class="bg-primary text-white">
         DETALLE TRAMITE DOCUMENTARIO
@@ -9,22 +9,22 @@
           <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
         </q-btn>
       </q-bar>
-      <q-card-section style="height: 45%">
+      <q-card-section style="height: 50%">
         <div class="row">
-          <div class="col-xs-12 col-md-4 q-pa-xs">
+          <div class="col-xs-12 col-md-6 q-pa-xs">
             <DatosdelaOC :info="get_inform_tradoc" />
-          </div>
-          <div class="col-xs-12 col-md-8 q-pa-xs">
             <TablaProductosdelaOrden />
+            <TablaServiciosdelaOrden />
+          </div>
+          <div class="col-xs-12 col-md-6 q-pa-xs">
+            <BuscarProductos />
+            <BuscarServicios />
           </div>
         </div>
       </q-card-section>
 
-      <q-separator />
-
-      <q-card-section style="height: 45%">
-        <BuscarProductos />
-      </q-card-section>
+      
+      
     </q-card>
   </div>
 </template>
@@ -35,11 +35,19 @@ export default {
   components: {
     DatosdelaOC: () => import("./DatosdelaOC"),
     TablaProductosdelaOrden: () => import("./TablaProductosdelaOrden"),
-    BuscarProductos: () => import("./BuscarProductos")
+    TablaServiciosdelaOrden: () => import("./TablaServiciosdelaOrden"),
+    BuscarProductos: () => import("./BuscarProductos"),
+    BuscarServicios: () => import("./BuscarServicios")
   },
   computed: {
     ...mapState("tramites", ["dialogCrear", "dialogDetalleOrden"]),
-    ...mapGetters("tramites", ["get_inform_tradoc", "get_listar_produc_encont"])
+    ...mapGetters("tramites", [
+        "get_inform_tradoc", 
+        "get_listar_produc_encont", 
+        "get_listar_servic_encont",
+        "get_listar_detall_tradoc", 
+        "get_listar_detall_servic_tradoc"  
+      ])
   },
   name: "DialogDetalleOrden",
   data() {

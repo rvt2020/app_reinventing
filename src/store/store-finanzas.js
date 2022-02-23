@@ -11,6 +11,7 @@ const state = {
   documentoVenta: null,
   get_catalogo_tcclient: [],
   get_catalogo_tctipdoc: [],
+  get_catalogo_tcmonabo: [],
   get_catalogo_tcentfin: [],
   get_listar_operac_factur: [],
   get_listar_caract_vehicu: []
@@ -46,6 +47,9 @@ const mutations = {
   },
   get_catalogo_tctipdoc(state, payload) {
     state.get_catalogo_tctipdoc = payload;
+  },
+  get_catalogo_tcmonabo(state, payload) {
+    state.get_catalogo_tcmonabo = payload;
   },
   get_catalogo_tcentfin(state, payload) {
     state.get_catalogo_tcentfin = payload;
@@ -126,12 +130,11 @@ const actions = {
     commit("get_listar_caract_vehicu", response.data);
   },
   
-
   async call_update_factur_docume({ commit }, payload) {
     const response = await axiosInstance.post(`/factur/update_factur_docume`, payload);
     // commit("get_insert_ordcom", response.data);
     return response.data;
-  },
+  }, 
   
   async call_listar_arcadj_factur({ commit }, payload) {
     const response = await axiosInstance.post(
@@ -149,14 +152,22 @@ const actions = {
     );
     commit("get_catalogo_tcclient", response.data);
   },
+  
   async call_catalogo_tipdoc({ commit }) {
     const response = await axiosInstance.get(`/factur/catalogo/tctipdoc`);
     commit("get_catalogo_tctipdoc", response.data);
   },
+  
+  async call_catalogo_monabo({ commit }) {
+    const response = await axiosInstance.get(`/factur/catalogo/tcmonabo`);
+    commit("get_catalogo_tcmonabo", response.data);
+  },
+  
   async call_catalogo_entfin({ commit }) {
     const response = await axiosInstance.get(`/factur/catalogo/tcentfin`);
     commit("get_catalogo_tcentfin", response.data);
   },
+  
   async call_manten_produc_factur({ commit }, payload) {
     const response = await axiosInstance.post(
       `/factur/manten_detalle_factur`,
@@ -165,6 +176,7 @@ const actions = {
     return response.data;
     // commit("get_update_ordcom", response.data);
   },
+  
   async call_delete_factur({ commit }, payload) {
     const response = await axiosInstance.post(`/factur/delete_factur`, payload);
     return response.data;
@@ -201,6 +213,11 @@ const getters = {
   get_catalogo_tctipdoc(state) {
     return state.get_catalogo_tctipdoc;
   },
+  
+  get_catalogo_tcmonabo(state) {
+    return state.get_catalogo_tcmonabo;
+  },
+  
   get_catalogo_tcentfin(state) {
     return state.get_catalogo_tcentfin;
   }

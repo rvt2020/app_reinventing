@@ -80,6 +80,7 @@
     <div>
       <DialogCrear :tipo="tipo" :info="dataEdit" />
     </div>
+    
     <q-dialog
       v-model="dialogDetalleOrden"
       persistent
@@ -91,6 +92,7 @@
     >
       <DialogGenerarOperacion />
     </q-dialog>
+    
     <q-dialog v-model="visor">
       <q-card>
         <div v-for="item in arcadjs">
@@ -102,6 +104,7 @@
     </q-dialog>
   </div>
 </template>
+
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 import { MixinDefault } from "../../../../mixins/mixin";

@@ -66,6 +66,32 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-xs-12 col-md-13 q-pa-xs">
+            <q-select
+              filled
+              dense
+              v-model="moneda"
+              :options="get_catalogo_tcmonabo.operac"
+              option-label="no_moneda"
+              option-value="co_moneda"
+              emit-value
+              map-options
+              label="Moneda"
+              />
+          </div>
+        </div>
+        <div class="row">
+           <div class="col-xs-12 col-md-13 q-pa-xs">
+            <q-input
+              autofocus
+              dense
+              filled
+              v-model="cuentabanco"
+              label="Número de Cuenta"
+            />
+          </div>
+        </div>
+        <div class="row">
            <div class="col-xs-12 col-md-13 q-pa-xs">
             <q-input
               autofocus
@@ -87,9 +113,18 @@
             />
           </div>
         </div>
+        <div class="col-12">
+          <q-input
+            v-model="observacion"
+            filled
+            dense
+            label="Comentario / Observación"
+            type="textarea"
+          />
+        </div>
         <div class="row">
            <div class="col-xs-2 col-md-2 q-pa-xs">
-            <q-btn color="green" @click="Cobrar" label="Registrar" />
+            <q-btn color="green" @click="Acobrar" label="Registrar" />
             
           </div>
           <div class="col-xs-2 col-md-2 q-pa-xs">
@@ -112,8 +147,9 @@ export default {
     ...mapState("finanzas", ["documentoVenta"]),
     ...mapGetters("finanzas", [
         "get_listar_operac_encont",
-        "get_catalogo_tctipdoc"
-      ])
+        "get_catalogo_tctipdoc",
+        "get_catalogo_tcmonabo"
+      ]),
   },
   data() {
     return {
@@ -131,11 +167,14 @@ export default {
       producto: "",
       cliente: "",
       placa: "",
-      bancos: "",
+      bancos: null,
+      moneda: 28,
       fechadepago: "",
+      cuentabanco: "",
       operacion: "",
-      detraccion: "",
-      monto: "",
+      detraccion: 0,
+      observacion: "",
+      monto: null,
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
       columns: [
         {
@@ -181,10 +220,11 @@ export default {
       "call_inform_factur",
       "call_catalogo_entfin",
       "call_catalogo_tipdoc",
+      "call_catalogo_monabo",
       "call_amorti_factur",
       "call_listar_factur"
     ]),
-
+    
     async cerrar() {
       this.$q.loading.show();
       await this.call_listar_factur({
@@ -200,10 +240,9 @@ export default {
       this.$q.loading.hide();
     },
 
-    async Cobrar() {
-      console.log("Entra");
+    async Acobrar() {
       this.loadboton = true;
-
+      
       await this.call_amorti_factur({
         pn_regist: this.$q.localStorage.getAll().UserDetalle.co_person,
         co_factur: this.documentoVenta,
@@ -211,8 +250,13 @@ export default {
         co_entfin: this.bancos,
         im_amorti: this.monto,
         im_detrac: this.detraccion,
-        no_coment: "Primer Pago"
+        no_coment: "Primer Pago",
+        co_moneda: this.moneda,
+        nu_cueban: this.cuentabanco,
+        no_observ: this.observacion
       });
+      
+      console.log("Ya ejecuto");
       
       await this.call_listar_factur({
             fe_regdes: "",

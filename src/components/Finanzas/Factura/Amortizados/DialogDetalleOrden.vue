@@ -14,25 +14,16 @@
         <div class="row">
           <div class="col-xs-12 col-md-6 q-pa-xs">
             <DatosdelaOC :info="get_inform_factur" />
+            <TablaProductosdelaOrden />
           </div>
           <div class="col-xs-12 col-md-6 q-pa-xs">
             <Cancelar />
+            <TablaAmortizacion />
           </div>
         </div>
       </q-card-section>
 
       <q-separator />
-
-      <q-card-section style="height: 45%">
-        <div class="row">
-          <div class="col-xs-12 col-md-6 q-pa-xs">
-            <TablaProductosdelaOrden />
-          </div>
-          <div class="col-xs-12 col-md-6 q-pa-xs">
-            <TablaAmortizacion />
-          </div>
-        </div>
-      </q-card-section>
     </q-card>
   </div>
 </template>

@@ -19,7 +19,8 @@ import landing from "./store-landing";
 import llamadas from "./store-llamadas";
 import finanzas from "./store-finanzas";
 import comercial from "./store-comercial";
-
+import correos from "./store-correos";
+import tiv from "./store-tiv";
 
 Vue.use(Vuex);
 
@@ -52,7 +53,9 @@ export default function(/* { ssrContext } */) {
       landing,
       llamadas,
       finanzas,
-      comercial
+      comercial,
+      correos,
+      tiv
     },
 
     // enable strict mode (adds overhead!)

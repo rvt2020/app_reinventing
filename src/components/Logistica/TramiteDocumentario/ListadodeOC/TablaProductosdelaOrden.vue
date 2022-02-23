@@ -2,7 +2,7 @@
   <div>
     <!--    {{ get_listar_detall_tradoc }}-->
     <div class="row">
-      <div class="col"><u>Productos del Tramite </u></div>
+      <div class="col"><u>Detalle del Trámite </u></div>
       <div class="col text-right q-pa-xs">
         <q-btn
           size="8px"
@@ -33,6 +33,7 @@
               input-class="text-right"
               v-model="props.row.ca_articu"
               dense
+              size="5"
             />
           </q-td>
         </template>
@@ -43,6 +44,7 @@
               input-class="text-right"
               v-model="props.row.im_preuni"
               dense
+              size="5"
             />
           </q-td>
         </template>
@@ -69,7 +71,12 @@ export default {
   name: "TablaProductosdelaOrden",
   computed: {
     ...mapState("tramites", ["tramiteDoc"]),
-    ...mapGetters("tramites", ["get_listar_detall_tradoc"])
+    ...mapGetters("tramites", [
+        "get_listar_detall_tradoc",
+        "get_listar_detall_servic_tradoc",
+        "get_listar_servic_encont",
+        "get_listar_produc_encont"
+    ])
   },
   data() {
     return {
@@ -85,13 +92,15 @@ export default {
       categoria: "",
       subcategoria: "",
       producto: "",
-      options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
+      operacion: "",
+      placa: "",
+      cliente: "",
       columns: [
         {
           name: "name",
           required: true,
-          label: "O/C",
-          align: "left",
+          label: "T/D",
+          align: "center",
           field: row => row.co_tradoc,
           format: val => `${val}`,
           sortable: true
@@ -99,7 +108,7 @@ export default {
         {
           name: "co_articu",
           align: "left",
-          label: "Código",
+          label: "CD",
           field: "co_articu",
           sortable: true
         },
@@ -119,18 +128,18 @@ export default {
         {
           name: "im_preuni",
           align: "left",
-          label: "Precio U.",
+          label: "P. Unitario",
           field: "im_preuni"
         },
         {
           name: "im_pretot",
-          align: "left",
-          label: "Precio T.",
+          align: "right",
+          label: "P. Total",
           field: "im_pretot"
         },
         {
           name: "accion",
-          label: "Acciones",
+          label: "",
           field: "accion",
           sortable: true
         }
@@ -141,8 +150,12 @@ export default {
   methods: {
     ...mapActions("tramites", [
       "call_listar_produc_encont",
+      "call_listar_servic_encont",
       "call_manten_produc_tradoc",
-      "call_listar_detall_tradoc"
+      "call_listar_detall_tradoc",
+      "call_listar_detall_servic_tradoc",
+      "call_manten_produc_tradoc",
+      "call_manten_servic_tradoc"
     ]),
     async eliminar(val) {
       this.$q.loading.show();
@@ -162,7 +175,16 @@ export default {
         co_subcat: this.subcategoria,
         no_produc: this.producto
       });
+      await this.call_listar_servic_encont({
+        co_tradoc: this.tramiteDoc,
+        co_operac: this.operacion,
+        co_plaveh: this.placa,
+        no_client: this.cliente
+      });
       await this.call_listar_detall_tradoc({
+        co_tradoc: `${val.co_tradoc}`
+      });
+      await this.call_listar_detall_servic_tradoc({
         co_tradoc: `${val.co_tradoc}`
       });
       this.$q.loading.hide();
@@ -188,19 +210,39 @@ export default {
         co_subcat: this.subcategoria,
         no_produc: this.producto
       });
+      
+      await this.call_listar_servic_encont({
+        co_tradoc: this.tramiteDoc,
+        co_operac: this.operacion,
+        co_plaveh: this.placa,
+        no_client: this.cliente
+      });
+      
       await this.call_listar_detall_tradoc({
         co_tradoc: `${this.tramiteDoc}`
       });
+      await this.call_listar_detall_servic_tradoc({
+        co_tradoc: `${this.tramiteDoc}`
+      });
       this.$q.loading.hide();
-    },
-    async buscarProductos() {
+    }
+     
+    /*async buscarProductos() {
       await this.call_listar_produc_encont({
         co_tradoc: this.tramiteDoc,
         co_catego: this.categoria,
         co_subcat: this.subcategoria,
         no_produc: this.producto
       });
-    }
+    },
+    async buscarServicios() {
+      await this.call_listar_servic_encont({
+        co_tradoc: this.tramiteDoc,
+        co_operac: this.operacion,
+        co_plaveh: this.placa,
+        no_client: this.cliente
+      });
+    }*/
   }
 };
 </script>

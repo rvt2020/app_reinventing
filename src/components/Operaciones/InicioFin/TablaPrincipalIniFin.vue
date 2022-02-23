@@ -110,6 +110,15 @@ export default {
         rowsPerPage: 1000,
         // rowsNumber: xx if getting data from a server
       },
+      
+      no_emisor: "enviacorreos@reinventing.com.pe",
+      no_recept: [
+        "jose.bobadilla@reinventing.com.pe",
+        "jose.mazuelos@reinventing.com.pe"
+        ],
+      no_asunto: "Eminitir VB - Facturación de Vehículo",
+      no_mensaj: "Generar Factura del vehículo",
+
       columns: [
         {
           name: "name",
@@ -134,10 +143,41 @@ export default {
           field: "co_plaveh",
         },
         {
-          name: "no_tecnic",
+          name: "no_marveh",
           align: "left",
-          label: "Trabajador",
-          field: "no_tecnic",
+          label: "Marca",
+          field: "no_marveh",
+        },
+        {
+          name: "no_modveh",
+          align: "left",
+          label: "Modelo",
+          field: "no_modveh",
+        },
+        {
+          name: "no_colveh",
+          align: "left",
+          label: "Color",
+          field: "no_colveh",
+        },
+        {
+          name: "co_docide",
+          align: "left",
+          label: "DNI/RUC",
+          field: "co_docide",
+        },
+        {
+          name: "no_client",
+          align: "left",
+          label: "Cliente",
+          field: "no_client",
+        },
+        {
+          name: "co_ordser",
+          label: "OS",
+          field: "co_ordser",
+          align: "center",
+          sortable: true,
         },
         {
           name: "no_ordser",
@@ -147,23 +187,16 @@ export default {
           sortable: true,
         },
         {
+          name: "co_opeser",
+          label: "TR",
+          field: "co_opeser",
+          align: "left",
+          sortable: true,
+        },
+        {
           name: "no_descri",
-          label: "Descripcion",
+          label: "Trabajo",
           field: "no_descri",
-          align: "left",
-          sortable: true,
-        },
-        {
-          name: "no_unimed",
-          label: "Unidad Media",
-          field: "no_unimed",
-          align: "left",
-          sortable: true,
-        },
-        {
-          name: "no_tipser",
-          label: "Tipo Servicio",
-          field: "no_tipser",
           align: "left",
           sortable: true,
         },
@@ -178,13 +211,6 @@ export default {
           name: "fe_finpro",
           label: "Fin",
           field: "fe_finpro",
-          align: "center",
-          sortable: true,
-        },
-        {
-          name: "check",
-          label: "Check",
-          field: "check",
           align: "center",
           sortable: true,
         },
@@ -207,9 +233,12 @@ export default {
       "call_finalizar_servicio_ordser",
       "call_lista_opeser_ini_fin",
     ]),
+    ...mapActions("correos", ["call_envia_correo"]),
+    
     selecionar(val) {
       //   console.log(val.row.co_operac);
       //   console.log(this.selected.length);
+      // <!--`Buen día.<br><br>Se requiere realizar la factura de la operación ${this.co_operac}.<br><br>Gracias`
       if (this.selected.length == 0) {
         this.selected = [val.row];
       } else {
@@ -269,11 +298,33 @@ export default {
             ord_ser: `${this.selected[0].co_ordser}`,
             ope_ser: `${this.selected[0].co_opeser}`,
           });
+
           await this.call_lista_opeser_ini_fin({
             cod_ope: "",
             pla_veh: "",
             tec_aut: "",
           });
+
+          await this.call_envia_correo(
+            {
+                "de": this.no_emisor,
+                "para": this.no_recept,
+                "asunto": this.no_asunto,
+                "mensaje": this.no_mensaj,
+                "html": `
+                  Buen día.<br><br>
+                  Se requiere realizar la factura de la operación ${this.selected[0].no_operac}.<br><br>
+                  Placa : ${this.selected[0].co_plaveh}.<br>
+                  Marca : ${this.selected[0].no_marveh}.<br>
+                  Modelo : ${this.selected[0].no_modveh}.<br>
+                  Color : ${this.selected[0].no_colveh}.<br>
+                  DNI/RUC : ${this.selected[0].co_docide}.<br>
+                  Cliente : ${this.selected[0].no_client}.<br><br>
+                  Motivo : ${this.selected[0].no_descri}.<br><br>
+                  Gracias`
+              }
+          );
+          
           this.selected = [];
           this.$q.loading.hide();
         } else {
@@ -288,6 +339,8 @@ export default {
         this.$q.loading.hide();
       }
     },
+
+     
   },
 };
 </script>

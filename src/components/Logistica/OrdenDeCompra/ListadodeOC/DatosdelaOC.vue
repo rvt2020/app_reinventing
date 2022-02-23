@@ -2,14 +2,7 @@
   <div>
     <div class="row">
       <div class="col"><u>Datos de la OC </u></div>
-      <div class="col text-right q-pa-xs">
-        <q-btn
-          size="8px"
-          @click="actualizar"
-          color="primary"
-          label="Actualizar"
-        />
-      </div>
+      
     </div>
     <!--    {{ info }}-->
     <q-card flat bordered>

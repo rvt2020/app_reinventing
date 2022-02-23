@@ -66,7 +66,7 @@
               <q-expansion-item
                 class="q-ma-sm navigation-item"
                 expand-separator
-                icon="assignment_turned_in"
+                icon="settings"
                 label="Configuracion"
                 :content-inset-level="0.5"
                 v-if=Modulo_Configuracion
@@ -1324,7 +1324,7 @@
               <q-expansion-item
                 class="q-ma-sm navigation-item"
                 expand-separator
-                icon="view_carousel"
+                icon="trending_up"
                 label="Ventas"
                 :content-inset-level="0.5"
               > 
@@ -1343,7 +1343,7 @@
                   </q-item-section>
 
                   <q-item-section>
-                    <q-item-label>Compras</q-item-label>
+                    <q-item-label>Compra Vehículos</q-item-label>
                   </q-item-section>
                 </q-item>
                 
@@ -1362,10 +1362,38 @@
                   </q-item-section>
 
                   <q-item-section>
-                    <q-item-label>Vehiculos</q-item-label>
+                    <q-item-label>Stock Vehículos</q-item-label>
                   </q-item-section>
                 </q-item>
-                 
+                
+                
+                <!-- TIV -->
+              <q-expansion-item
+                class="q-ma-sm navigation-item"
+                expand-separator
+                icon="addchart"
+                label="TIV"
+                :content-inset-level="0.5"
+              >    
+                <q-item
+                  class="q-ma-sm navigation-item"
+                  clickable
+                  active-class="tab-active"
+                  v-ripple
+                  exact
+                  @click="URL('/tramites/vehiculos')"
+                    
+                >
+                  <q-item-section avatar>
+                    <q-icon name="fact_check" />
+                  </q-item-section>
+
+                  <q-item-section>
+                    <q-item-label>Lista de Estados</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-expansion-item>   
+                
               </q-expansion-item> 
             <!-- FIN MENU VENTAS -->
 

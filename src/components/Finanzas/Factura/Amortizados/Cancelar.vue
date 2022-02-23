@@ -66,6 +66,32 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-xs-12 col-md-13 q-pa-xs">
+            <q-select
+              filled
+              dense
+              v-model="moneda"
+              :options="get_catalogo_tcmonabo.operac"
+              option-label="no_moneda"
+              option-value="co_moneda"
+              emit-value
+              map-options
+              label="Moneda"
+              />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-13 q-pa-xs">
+            <q-input
+              autofocus
+              dense
+              filled
+              v-model="cuentabanco"
+              label="Número de Cuenta"
+            />
+          </div>
+        </div>
+        <div class="row">
            <div class="col-xs-12 col-md-13 q-pa-xs">
             <q-input
               autofocus
@@ -86,6 +112,15 @@
               label="Cobrar"
             />
           </div>
+        </div>
+        <div class="col-12">
+          <q-input
+            v-model="observacion"
+            filled
+            dense
+            label="Comentario / Observación"
+            type="textarea"
+          />
         </div>
         <div class="row">
            <div class="col-xs-2 col-md-2 q-pa-xs">
@@ -112,7 +147,8 @@ export default {
     ...mapState("finanzas", ["documentoVenta"]),
     ...mapGetters("finanzas", [
         "get_listar_operac_encont",
-        "get_catalogo_tctipdoc"
+        "get_catalogo_tctipdoc",
+        "get_catalogo_tcmonabo"
       ])
   },
   data() {
@@ -133,9 +169,11 @@ export default {
       placa: "",
       bancos: "",
       fechadepago: "",
-      operacion: "",
-      detraccion: "",
+      moneda: 28,
       monto: "",
+      cuentabanco: "",
+      detraccion: 0,
+      observacion: "",
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"],
       columns: [
         {
@@ -179,6 +217,7 @@ export default {
       "call_manten_produc_factur",
       "call_listar_detall_factur",
       "call_inform_factur",
+      "call_catalogo_monabo",
       "call_catalogo_entfin",
       "call_catalogo_tipdoc",
       "call_amorti_factur",
@@ -211,7 +250,10 @@ export default {
         co_entfin: this.bancos,
         im_amorti: this.monto,
         im_detrac: this.detraccion,
-        no_coment: "Para Cancelar"
+        no_coment: "Para Cancelar",
+        co_moneda: this.moneda,
+        nu_cueban: this.cuentabanco,
+        no_observ: this.observacion
       });
       
       await this.call_listar_factur({

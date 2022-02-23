@@ -1,14 +1,8 @@
 <template>
   <div>
     <div class="row">
-      <div class="col"><u>Datos de la TD </u></div>
+      <div class="col"><u>Datos del Trámite Documentario</u></div>
       <div class="col text-right q-pa-xs">
-        <q-btn
-          size="8px"
-          @click="actualizar"
-          color="primary"
-          label="Actualizar"
-        />
       </div>
     </div>
     <!--    {{ info }}-->
