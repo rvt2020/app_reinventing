@@ -113,7 +113,12 @@ export default {
       
       no_emisor: "enviacorreos@reinventing.com.pe",
       no_recept: [
-        "jose.bobadilla@reinventing.com.pe"
+        "jose.bobadilla@reinventing.com.pe",
+        "julio.mazuelos@reinventing.com.pe",
+        "ada.mazuelos@reinventing.com.pe",
+        "norma.cortavitarte@reinventing.com.pe",
+        "jose.mazuelos@reinventing.com.pe",
+        "joseph.carrion@reinventing.com.pe"
         ],
       no_asunto: "Eminitir VB - Facturación de Vehículo",
       no_mensaj: "Generar Factura del vehículo",
