@@ -383,7 +383,7 @@ export default {
       });
       this.$store.commit("tramites/dialogDetalleOrden", true);
       this.$q.loading.hide();
-    }
+    } 
   }
 };
 </script>
