@@ -113,8 +113,7 @@ export default {
       
       no_emisor: "enviacorreos@reinventing.com.pe",
       no_recept: [
-        "jose.bobadilla@reinventing.com.pe",
-        "jose.mazuelos@reinventing.com.pe"
+        "jose.bobadilla@reinventing.com.pe"
         ],
       no_asunto: "Eminitir VB - Facturación de Vehículo",
       no_mensaj: "Generar Factura del vehículo",
@@ -214,6 +213,13 @@ export default {
           align: "center",
           sortable: true,
         },
+        {
+          name: "co_tecnic",
+          label: ".",
+          field: "co_tecnic",
+          align: "center",
+          sortable: true,
+        },
         // {
         //   name: "accion",
         //   label: "Accion",
@@ -305,26 +311,28 @@ export default {
             tec_aut: "",
           });
 
-          await this.call_envia_correo(
-            {
-                "de": this.no_emisor,
-                "para": this.no_recept,
-                "asunto": this.no_asunto,
-                "mensaje": this.no_mensaj,
-                "html": `
-                  Buen día.<br><br>
-                  Se requiere realizar la factura de la operación ${this.selected[0].no_operac}.<br><br>
-                  Placa : ${this.selected[0].co_plaveh}.<br>
-                  Marca : ${this.selected[0].no_marveh}.<br>
-                  Modelo : ${this.selected[0].no_modveh}.<br>
-                  Color : ${this.selected[0].no_colveh}.<br>
-                  DNI/RUC : ${this.selected[0].co_docide}.<br>
-                  Cliente : ${this.selected[0].no_client}.<br><br>
-                  Motivo : ${this.selected[0].no_descri}.<br><br>
-                  Gracias`
-              }
-          );
-          
+          if (this.selected[0].co_tecnic != 0) {
+            await this.call_envia_correo(
+              {
+                  "de": this.no_emisor,
+                  "para": this.no_recept,
+                  "asunto": this.no_asunto,
+                  "mensaje": this.no_mensaj,
+                  "html": `
+                    Buen día.<br><br>
+                    Se requiere realizar la factura de la operación ${this.selected[0].no_operac}.<br><br>
+                    Placa : ${this.selected[0].co_plaveh}.<br>
+                    Marca : ${this.selected[0].no_marveh}.<br>
+                    Modelo : ${this.selected[0].no_modveh}.<br>
+                    Color : ${this.selected[0].no_colveh}.<br>
+                    DNI/RUC : ${this.selected[0].co_docide}.<br>
+                    Cliente : ${this.selected[0].no_client}.<br><br>
+                    Motivo : ${this.selected[0].no_descri}.<br><br>
+                    Gracias`
+                }
+            );
+          }
+
           this.selected = [];
           this.$q.loading.hide();
         } else {
