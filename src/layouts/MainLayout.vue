@@ -1367,7 +1367,7 @@
                 </q-item>
                 
                 
-                <!-- TIV -->
+                <!-- TIV 
               <q-expansion-item
                 class="q-ma-sm navigation-item"
                 expand-separator
@@ -1392,7 +1392,7 @@
                     <q-item-label>Lista de Estados</q-item-label>
                   </q-item-section>
                 </q-item>
-              </q-expansion-item>   
+              </q-expansion-item>   -->
                 
               </q-expansion-item> 
             <!-- FIN MENU VENTAS -->
