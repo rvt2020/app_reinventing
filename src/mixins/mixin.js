@@ -123,8 +123,15 @@ const MixinDefault = {
         ma_margen: "Materiales Margen",
         ma_rentab: "Materiales Rentabilidad",
         ma_sd: "Sin Despachar",
+        
+        va_ventas: "Valor Venta",
         to_ventas: "Total Venta",
+        va_igvven: "Igv Venta",
+        
+        va_costos: "Valor Costo",
         to_costos: "Total Costo",
+        va_igvcos: "Igv Costo",
+        
         to_margen: "Total Margen",
         to_rentab: "Total Rentabilidad",
         or_numbre: "Item",
@@ -169,8 +176,8 @@ const MixinDefault = {
         ca_diaatr: "Dias Atraso",
         id_operac: "Operación",
         fe_termin: "Fecha Término",
-        im_servic: "Imp.Servicio",
-        im_materi: "Imp.Materiales",
+        im_servic: "Imp. Servicio",
+        im_materi: "Imp. Materiales",
         im_basimp: "Base Imponible",
         im_totigv: "IGV",
         im_totope: "Total Operación",
