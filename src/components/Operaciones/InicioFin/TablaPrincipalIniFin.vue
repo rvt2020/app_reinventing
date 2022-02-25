@@ -118,7 +118,9 @@ export default {
         "ada.mazuelos@reinventing.com.pe",
         "norma.cortavitarte@reinventing.com.pe",
         "jose.mazuelos@reinventing.com.pe",
-        "joseph.carrion@reinventing.com.pe"
+        "joseph.carrion@reinventing.com.pe",
+        "viviana.castro@reinventing.com.pe",
+        "ericka.alvarado@reinventing.com.pe"
         ],
       no_asunto: "Eminitir VB - Facturación de Vehículo",
       no_mensaj: "Generar Factura del vehículo",
