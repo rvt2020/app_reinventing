@@ -6,6 +6,19 @@
         <q-form @submit="buscarOperaciones">
           <div class="row">
             <div class="col-xs-12 col-sm-2 q-pa-xs">
+              <q-select
+                filled
+                dense
+                v-model="tip_pro"
+                :options="optionstip_pro"
+                option-value="value"
+                option-label="name"
+                emit-value
+                map-options
+                label="Tipo de Producción"
+              />
+            </div>
+            <div class="col-xs-12 col-sm-2 q-pa-xs">
               <q-input
                 dense
                 filled
@@ -124,6 +137,7 @@ export default {
       fec_des: date.formatDate(timeStamp, "YYYY-MM-DD"),
       fec_has: date.formatDate(timeStamp, "YYYY-MM-DD"),
       tip_rep: "R",
+      tip_pro: null,
       fecha_ini: "",
       fecha_fin: "",
       model: null,
@@ -136,6 +150,12 @@ export default {
           name: "Resumido",
           value: "R"
         }
+      ],
+      optionstip_pro: [
+        {name: "[Todos]", value: "0"},
+        {name: "Autos / Motos", value: "1"},
+        {name: "Conversiones", value: "2"},
+        {name: "Mecánica", value: "3"}
       ],
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]
     };
@@ -153,7 +173,8 @@ export default {
         pla_veh: this.pla_veh,
         fec_des: this.fec_des,
         fec_has: this.fec_has,
-        tip_rep: this.tip_rep
+        tip_rep: this.tip_rep,
+        tip_pro: this.tip_pro
       });
       this.$q.loading.hide();
     }
@@ -165,7 +186,8 @@ export default {
       pla_veh: this.pla_veh,
       fec_des: this.fec_des,
       fec_has: this.fec_has,
-      tip_rep: this.tip_rep
+      tip_rep: this.tip_rep,
+      tip_pro: this.tip_pro
     });
     this.$q.loading.hide();
   }
