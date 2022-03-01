@@ -153,9 +153,10 @@ export default {
       ],
       optionstip_pro: [
         {name: "[Todos]", value: "0"},
-        {name: "Autos / Motos", value: "1"},
-        {name: "Conversiones", value: "2"},
-        {name: "Mecánica", value: "3"}
+        {name: "Autos", value: "1"},
+        {name: "Motos", value: "2"},
+        {name: "Conversiones", value: "3"},
+        {name: "Mecánica", value: "4"}
       ],
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]
     };
