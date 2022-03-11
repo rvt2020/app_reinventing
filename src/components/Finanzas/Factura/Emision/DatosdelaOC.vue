@@ -9,6 +9,10 @@
       <q-markup-table dense>
         <tbody>
           <tr>
+            <td class="text-left">Operaciones</td>
+            <td class="text-left">{{ info.operac[0].co_operac }}</td>
+          </tr>
+         <tr>
             <td class="text-left">Código</td>
             <td class="text-left">{{ info.operac[0].co_factur }}</td>
           </tr>
@@ -97,7 +101,23 @@ export default {
       tipo: 1,
       dataEdit: [],
       co_factur: "",
-      nu_docume: ""
+      nu_docume: "",
+      no_emisor: "enviacorreos@reinventing.com.pe",
+      no_recept: [
+        "jose.bobadilla@reinventing.com.pe",
+        "julio.mazuelos@reinventing.com.pe",
+        "ada.mazuelos@reinventing.com.pe",
+        "norma.cortavitarte@reinventing.com.pe",
+        "jose.mazuelos@reinventing.com.pe",
+        "joseph.carrion@reinventing.com.pe",
+        "viviana.castro@reinventing.com.pe",
+        "ericka.alvarado@reinventing.com.pe"
+        ],
+      no_asunto: "Factura Emitida - Venta de Autos y Motos",
+      no_mensaj: "Se procedió con la emisión de la factura",
+      no_client: `${this.info.operac[0].no_client}`,
+      nu_docume: `${this.info.operac[0].nu_docume}`,
+      co_operac: `${this.info.operac[0].co_operac}`
     };
   },
   methods: {
@@ -112,7 +132,8 @@ export default {
       "call_amorti_factur",
       "call_listar_factur"
     ]),
-
+    ...mapActions("correos", ["call_envia_correo"]),
+    
     uploaded(files) {
       console.log("subio");
       console.log(files);
@@ -148,6 +169,22 @@ export default {
         nu_docume: `${this.info.operac[0].nu_docume}`,
         co_arcadj: `${this.$store.state.example.arcadj}`
       });
+
+      if (this.info.operac[0].co_operac != 0) {
+        await this.call_envia_correo(
+          {
+              "de": this.no_emisor,
+              "para": this.no_recept,
+              "asunto": this.no_asunto,
+              "mensaje": this.no_mensaj,
+              "html": `
+                Buen día.<br><br>
+                Se ha realizado la facturación Nro. ${this.info.operac[0].nu_docume} del cliente  ${this.no_client}.<br><br>
+                La Operación es : OP00${this.co_operac} <br><br>
+                Gracias`
+            }
+        );
+      }
 
       await this.call_listar_factur({
             fe_regdes: "",

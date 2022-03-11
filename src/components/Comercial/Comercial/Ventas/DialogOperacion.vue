@@ -273,6 +273,22 @@
                         /> 
                       </td>
                     </tr>
+                    <tr>
+                      <td class="text-left">Trabajo </td>
+                      <td style="width: 150px;">
+                        <q-select
+                          filled
+                          dense
+                          v-model="trabajo"
+                          :options="get_catalogo_tctrabaj.resultado"
+                          option-label="co_tiptra"
+                          option-value="no_tiptra"
+                          emit-value
+                          map-options
+                        /> 
+                      </td>
+                    </tr>
+                    
                   </tbody>
                 </q-markup-table>
               </q-card>
@@ -325,7 +341,7 @@ export default {
   computed: {
     ...mapState("comercial", ["dialogOperacion"]),
     ...mapGetters("personas", ["getPersonasFilter"]),
-    ...mapGetters("comercial", ["get_inform_vehicu", "get_catalogo_tctipveh", "get_catalogo_tctipdct", "get_resultado_calculo"]),
+    ...mapGetters("comercial", ["get_inform_vehicu", "get_catalogo_tctipveh", "get_catalogo_tctipdct", "get_resultado_calculo", "get_catalogo_tctrabaj"]),
     ...mapGetters("operaciones", ["get_combo_cliente", "get_combo_referido", "get_combo_conyuge"]),
     ...mapGetters("tramites", ["get_catalogo_tcmoneda"])
     
@@ -400,7 +416,8 @@ export default {
         "call_listar_vehicu",
         "call_inform_vehicu",  
         "call_insert_calculo_venta",
-        "call_resete_calcul"
+        "call_resete_calcul",
+        "call_catalogo_tctrabaj"
       ]),
     ...mapActions("operaciones", ["call_combo_cliente", "call_combo_referido", "call_combo_conyuge"]),
     ...mapActions("tramites", ["call_catalogo_tcmoneda"]),

@@ -5,6 +5,7 @@ const state = {
   get_catalogo_tcmoneda: [],
   get_catalogo_tctipveh: [],
   get_catalogo_tctipdct: [],
+  get_catalogo_tctrabaj: [],
   get_listar_vehicu: [],
   get_resultado_calculo: [],
   dialogOperacion: false,
@@ -25,6 +26,10 @@ const mutations = {
   
   get_catalogo_tctipveh(state, payload) {
     state.get_catalogo_tctipveh = payload;
+  },
+  
+  get_catalogo_tctrabaj(state, payload) {
+    state.get_catalogo_tctrabaj = payload;
   },
   
   get_listar_compra_vehicu(state, payload) {
@@ -68,6 +73,15 @@ const actions = {
       payload
     );
     commit("get_catalogo_tcmoneda", response.data);
+  },
+  
+  //TIPO DE TRABAJO
+  async call_catalogo_tctrabaj({ commit }, payload) {
+    const response = await axiosInstance.get(
+      `/comercial/lista_trabajo`,
+      payload
+    );
+    commit("get_catalogo_tctrabaj", response.data);
   },
   
   //TIPOS DE VEHICULOS
@@ -160,6 +174,10 @@ const getters = {
   
   get_catalogo_tctipveh(state) {
     return state.get_catalogo_tctipveh;
+  },
+  
+  get_catalogo_tctrabaj(state) {
+    return state.get_catalogo_tctrabaj;
   },
   
   get_catalogo_tctipdct(state) {
