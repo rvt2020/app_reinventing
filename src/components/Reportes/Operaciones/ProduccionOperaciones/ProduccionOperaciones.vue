@@ -19,6 +19,20 @@
               />
             </div>
             <div class="col-xs-12 col-sm-2 q-pa-xs">
+              <q-select
+                filled
+                dense
+                v-model="tip_sed"
+                :options="optionstip_sed"
+                option-value="value"
+                option-label="name"
+                emit-value
+                map-options
+                label="Sede"
+              />
+            </div>
+            <!--
+            <div class="col-xs-12 col-sm-2 q-pa-xs">
               <q-input
                 dense
                 filled
@@ -28,7 +42,7 @@
             </div>
             <div class="col-xs-12 col-sm-2 q-pa-xs">
               <q-input dense filled v-model="pla_veh" label="Placa" />
-            </div>
+            </div> -->
             <div class="col-xs-12 col-sm-2 q-pa-xs">
               <q-input
                 clearable
@@ -102,6 +116,7 @@
                 label="Tipo de Reporte"
               />
             </div>
+            
             <div class="col-xs-12 col-sm-2 q-pa-xs">
               <q-btn size="md" color="red" type="submit" icon-right="search" />
             </div>
@@ -137,6 +152,7 @@ export default {
       fec_des: date.formatDate(timeStamp, "YYYY-MM-DD"),
       fec_has: date.formatDate(timeStamp, "YYYY-MM-DD"),
       tip_rep: "R",
+      tip_sed: null,
       tip_pro: null,
       fecha_ini: "",
       fecha_fin: "",
@@ -158,6 +174,13 @@ export default {
         {name: "Conversiones", value: "3"},
         {name: "Mecánica", value: "4"}
       ],
+      optionstip_sed: [
+        {name: "[Todas]", value: "0"},
+        {name: "Jirón Gregorio Paredes - LIMA", value: "1"},
+        {name: "Av. 17 - Mz H Lote 4a - VILLA EL SALVADOR", value: "2"},
+        {name: "Av. Mansiche - TRUJILLO", value: "3"},
+        {name: "Av. Ayabaca - ICA", value: "4"}
+      ],
       options: ["Google", "Facebook", "Twitter", "Apple", "Oracle"]
     };
   },
@@ -175,7 +198,8 @@ export default {
         fec_des: this.fec_des,
         fec_has: this.fec_has,
         tip_rep: this.tip_rep,
-        tip_pro: this.tip_pro
+        tip_pro: this.tip_pro,
+        tip_sed: this.tip_sed
       });
       this.$q.loading.hide();
     }
@@ -188,7 +212,8 @@ export default {
       fec_des: this.fec_des,
       fec_has: this.fec_has,
       tip_rep: this.tip_rep,
-      tip_pro: this.tip_pro
+      tip_pro: this.tip_pro,
+      tip_sed: this.tip_sed
     });
     this.$q.loading.hide();
   }
