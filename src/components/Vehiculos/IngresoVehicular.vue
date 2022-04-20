@@ -793,10 +793,18 @@
                   <tbody>
                     <tr>
                       <td class="text-left">Centro de Operaciones</td>
-                      <td class="text-right">
-                        <q-input filled dense v-model="cen_ope" />
+                       <td class="text-right">
+                        <q-select
+                          filled
+                          dense
+                          v-model="cen_ope"
+                          :options="optionsCentrodeOperaciones"
+                          option-label="name"
+                          option-value="value"
+                          emit-value
+                          map-options
+                        />
                       </td>
-                      
                       <!--<td class="text-right">
                         <q-select
                           filled
@@ -964,8 +972,8 @@ export default {
       ape_pat: "",
       ape_mat: "",
       nom_cli: "",
-      cen_ope: "Gregorio Paredes",
-      direcci: "Jirón Gregorio Paredes 418 Lima, Perú",
+      cen_ope: "",
+      direcci: "Sede - Reinventing",
       det_ing: "",
       swt_sal: "",
       fec_sal: "",
@@ -980,13 +988,13 @@ export default {
           value: 2
         }
       ],
-      /*
+      
       optionsCentrodeOperaciones: [
-        {
-          name: "Jirón Gergorio Paredes",
-          value: 1
-        }
-      ],*/
+        {name: "Jirón Gregorio Paredes - LIMA", value: 1},
+        {name: "Av. 17 - Mz H Lote 4a - VILLA EL SALVADOR", value: 2},
+        {name: "Av. Mansiche - TRUJILLO", value: 3},
+        {name: "Av. Ayabaca - ICA", value: 4}
+      ],
       //optionsCentrodeOperaciones: "Gregorio Paredes",
       options: [],
       Kilometraje: "",
@@ -1069,7 +1077,7 @@ export default {
           ape_pat: this.ape_pat,
           ape_mat: this.ape_mat,
           nom_cli: this.nom_cli,
-          cen_ope: 1,
+          cen_ope: this.cen_ope,
           direcci: this.direcci,
           det_ing: this.det_ing,
           swt_sal: this.swt_sal,
@@ -1116,7 +1124,7 @@ export default {
           ape_pat: this.ape_pat,
           ape_mat: this.ape_mat,
           nom_cli: this.nom_cli,
-          cen_ope: 1,
+          cen_ope: this.cen_ope,
           direcci: this.direcci,
           det_ing: this.det_ing,
           swt_sal: this.swt_sal,
@@ -1173,7 +1181,7 @@ export default {
           ape_pat: this.ape_pat,
           ape_mat: this.ape_mat,
           nom_cli: this.nom_cli,
-          cen_ope: 1,
+          cen_ope: this.cen_ope,
           direcci: this.direcci,
           det_ing: this.det_ing,
           swt_sal: this.swt_sal,
